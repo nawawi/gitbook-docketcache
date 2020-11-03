@@ -234,7 +234,7 @@ define('DOCKET_CACHE_LOG_FLUSH', true);
 
 ## DOCKET\_CACHE\_LOG\_SIZE
 
-Set the maximum size of a log file in bytes.  
+Set the maximum size of the log file in bytes.  
 Default: 10MB. 1MB = 1048576 bytes
 
 ```php
@@ -243,7 +243,7 @@ define('DOCKET_CACHE_LOG_SIZE', 10485760);
 
 ## DOCKET\_CACHE\_LOG\_ALL
 
-By default, docket cache excludes his cached process if WP\_DEBUG not defined to true. Set to `true` or `false` to enable or disable to log all caches.  
+By default, Docket Cache excludes it own process if WP\_DEBUG not defined as true. Set to `true` or `false` to enable or disable to log all caches.  
 Default:
 
 ```php
@@ -380,7 +380,7 @@ define('DOCKET_CACHE_CRONBOT', false);
 
 ## DOCKET\_CACHE\_CRONBOT\_MAX
 
-Maximum sites allowed in multisite.  
+Maximum sites allowed in Multisite setup.  
 Default:
 
 ```php
@@ -389,7 +389,7 @@ define('DOCKET_CACHE_CRONBOT_MAX', 10);
 
 ## DOCKET\_CACHE\_AUTOUPDATE
 
-Set to `true` or `false` to enable or disable plugin auto-update.  
+Set to `true` or `false` to enable or disable Docket Cache auto-update.  
 Default:
 
 ```php
@@ -398,7 +398,7 @@ define('DOCKET_CACHE_AUTOUPDATE', true);
 
 ## DOCKET\_CACHE\_CHECKVERSION
 
-The Check Version allows this plugin to check any critical future version that requires removing cache files before doing the updates, purposely to avoid any error-prone.
+The Check Version allows Docket Cache to check any critical future version that requires removing cache files before doing the updates, purposely to avoid error-prone.
 
 Set to `true` or `false` to enable or disable critical version checking.  
 Default:
