@@ -100,7 +100,7 @@ define('DOCKET_CACHE_DATA_PATH', WP_CONTENT_DIR.'/docket-cache-data/');
 
 ## DOCKET\_CACHE\_CONTENT\_PATH
 
-Set the content directory.   
+Set the Docket Cache writable directory.   
 Default:
 
 ```php
@@ -216,7 +216,7 @@ define('DOCKET_CACHE_LOG_FILE', WP_CONTENT_DIR.'/.object-cache.log');
 
 ## DOCKET\_CACHE\_LOG\_TIME
 
-Set the log time format. Available options utc, local, wp.  
+Set the log time format when viewing. Available options utc, local, wp.  
 Default:
 
 ```php
