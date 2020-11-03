@@ -111,7 +111,7 @@ By default, Docket Cache requires writable permission on WordPress **wp-content*
 
 Please refer to PHP [open\_basedir](https://www.php.net/manual/en/ini.core.php#ini.open-basedir) setting before set this constant.
 
-Example:
+**Example:**
 
 ```php
 $ sudo mkdir -p /opt/dc-content
@@ -120,7 +120,7 @@ $ sumod chmod 755 /opt/dc-content
 $ sudo ln -s /opt/dc-content/object-cache.php /your-wp-path/wp-content/object-cache.php
 ```
 
-Wrapper file:
+**Wrapper file:**
 
 ```php
 <?php
