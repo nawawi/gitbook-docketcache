@@ -120,7 +120,7 @@ define('DOCKET_CACHE_FLUSH_DELETE', false);
 
 ## DOCKET\_CACHE\_GLOBAL\_GROUPS
 
-Lists of cache groups that share a cache with other sites in a Multisite setup.  
+Set the lists of cache groups that share a cache with other sites in a Multisite setup.  
 Default:
 
 ```php
