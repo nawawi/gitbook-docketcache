@@ -213,7 +213,9 @@ define('DOCKET_CACHE_LOG_SIZE', 10485760);
 
 ## DOCKET\_CACHE\_LOG\_ALL
 
-By default, Docket Cache excludes it own process if WP\_DEBUG not defined as true. Set to `true` or `false` to enable or disable to log all caches.  
+By default, Docket Cache excludes it own process if WP\_DEBUG not defined as true.
+
+Set to `true` or `false` to enable or disable to log all caches.  
 Default:
 
 ```php
@@ -231,7 +233,9 @@ define('DOCKET_CACHE_ADVCPOST', true);
 
 ## DOCKET\_CACHE\_CRONOPTMZDB
 
-Enable Database Tables optimization. Available options: never, daily, weekly, monthly.  
+Enable Database Tables optimization.
+
+Available options: never, daily, weekly, monthly.  
 Default:
 
 ```php
