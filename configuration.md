@@ -17,7 +17,7 @@ define('DOCKET_CACHE_MAXTTL', 345600);
 
 ## DOCKET\_CACHE\_MAXSIZE
 
-Set the maximum size of an object can be cache in bytes. Maximum accepted size is 10485760 \(10MB\).  
+Set the maximum size of an object can be cache in bytes. Maximum accepted size is 10485760 bytes \(10MB\).  
 Default: 3MB. 1MB = 1048576 bytes
 
 ```php
