@@ -8,50 +8,12 @@ Constants are like variables except that once they are defined they cannot be ch
 
 ## DOCKET\_CACHE\_MAXTTL
 
-Cache file lifespan in seconds if expiry not set or '0'. Only numbers between 86400 and 2419200 are accepted.  
+Cache file lifespan in seconds. Only numbers between 86400 and 2419200 are accepted.  
 Default: 4 days = 345600 seconds
 
 ```php
 define('DOCKET_CACHE_MAXTTL', 345600);
 ```
-
-This setting does not apply to the groups below:
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Group</th>
-      <th style="text-align:left">Key</th>
-      <th style="text-align:left">MaxTTL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">transient</td>
-      <td style="text-align:left">any</td>
-      <td style="text-align:left">604800 (7 days)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">site-transient</td>
-      <td style="text-align:left">
-        <p>update_plugins</p>
-        <p>update_themes</p>
-        <p>update_core</p>
-      </td>
-      <td style="text-align:left">2419200 (28 days)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">post_meta</td>
-      <td style="text-align:left">any</td>
-      <td style="text-align:left">1209600 (14 days)</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">options</td>
-      <td style="text-align:left">any</td>
-      <td style="text-align:left">1209600 (14 days)</td>
-    </tr>
-  </tbody>
-</table>
 
 ## DOCKET\_CACHE\_MAXSIZE
 
