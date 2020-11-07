@@ -10,7 +10,7 @@ Constants are like variables except that once they are defined they cannot be ch
 
 Cache file lifespan in seconds.
 
-Only numbers between 86400 and 2419200 are accepted.  
+Only numbers between 86400 and 2419200 are allowed.  
 Default: 4 days = 345600 seconds
 
 ```php
@@ -21,7 +21,7 @@ define('DOCKET_CACHE_MAXTTL', 345600);
 
 Set the maximum size of an object can be cache in bytes.
 
-Maximum accepted size is 10485760 bytes \(10MB\).  
+Maximum allowed size is 10485760 bytes \(10MB\).  
 Default: 3MB. 1MB = 1048576 bytes
 
 ```php
@@ -32,7 +32,7 @@ define('DOCKET_CACHE_MAXSIZE', 3145728);
 
 Set the maximum size of the cache storage on disk.
 
-Minimum accepted size is 104857600. \(100MB\).  
+Minimum allowed size is 104857600 bytes \(100MB\).  
 Default: 500MB = 524288000
 
 ```php
@@ -43,7 +43,7 @@ define('DOCKET_CACHE_MAXSIZE_DISK', 524288000);
 
 Set the maximum file of cache can be store on disk.
 
-Only numbers between 200 and 200000 are accepted.  
+Only numbers between 200 and 1000000 are allowed.  
 Default: 50000
 
 ```php
