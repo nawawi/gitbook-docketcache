@@ -19,7 +19,7 @@ define('DOCKET_CACHE_MAXTTL', 345600);
 
 When Docket Cache saves the cache to the file, it will change file timestamp with expiration time. If no expiration time was supply, Docket Cache will use this setting as an expiration time.
 
-This setting does not apply to cache groups below when expiration time not set.
+This setting does not apply to cache groups below:
 
 | Group | Key | Seconds |
 | :--- | :--- | :--- |
