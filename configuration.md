@@ -111,7 +111,27 @@ if ( !@is_file(DOCKET_CACHE_CONTENT_PATH.'/object-cache.php') ) {
 
 **Systemd PrivateTmp**
 
-If you're using `/tmp` as root path, you need to set `PrivateTmp=false` in systemd services like httpd.service or php-fpm.service
+If you're using `/tmp` as root path, you need to set `PrivateTmp=false` in systemd services like httpd.service or php-fpm.service.
+
+Enter`systemctl edit` command.
+
+```php
+$ sudo systemctl edit php-fpm.service
+```
+
+Insert this setting.
+
+```php
+[Service]
+PrivateTmp=false
+```
+
+Execute this command to restart php-fpm service.
+
+```php
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart php-fpm
+```
 
 Example file in CentOS 8: /usr/lib/systemd/system/php-fpm.service
 
