@@ -17,6 +17,22 @@ Default: 4 days = 345600 seconds
 define('DOCKET_CACHE_MAXTTL', 345600);
 ```
 
+When Docket Cache saves the cache to the file, it will change file timestamp with expiration time. If no expiration time was supply, Docket Cache will use this setting as an expiration time.
+
+This setting does not apply to cache groups below when expiration time not set.
+
+| Group | Key | Seconds |
+| :--- | :--- | :--- |
+| site-transient | update\_plugins, update\_themes, update\_core | 2419200 \(28 days\) |
+| site-transient | any | 604800 \(7 days\) |
+| transient | any | 604800 \(7 days\) |
+| terms | any | 1209600 \(14 days\) |
+| posts | any | 1209600 \(14 days\) |
+| post\_meta | any | 1209600 \(14 days\) |
+| comments | any | 1209600 \(14 days\) |
+| options | any | 1209600 \(14 days\) |
+| site-options | any | 1209600 \(14 days\) |
+
 ## DOCKET\_CACHE\_MAXSIZE
 
 Set the maximum size of an object can be cache in bytes.
