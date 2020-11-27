@@ -35,7 +35,7 @@ This setting does not apply to cache groups below if the value of seconds is low
 
 ## DOCKET\_CACHE\_MAXSIZE
 
-Set the maximum size of the cache file in bytes after converting objects into plain PHP code.
+Set the maximum size of object data in bytes.
 
 Maximum allowed size is 10485760 bytes \(10MB\).  
 Default: 3MB. 1MB = 1048576 bytes
