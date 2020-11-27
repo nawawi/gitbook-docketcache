@@ -44,6 +44,20 @@ Default: 3MB. 1MB = 1048576 bytes
 define('DOCKET_CACHE_MAXSIZE', 3145728);
 ```
 
+**Object data:**
+
+```php
+[
+    'timestamp' => 1606491679,
+    'site_id' => 1,
+    'group' => 'options',
+    'key' => 'generate_db_version',
+    'type' => 'string',
+    'timeout' => 1607701279,
+    'data' => '3.0.2',
+]
+```
+
 ## DOCKET\_CACHE\_MAXSIZE\_DISK
 
 Set the maximum size of the cache storage on disk.
