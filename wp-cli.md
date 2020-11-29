@@ -4,7 +4,9 @@ description: The command line interface for WordPress.
 
 # WP-CLI
 
-`WP-CLI` is the official command-line interface for WordPress. The Docket Cache extends default `wp cache` command with additional sub-commands.
+`Updated: 29-Nov-2020 | Version: >= 20.09.01`
+
+WP-CLI is the official command-line interface for WordPress. The Docket Cache extends default `wp cache` command with additional sub-commands.
 
 The following command supported:
 
