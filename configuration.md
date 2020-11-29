@@ -37,7 +37,7 @@ This setting does not apply to cache groups below if the value of seconds is low
 
 ## DOCKET\_CACHE\_MAXSIZE
 
-Set the maximum size of cache data in bytes.
+Set the maximum size of object data in bytes.
 
 Maximum allowed size is 10485760 bytes \(10MB\).  
 Default: 3MB. 1MB = 1048576 bytes
@@ -46,7 +46,28 @@ Default: 3MB. 1MB = 1048576 bytes
 define('DOCKET_CACHE_MAXSIZE', 3145728);
 ```
 
-**Example of cache data:**
+**Example of object data:**
+
+```php
+[
+    1606534363 => [
+        'wp_version_check' => [
+            '40cd750bba9870f18aada2478b24840a' => [
+                'schedule' => 'twicedaily',
+                'args' => [],
+                'interval' => 43200,
+            ],
+        ],
+    ],
+    'version' => 2,
+]
+```
+
+{% hint style="info" %}
+The size of cache file is slightly larger than the object since it contains Docket Cache metadata.
+{% endhint %}
+
+**Example of cache file content:**
 
 ```php
 [
