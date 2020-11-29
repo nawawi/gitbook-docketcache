@@ -96,7 +96,7 @@ The size of cache file is slightly larger than the object since it contains Dock
 
 Set the maximum size of the cache storage on disk.
 
-Minimum allowed size is 104857600 bytes \(100MB\).  
+The minimum required size is 104857600 bytes \(100MB\).  
 Default: 500MB = 524288000
 
 ```php
