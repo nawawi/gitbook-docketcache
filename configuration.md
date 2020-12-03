@@ -19,9 +19,9 @@ Default: 345600 \(4 days\)
 define('DOCKET_CACHE_MAXTTL', 345600);
 ```
 
-When Docket Cache saves the object data to the file, it will change file timestamp with expire time. If there is no expire time was supply to [`wp_cache_set`](https://developer.wordpress.org/reference/functions/wp_cache_set/) function, Docket Cache will use this setting as an expiration time.
+When Docket Cache saves the object data to the file, it will change file timestamp with expire time. If there is no expire time was supply to [`wp_cache_set`](https://developer.wordpress.org/reference/functions/wp_cache_set/) function or set to 0, Docket Cache will use this setting as an expiration time.
 
-This setting does not apply to cache groups below if the value of seconds is lower than the predefined value.
+This setting does not apply to cache groups below if the value of seconds is lower than the predefined seconds.
 
 | Group | Key | Seconds |
 | :--- | :--- | :--- |
