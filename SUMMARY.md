@@ -1,6 +1,7 @@
 # Table of contents
 
-* [About](README.md)
+* [Index](README.md)
+* [About](about.md)
 * [Installation](installation.md)
 * [Configuration](configuration.md)
 * [WP-CLI](wp-cli.md)
