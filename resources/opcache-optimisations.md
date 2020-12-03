@@ -2,7 +2,7 @@
 description: OPcache compiler's optimizer.
 ---
 
-# OPcache Optimizations
+# OPcache Optimisations
 
 ## **Introducing**
 

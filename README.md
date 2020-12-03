@@ -1,8 +1,10 @@
 ---
-description: Docket Cache - WordPress Object Cache Accelerator
+description: Welcome to the Docket Cache Documentation Space
 ---
 
-# Index
+# Welcome
+
+## Index
 
 * [About](about.md)
 * [Installation](installation.md)
@@ -10,4 +12,14 @@ description: Docket Cache - WordPress Object Cache Accelerator
 * [WP-CLI](wp-cli.md)
 * [Admin Interface](admin-interface.md)
 * [FAQ](faq.md)
+
+## Resources
+
+* [WordPress Hosting](resources/wordpress-hosting.md)
+* [Cache In WordPress](resources/caching-in-wordpress.md)
+* [OPcache Extension](resources/opcache-extension.md)
+* [OPcache Optimisations](resources/opcache-optimisations.md)
+* [Web Hosting I/O Usage](resources/web-hosting-i-o-usage.md)
+
+
 

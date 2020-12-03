@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Index](README.md)
+* [Welcome](README.md)
 * [About](about.md)
 * [Installation](installation.md)
 * [Configuration](configuration.md)
@@ -13,6 +13,6 @@
 * [WordPress Hosting](resources/wordpress-hosting.md)
 * [Caching In WordPress](resources/caching-in-wordpress.md)
 * [OPcache Extension](resources/opcache-extension.md)
-* [OPcache Optimizations](resources/opcache-optimizations.md)
+* [OPcache Optimisations](resources/opcache-optimisations.md)
 * [Web Hosting I/O Usage](resources/web-hosting-i-o-usage.md)
 
