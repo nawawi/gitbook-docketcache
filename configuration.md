@@ -37,7 +37,7 @@ This setting does not apply to cache groups below if the value of seconds is low
 
 ## DOCKET\_CACHE\_MAXSIZE
 
-Set the maximum size of object data in bytes.
+Set the maximum size of the object data in bytes, which can be store in a cache file.
 
 Maximum allowed size is 10485760 bytes \(10MB\).  
 Default: 3145728 \(3MB\)
@@ -100,7 +100,7 @@ The size of the cache file is slightly bigger than the object since it contains 
 | site\_id | Site Id |
 | group | Object Cache group |
 | key | Object Cache key |
-| type | Data type |
+| type | Object Cache Data type |
 | timeout | Expiration time |
 | data | Object Cache data |
 
@@ -117,7 +117,7 @@ define('DOCKET_CACHE_MAXSIZE_DISK', 524288000);
 
 ## DOCKET\_CACHE\_MAXFILE
 
-Set the maximum file of cache can be store on disk.
+Set the maximum cache file can be store on disk.
 
 Only numbers between 200 and 1000000 are allowed.  
 Default: 50000
@@ -141,7 +141,7 @@ Set the configuration directory.
 Default:
 
 ```php
-define('DOCKET_CACHE_DATA_PATH', WP_CONTENT_DIR.'/docket-cache-data/');
+define('DOCKET_CACHE_DATA_PATH', WP_CONTENT_DIR.'/docket-cache-data');
 ```
 
 ## DOCKET\_CACHE\_CONTENT\_PATH
