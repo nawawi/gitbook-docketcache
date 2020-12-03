@@ -13,7 +13,7 @@ Constants are like variables except that once they are defined they cannot be ch
 Cache file lifespan in seconds.
 
 Only numbers between 86400 and 2419200 are allowed.  
-Default: 4 days = 345600 seconds
+Default: 345600 \(4 days\)
 
 ```php
 define('DOCKET_CACHE_MAXTTL', 345600);
@@ -40,13 +40,13 @@ This setting does not apply to cache groups below if the value of seconds is low
 Set the maximum size of object data in bytes.
 
 Maximum allowed size is 10485760 bytes \(10MB\).  
-Default: 3MB. 1MB = 1048576 bytes
+Default: 3145728 \(3MB\)
 
 ```php
 define('DOCKET_CACHE_MAXSIZE', 3145728);
 ```
 
-**Example of object data:**
+#### Example of object data:
 
 ```php
 [
@@ -67,7 +67,7 @@ define('DOCKET_CACHE_MAXSIZE', 3145728);
 The size of the cache file is slightly bigger than the object since it contains Docket Cache metadata and exported as plain PHP code.
 {% endhint %}
 
-**Example of cache file content:**
+#### Example of the cache file content:
 
 ```php
 [
@@ -97,7 +97,7 @@ The size of the cache file is slightly bigger than the object since it contains 
 Set the maximum size of the cache storage on disk.
 
 The minimum required size is 104857600 bytes \(100MB\).  
-Default: 500MB = 524288000
+Default:  524288000 \(500MB\)
 
 ```php
 define('DOCKET_CACHE_MAXSIZE_DISK', 524288000);
@@ -143,9 +143,9 @@ define('DOCKET_CACHE_CONTENT_PATH', WP_CONTENT_DIR);
 
 By default, Docket Cache requires writable permission on WordPress **wp-content** directory for internal use. Defining this constant also change the default path for cache, configuration and object-cache Drop-In. The content path must exist and has proper permission. The `object-cache.php` Drop-In file needs to symlink with WordPress `wp-content/object-cache.php` or replace with wrapper file.
 
-Please refer to the PHP [open\_basedir](https://www.php.net/manual/en/ini.core.php#ini.open-basedir) setting before set this constant.
+Please refer to the PHP [`open_basedir` ](https://www.php.net/manual/en/ini.core.php#ini.open-basedir)setting before set this constant.
 
-**Example:**
+#### Example:
 
 ```php
 $ sudo mkdir -p /opt/dc-content
@@ -154,7 +154,7 @@ $ sumod chmod 755 /opt/dc-content
 $ sudo ln -s /opt/dc-content/object-cache.php /your-wp-path/wp-content/object-cache.php
 ```
 
-**Wrapper file:**
+#### Wrapper file:
 
 ```php
 <?php
@@ -173,7 +173,7 @@ if ( !@is_file(DOCKET_CACHE_CONTENT_PATH.'/object-cache.php') ) {
 @include_once DOCKET_CACHE_CONTENT_PATH.'/object-cache.php';
 ```
 
-**Systemd PrivateTmp**
+#### Systemd PrivateTmp
 
 If you're using `/tmp` as root path, you need to set `PrivateTmp=false` in systemd services like httpd.service or php-fpm.service.
 
@@ -317,7 +317,7 @@ define('DOCKET_CACHE_LOG_FLUSH', true);
 ## DOCKET\_CACHE\_LOG\_SIZE
 
 Set the maximum size of the log file in bytes.  
-Default: 10MB. 1MB = 1048576 bytes
+Default: 10485760 \(10MB\)
 
 ```php
 define('DOCKET_CACHE_LOG_SIZE', 10485760);
