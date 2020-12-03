@@ -92,6 +92,18 @@ The size of the cache file is slightly bigger than the object since it contains 
 ]
 ```
 
+#### Docket Cache Metadata:
+
+| Name | Description |
+| :--- | :--- |
+| timestamp | Data creation time |
+| site\_id | Site Id |
+| group | Object Cache group |
+| key | Object Cache key |
+| type | Data type |
+| timeout | Expiration time |
+| data | Object Cache data |
+
 ## DOCKET\_CACHE\_MAXSIZE\_DISK
 
 Set the maximum size of the cache storage on disk.
