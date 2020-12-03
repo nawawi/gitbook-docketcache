@@ -12,7 +12,7 @@ To use Docket Cache requires minimum:
 * WordPress 5.4
 * Zend OPCache
 
-## WordPress Plugin Repository
+## WordPress Plugin 
 
 1. In your WordPress admin click **Plugins -&gt; Add New .**
 2. Search plugins "Docket Cache" and click Install Now.
@@ -25,10 +25,11 @@ Please wait around 5 seconds for Docket Cache ready to cache the objects.
 
 ## Manual Installation
 
-1. Download the plugin as a [ZIP file](https://github.com/nawawi/docket-cache/archive/master.zip) from GitHub or from [WordPress Plugin Repository](https://wordpress.org/plugins/docket-cache).
+1. Download the plugin as a [ZIP file](https://github.com/nawawi/docket-cache/archive/master.zip) from GitHub or from [WordPress Plugin Directory](https://wordpress.org/plugins/docket-cache/).
 2. In your WordPress admin click `Plugins -> Add New -> Upload Plugin`.
 3. Upload the ZIP file and Activate the plugin.
-4. Enable the object cache under `Settings -> Docket Cache`, or in Multisite setups under `Network Admin -> Settings -> Docket Cache`.
+4. Click Activate or Network Activate in Multisite setups.
+5. Click Docket Cache in the left menu to access the admin page.
 
 ## Via WP-CLI
 
