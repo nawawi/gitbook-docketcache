@@ -64,7 +64,7 @@ define('DOCKET_CACHE_MAXSIZE', 3145728);
 ```
 
 {% hint style="info" %}
-The size of the cache file is slightly larger than the object since it contains Docket Cache metadata and exported as plain PHP code.
+The size of the cache file is slightly bigger than the object since it contains Docket Cache metadata and exported as plain PHP code.
 {% endhint %}
 
 **Example of cache file content:**
