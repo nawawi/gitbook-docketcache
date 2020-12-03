@@ -20,8 +20,6 @@ The only solution is to store the object caches into files. With WordPress, expo
 
 The Docket Cache is better because it converts the object cache into plain PHP code. This solution is faster since WordPress can use the cache directly without running other operation.
 
-
-
 ## How Versions Work
 
 Versions are as follows: Year.Month.Day
