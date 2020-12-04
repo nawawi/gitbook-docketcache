@@ -8,7 +8,7 @@ The Docket Cache keeps the admin interface clean, responsive and simple as possi
 
 ## Overview
 
-The Overview page is a central place to view the current status of Docket Cache activities, configuration and other useful information.
+The Overview section is a central place to view the current status of Docket Cache activities, configuration and other useful information.
 
 | Label | Description |
 | :--- | :--- |
@@ -33,7 +33,7 @@ The Overview page is a central place to view the current status of Docket Cache 
 
 ## Configuration
 
-The configuration page allow you to change basic configuration.
+The configuration section allows you to change the Docket Cache behaviour without using constant variables. If related constant defined in the `wp-config.php` file, it will overwrite the changes in this section.
 
 ## Cache Log
 
