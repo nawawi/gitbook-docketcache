@@ -43,8 +43,8 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | Object Cache Precaching | DOCKET\_CACHE\_PRECACHE |
 | WordPress Translation Caching | DOCKET\_CACHE\_MOCACHE |
 | Optimize WP Query | DOCKET\_CACHE\_OPTWPQUERY |
-| Optimize Term Count Queries |  |
-| Optimize Database Tables |  |
+| Optimize Term Count Queries | DOCKET\_CACHE\_OPTERMCOUNT |
+| Optimize Database Tables | DOCKET\_CACHE\_CRONOPTMZDB |
 | Suspend WP Options Autoload |  |
 | Post Missed Schedule Tweaks |  |
 | Misc Performance Tweaks |  |
