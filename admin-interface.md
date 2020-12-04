@@ -45,8 +45,8 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | Optimize WP Query | DOCKET\_CACHE\_OPTWPQUERY |
 | Optimize Term Count Queries | DOCKET\_CACHE\_OPTERMCOUNT |
 | Optimize Database Tables | DOCKET\_CACHE\_CRONOPTMZDB |
-| Suspend WP Options Autoload |  |
-| Post Missed Schedule Tweaks |  |
+| Suspend WP Options Autoload | DOCKET\_CACHE\_WPOPTALOAD |
+| Post Missed Schedule Tweaks | DOCKET\_CACHE\_POSTMISSEDSCHEDULE |
 | Misc Performance Tweaks |  |
 | Misc WooCommerce Tweaks |  |
 | Deactivate WooCommerce Admin |  |
