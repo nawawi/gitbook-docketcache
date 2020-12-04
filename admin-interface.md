@@ -47,8 +47,8 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | Optimize Database Tables | DOCKET\_CACHE\_CRONOPTMZDB |
 | Suspend WP Options Autoload | DOCKET\_CACHE\_WPOPTALOAD |
 | Post Missed Schedule Tweaks | DOCKET\_CACHE\_POSTMISSEDSCHEDULE |
-| Misc Performance Tweaks |  |
-| Misc WooCommerce Tweaks |  |
+| Misc Performance Tweaks | DOCKET\_CACHE\_MISC\_TWEAKS |
+| Misc WooCommerce Tweaks | DOCKET\_CACHE\_WOOTWEAKS |
 | Deactivate WooCommerce Admin |  |
 | Deactivate WooCommerce Widget |  |
 | Deactivate WooCommerce WP Dashboard |  |
@@ -59,13 +59,12 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | Remove WP Embed |  |
 | Remove WP Lazy Load |  |
 | Remove WP Sitemap |  |
-| Admin Page Cache Preloading |  |
-| Admin Page Loader |  |
-| Object Cache Data Stats |  |
+| Admin Page Cache Preloading | DOCKET\_CACHE\_PRELOAD |
+| Admin Page Loader | DOCKET\_CACHE\_PAGELOADER |
+| Object Cache Data Stats | DOCKET\_CACHE\_STATS |
 | Garbage Collector Action Button |  |
-| Docket Cache Auto Update |  |
-| Check Critical Version |  |
-|  |  |
+| Docket Cache Auto Update | DOCKET\_CACHE\_AUTOUPDATE |
+| Check Critical Version | DOCKET\_CACHE\_CHECKVERSION |
 
 ## Cache Log
 
