@@ -8,7 +8,7 @@ The Docket Cache keeps the admin interface clean, responsive and simple as possi
 
 ## Overview
 
-draft
+The Overview page is a central place to view the current status of Docket Cache activities, configuration and other useful information.
 
 | Label | Description |
 | :--- | :--- |
