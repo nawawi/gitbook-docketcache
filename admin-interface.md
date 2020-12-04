@@ -62,7 +62,7 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | Admin Page Cache Preloading | DOCKET\_CACHE\_PRELOAD |
 | Admin Page Loader | DOCKET\_CACHE\_PAGELOADER |
 | Object Cache Data Stats | DOCKET\_CACHE\_STATS |
-| Garbage Collector Action Button |  |
+| Garbage Collector Action Button | DOCKET\_CACHE\_GCACTION |
 | Docket Cache Auto Update | DOCKET\_CACHE\_AUTOUPDATE |
 | Check Critical Version | DOCKET\_CACHE\_CHECKVERSION |
 
