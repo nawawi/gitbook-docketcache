@@ -393,6 +393,33 @@ Default:
 define('DOCKET_CACHE_WOOTWEAKS', true);
 ```
 
+## DOCKET\_CACHE\_WOOADMINOFF
+
+Set to true to disable WooCommerce Admin feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WOOADMINOFF', false);
+```
+
+## DOCKET\_CACHE\_WOOWIDGETOFF
+
+Set to true to disable WooCommerce Widget feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WOOWIDGETOFF', false);
+```
+
+## DOCKET\_CACHE\_WOOWPDASHBOARDOFF
+
+Set to true to disable WooCommerce meta box in the WordPress Dashboard.  
+Default:
+
+```php
+define('DOCKET_CACHE_WOOWPDASHBOARDOFF', false);
+```
+
 ## DOCKET\_CACHE\_POSTMISSEDSCHEDULE
 
 Set to `true` or `false` to enable or disable Post Missed Schedule Tweaks features.  
