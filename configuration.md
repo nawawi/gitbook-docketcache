@@ -474,6 +474,17 @@ Default:
 define('DOCKET_CACHE_PRECACHE', true);
 ```
 
+## DOCKET\_CACHE\_PRECACHE\_MAXFILE
+
+Set the maximum precache file can be store on disk.
+
+Only numbers between 0 and 1000000 are allowed. Set to 0 to disable it.  
+Default: 0
+
+```php
+define('DOCKET_CACHE_PRECACHE_MAXFILE', 0);
+```
+
 ## DOCKET\_CACHE\_PRELOAD
 
 Set to `true` or `false` to enable or disable cache preloading. If set to `true`, this plugin will fetch predefined URL related to the admin page.  
