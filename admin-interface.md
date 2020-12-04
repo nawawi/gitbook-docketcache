@@ -35,13 +35,13 @@ The Overview section is a central place to view the current status of Docket Cac
 
 The configuration section allows you to change the Docket Cache behaviour without using constant variables. If related constant defined in the `wp-config.php` file, it will overwrite the changes in this section.
 
-| Option | Description |
+| Option | Constant |
 | :--- | :--- |
-| Cronbot Service | Enable/Disable Cronbot feature |
-| Cache Log | Enable/Disable Cache Log feature |
-| Advanced Post Caching |  |
-| Object Cache Precaching |  |
-| WordPress Translation Caching |  |
+| Cronbot Service | DOCKET\_CACHE\_CRONBOT |
+| Cache Log | DOCKET\_CACHE\_LOG |
+| Advanced Post Caching | DOCKET\_CACHE\_ADVCPOST |
+| Object Cache Precaching | DOCKET\_CACHE\_PRECACHE |
+| WordPress Translation Caching | DOCKET\_CACHE\_MOCACHE |
 | Optimize WP Query |  |
 | Optimize Term Count Queries |  |
 | Optimize Database Tables |  |
