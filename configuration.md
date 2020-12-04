@@ -552,6 +552,69 @@ Default:
 define('DOCKET_CACHE_STATS', true);
 ```
 
+## DOCKET\_CACHE\_PINGBACK
+
+Set to true to disable WordPress XML-RPC and Pingbacks related features.  
+Default:
+
+```php
+define('DOCKET_CACHE_PINGBACK', false);
+```
+
+## DOCKET\_CACHE\_HEADERJUNK
+
+Set to true to disable WordPress features related to HTML header such as meta generators and feed links to reduce the page size.  
+Default:
+
+```php
+define('DOCKET_CACHE_HEADERJUNK', false);
+```
+
+## DOCKET\_CACHE\_WPEMOJI
+
+Set to true to disable WordPress Emoji feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WPEMOJI', false);
+```
+
+## DOCKET\_CACHE\_WPFEED
+
+Set to true to disable WordPress Feed feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WPFEED', false);
+```
+
+## DOCKET\_CACHE\_WPEMBED
+
+Set to true to disable WordPress Embed feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WPEMBED', false);
+```
+
+## DOCKET\_CACHE\_WPLAZYLOAD
+
+Set to true to disable WordPress Lazy Load feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WPLAZYLOAD', false);
+```
+
+## DOCKET\_CACHE\_WPSITEMAP
+
+Set to true to disable WordPress Auto-Sitemap feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WPSITEMAP', false);
+```
+
 ## DOCKET\_CACHE\_DISABLED
 
 Set to `true` to disable the object cache at runtime. No persistent cached objects at this time.  
