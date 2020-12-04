@@ -617,7 +617,7 @@ define('DOCKET_CACHE_WPSITEMAP', false);
 
 ## DOCKET\_CACHE\_DISABLED
 
-Set to `true` to disable the object cache at runtime. No persistent cached objects at this time.  
+Set to true to disable the Docket Cache object cache feature at runtime. By defining to true, Docket Cache will ignore install and uninstall the Drop-in file.  
 Default:
 
 ```php
