@@ -49,16 +49,16 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | Post Missed Schedule Tweaks | DOCKET\_CACHE\_POSTMISSEDSCHEDULE |
 | Misc Performance Tweaks | DOCKET\_CACHE\_MISC\_TWEAKS |
 | Misc WooCommerce Tweaks | DOCKET\_CACHE\_WOOTWEAKS |
-| Deactivate WooCommerce Admin |  |
-| Deactivate WooCommerce Widget |  |
-| Deactivate WooCommerce WP Dashboard |  |
-| Remove XML-RPC / Pingbacks |  |
-| Remove WP Header Junk |  |
-| Remove WP Emoji |  |
-| Remove WP Feed |  |
-| Remove WP Embed |  |
-| Remove WP Lazy Load |  |
-| Remove WP Sitemap |  |
+| Deactivate WooCommerce Admin | DOCKET\_CACHE\_WOOADMINOFF |
+| Deactivate WooCommerce Widget | DOCKET\_CACHE\_WOOWIDGETOFF |
+| Deactivate WooCommerce WP Dashboard | DOCKET\_CACHE\_WOOWPDASHBOARDOFF |
+| Remove XML-RPC / Pingbacks | DOCKET\_CACHE\_PINGBACK |
+| Remove WP Header Junk | DOCKET\_CACHE\_HEADERJUNK |
+| Remove WP Emoji | DOCKET\_CACHE\_WPEMOJI |
+| Remove WP Feed | DOCKET\_CACHE\_WPFEED |
+| Remove WP Embed | DOCKET\_CACHE\_WPEMBED |
+| Remove WP Lazy Load | DOCKET\_CACHE\_WPLAZYLOAD |
+| Remove WP Sitemap | DOCKET\_CACHE\_WPSITEMAP |
 | Admin Page Cache Preloading | DOCKET\_CACHE\_PRELOAD |
 | Admin Page Loader | DOCKET\_CACHE\_PAGELOADER |
 | Object Cache Data Stats | DOCKET\_CACHE\_STATS |
