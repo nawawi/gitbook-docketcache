@@ -35,6 +35,38 @@ The Overview section is a central place to view the current status of Docket Cac
 
 The configuration section allows you to change the Docket Cache behaviour without using constant variables. If related constant defined in the `wp-config.php` file, it will overwrite the changes in this section.
 
+| Option | Constant |
+| :--- | :--- |
+| Cronbot Service | [DOCKET\_CACHE\_CRONBOT](configuration.md#docket_cache_cronoptmzdb) |
+| Cache Log |  |
+| Advanced Post Caching |  |
+| Object Cache Precaching |  |
+| WordPress Translation Caching |  |
+| Optimize WP Query |  |
+| Optimize Term Count Queries |  |
+| Optimize Database Tables |  |
+| Suspend WP Options Autoload |  |
+| Post Missed Schedule Tweaks |  |
+| Misc Performance Tweaks |  |
+| Misc WooCommerce Tweaks |  |
+| Deactivate WooCommerce Admin |  |
+| Deactivate WooCommerce Widget |  |
+| Deactivate WooCommerce WP Dashboard |  |
+| Remove XML-RPC / Pingbacks |  |
+| Remove WP Header Junk |  |
+| Remove WP Emoji |  |
+| Remove WP Feed |  |
+| Remove WP Embed |  |
+| Remove WP Lazy Load |  |
+| Remove WP Sitemap |  |
+| Admin Page Cache Preloading |  |
+| Admin Page Loader |  |
+| Object Cache Data Stats |  |
+| Garbage Collector Action Button |  |
+| Docket Cache Auto Update |  |
+| Check Critical Version |  |
+|  |  |
+
 ## Cache Log
 
 draft
