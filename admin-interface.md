@@ -22,18 +22,18 @@ The Overview page is a central place to view the current status of Docket Cache 
 | PHP Memory Limit | Your Server PHP memory limit setting. |
 | WP Frontend Memory Limit | WordPress Website memory limit. |
 | WP Backend Memory Limit | WordPress Admin memory limit. |
-| Drop-in Writable | Status whether Drop-in file can be written, replace or delete. |
+| Drop-in Writable | Status either Drop-in file can be written, replace or delete. |
 | Drop-in File | Drop-in file location. |
-| Cache Writable | Status whether cache file can be written, replace or delete. |
+| Cache Writable | Status either cache file can be written, replace or delete. |
 | Cache Files Limit | Current total cache files and maximum files can be store on disk. |
 | Cache Disk Limit | Current total size cache files and maximum size can be store on disk. |
 | Cache Path | Cache directory. |
-| Config Writable | Status whether config file can be written, replace or delete. |
+| Config Writable | Status either config file can be written, replace or delete. |
 | Config Path | Config location. |
 
 ## Configuration
 
-draft
+The configuration page allow you to change basic configuration.
 
 ## Cache Log
 
