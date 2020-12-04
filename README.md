@@ -4,8 +4,6 @@ description: Welcome to the Docket Cache Documentation Space
 
 # Welcome
 
-![](.gitbook/assets/banner-772x250.png)
-
 ## Index
 
 * [About](about.md)
