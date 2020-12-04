@@ -37,7 +37,7 @@ The Overview section is a central place to view the current status of Docket Cac
 
 The configuration section allows you to change the Docket Cache behaviour without using constant variables. If related constant defined in the `wp-config.php` file, it will overwrite the changes in this section.
 
-| Option | Related Constant |
+| Label | Related Constant |
 | :--- | :--- |
 | Cronbot Service | DOCKET\_CACHE\_CRONBOT |
 | Cache Log | DOCKET\_CACHE\_LOG |
