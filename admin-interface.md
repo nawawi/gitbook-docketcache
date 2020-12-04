@@ -37,7 +37,7 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 | Option | Constant |
 | :--- | :--- |
-| Cronbot Service | [DOCKET\_CACHE\_CRONBOT](configuration.md#docket_cache_cronoptmzdb) |
+| Cronbot Service | [DOCKET\_CACHE\_CRONBOT](https://docs.docketcache.com/configuration#docket_cache_cronbot) |
 | Cache Log |  |
 | Advanced Post Caching |  |
 | Object Cache Precaching |  |
