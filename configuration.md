@@ -449,7 +449,7 @@ define('DOCKET_CACHE_OPTWPQUERY', true);
 
 ## DOCKET\_CACHE\_MOCACHE
 
-Set to `true` or `false` to enable or disable WordPress Translation Caching features.  
+Set to `true` to enable WordPress Translation Caching features that improve the performance of the Translation function.  
 Default:
 
 ```php
