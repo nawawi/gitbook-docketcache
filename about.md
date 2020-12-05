@@ -55,10 +55,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The portion of following projects has been used in Docket Cache. Thank you for all the great works.
 
-* [Advanced Post Cache](https://github.com/Automattic/vip-go-mu-plugins-built/blob/master/advanced-post-cache/advanced-post-cache.php)
-* [Lightweight Term Count Update](https://github.com/Automattic/lightweight-term-count-update)
-* [MonoDB](https://github.com/nawawi/MonoDB)
-* [Symfony VarExporter Component](https://github.com/symfony/var-exporter)
+* Advanced Post Cache
+* Lightweight Term Count Update
+* MonoDB
+* Symfony VarExporter Component
 
 
 
