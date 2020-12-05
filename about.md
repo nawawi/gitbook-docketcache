@@ -53,11 +53,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Credits
 
-The portion of following projects has been used in Docket Cache. Thank you for all the great works!. 
-
-{% hint style="info" %}
-List in alphabetical order
-{% endhint %}
+The portion of following projects has been used in Docket Cache. Thank you for all the great works.
 
 * [Advanced Post Cache](https://github.com/Automattic/vip-go-mu-plugins-built/blob/master/advanced-post-cache/advanced-post-cache.php)
 * [Lightweight Term Count Update](https://github.com/Automattic/lightweight-term-count-update)
