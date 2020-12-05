@@ -469,7 +469,7 @@ define('DOCKET_CACHE_SIGNATURE', true);
 
 ## DOCKET\_CACHE\_PRECACHE
 
-Set to `true` or `false` to enable or disable Object Cache Precaching features.  
+Set to `true` to enable Object Cache Precaching features that increase cache performance by early loading cached objects based on the current URL.  
 Default:
 
 ```php
