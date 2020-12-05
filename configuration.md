@@ -348,14 +348,12 @@ define('DOCKET_CACHE_LOG_ALL', false);
 
 ## DOCKET\_CACHE\_ADVCPOST
 
-Set to `true` or `false` to enable or disable Advanced Post Cache features.   
+Set to `true` to enable Advanced Post Cache features that cache WordPress Post Queries which results in faster data retrieval and reduced database workload.   
 Default:
 
 ```php
 define('DOCKET_CACHE_ADVCPOST', true);
 ```
-
-This feature will cache WordPress Post Queries which results in faster data retrieval and reduced database workload.
 
 ## DOCKET\_CACHE\_CRONOPTMZDB
 
