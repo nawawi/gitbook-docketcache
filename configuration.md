@@ -440,7 +440,7 @@ define('DOCKET_CACHE_OPTERMCOUNT', true);
 
 ## DOCKET\_CACHE\_OPTWPQUERY
 
-Set to `true` or `false` to enable or disable WordPress Core Query optimization features.  
+Set to `true` to enable WordPress Core Query optimization features. Docket Cache will attempt to optimize WordPress core query when enabled.  
 Default:
 
 ```php
