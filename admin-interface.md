@@ -153,7 +153,7 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 | Label | Related Constant |
 | :--- | :--- |
-| Cronbot Service | `DOCKET_CACHE_CRONBOT` [🏳 ](https://docs.docketcache.com/constants#docket_cache_cronbot) |
+| Cronbot Service | DOCKET\_CACHE\_CRONBOT |
 | Cache Log | DOCKET\_CACHE\_LOG |
 | Advanced Post Caching | DOCKET\_CACHE\_ADVCPOST |
 | Object Cache Precaching | DOCKET\_CACHE\_PRECACHE |
