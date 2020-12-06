@@ -523,6 +523,15 @@ Default:
 define('DOCKET_CACHE_CRONBOT_MAX', 10);
 ```
 
+## DOCKET\_CACHE\_GCACTION
+
+Set to `true` to enable Docket Cache Garbage Collector action button at Overview section.  
+Default:
+
+```php
+define('DOCKET_CACHE_GCACTION', false);
+```
+
 ## DOCKET\_CACHE\_AUTOUPDATE
 
 Set to `true` or `false` to enable or disable Docket Cache auto-update.  
