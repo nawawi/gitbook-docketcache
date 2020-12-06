@@ -54,8 +54,8 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 | Label | Related Constant |
 | :--- | :--- |
-| **Cronbot Service** | [`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot)\`\` |
-| **Cache Log** | \`\`[`DOCKET_CACHE_LOG`](https://docs.docketcache.com/constants#docket_cache_log)\`\` |
+| **Cronbot Service** | [DOCKET\_CACHE\_CRONBOT](https://docs.docketcache.com/constants#docket_cache_cronbot) |
+| **Cache Log** | \`\`[DOCKET\_CACHE\_LOG](https://docs.docketcache.com/constants#docket_cache_log) |
 | **Advanced Post Caching** | [DOCKET\_CACHE\_ADVCPOST](https://docs.docketcache.com/constants#docket_cache_advcpost) |
 | **Object Cache Precaching** | [DOCKET\_CACHE\_PRECACHE](https://docs.docketcache.com/constants#docket_cache_precache) |
 | **WordPress Translation Caching** | [DOCKET\_CACHE\_MOCACHE](https://docs.docketcache.com/constants#docket_cache_mocache) |
