@@ -159,32 +159,32 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | :--- | :--- |
 | Cronbot Service | \[[`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot)\] |
 | Cache Log | \[`DOCKET_CACHE_LOG`\] |
-| Advanced Post Caching | `DOCKET_CACHE_ADVCPOST` |
-| Object Cache Precaching | `DOCKET_CACHE_PRECACHE` |
-| WordPress Translation Caching | `DOCKET_CACHE_MOCACHE` |
-| Optimize WP Query | `DOCKET_CACHE_OPTWPQUERY` |
-| Optimize Term Count Queries | `DOCKET_CACHE_OPTERMCOUNT` |
-| Optimize Database Tables | `DOCKET_CACHE_CRONOPTMZDB` |
-| Suspend WP Options Autoload | `DOCKET_CACHE_WPOPTALOAD` |
-| Post Missed Schedule Tweaks | `DOCKET_CACHE_POSTMISSEDSCHEDULE` |
-| Misc Performance Tweaks | `DOCKET_CACHE_MISC_TWEAKS` |
-| Misc WooCommerce Tweaks | `DOCKET_CACHE_WOOTWEAKS` |
-| Deactivate WooCommerce Admin | `DOCKET_CACHE_WOOADMINOFF` |
-| Deactivate WooCommerce Widget | `DOCKET_CACHE_WOOWIDGETOFF` |
-| Deactivate WooCommerce WP Dashboard | `DOCKET_CACHE_WOOWPDASHBOARDOFF` |
-| Remove XML-RPC / Pingbacks | `DOCKET_CACHE_PINGBACK` |
-| Remove WP Header Junk | `DOCKET_CACHE_HEADERJUNK` |
-| Remove WP Emoji | `DOCKET_CACHE_WPEMOJI` |
-| Remove WP Feed | `DOCKET_CACHE_WPFEED` |
-| Remove WP Embed | `DOCKET_CACHE_WPEMBED` |
-| Remove WP Lazy Load | `DOCKET_CACHE_WPLAZYLOAD` |
-| Remove WP Sitemap | `DOCKET_CACHE_WPSITEMAP` |
-| Admin Page Cache Preloading | `DOCKET_CACHE_PRELOAD` |
-| Admin Page Loader | `DOCKET_CACHE_PAGELOADER` |
-| Object Cache Data Stats | `DOCKET_CACHE_STATS` |
-| Garbage Collector Action Button | `DOCKET_CACHE_GCACTION` |
-| Docket Cache Auto Update | `DOCKET_CACHE_AUTOUPDATE` |
-| Check Critical Version | `DOCKET_CACHE_CHECKVERSION` |
+| Advanced Post Caching | DOCKET\_CACHE\_ADVCPOST |
+| Object Cache Precaching | DOCKET\_CACHE\_PRECACHE |
+| WordPress Translation Caching | DOCKET\_CACHE\_MOCACHE |
+| Optimize WP Query | DOCKET\_CACHE\_OPTWPQUERY |
+| Optimize Term Count Queries | DOCKET\_CACHE\_OPTERMCOUNT |
+| Optimize Database Tables | DOCKET\_CACHE\_CRONOPTMZDB |
+| Suspend WP Options Autoload | DOCKET\_CACHE\_WPOPTALOAD |
+| Post Missed Schedule Tweaks | DOCKET\_CACHE\_POSTMISSEDSCHEDULE |
+| Misc Performance Tweaks | DOCKET\_CACHE\_MISC\_TWEAKS |
+| Misc WooCommerce Tweaks | DOCKET\_CACHE\_WOOTWEAKS |
+| Deactivate WooCommerce Admin | DOCKET\_CACHE\_WOOADMINOFF |
+| Deactivate WooCommerce Widget | DOCKET\_CACHE\_WOOWIDGETOFF |
+| Deactivate WooCommerce WP Dashboard | DOCKET\_CACHE\_WOOWPDASHBOARDOFF |
+| Remove XML-RPC / Pingbacks | DOCKET\_CACHE\_PINGBACK |
+| Remove WP Header Junk | DOCKET\_CACHE\_HEADERJUNK |
+| Remove WP Emoji | DOCKET\_CACHE\_WPEMOJI |
+| Remove WP Feed | DOCKET\_CACHE\_WPFEED |
+| Remove WP Embed | DOCKET\_CACHE\_WPEMBED |
+| Remove WP Lazy Load | DOCKET\_CACHE\_WPLAZYLOAD |
+| Remove WP Sitemap | DOCKET\_CACHE\_WPSITEMAP |
+| Admin Page Cache Preloading | DOCKET\_CACHE\_PRELOAD |
+| Admin Page Loader | DOCKET\_CACHE\_PAGELOADER |
+| Object Cache Data Stats | DOCKET\_CACHE\_STATS |
+| Garbage Collector Action Button | DOCKET\_CACHE\_GCACTION |
+| Docket Cache Auto Update | DOCKET\_CACHE\_AUTOUPDATE |
+| Check Critical Version | DOCKET\_CACHE\_CHECKVERSION |
 
 ## Cache Log
 
