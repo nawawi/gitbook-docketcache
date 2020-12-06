@@ -42,7 +42,7 @@ The Overview section is a central place to view the current status of Docket Cac
 
 {% hint style="info" %}
 1. Only visible if your website running behind Cloudflare.
-2. Only visible if web proxy is not Cloudflare, like Sucuri.
+2. Only visible if web proxy is not Cloudflare such Sucuri and Varnish.
 3. Only visible in Multisite single-network.
 4. Only visible in Multisite Multi-Network setup.
 5. Only visible if `DOCKET_CACHE_CONTENT_PATH` constant defined.
