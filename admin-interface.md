@@ -14,31 +14,31 @@ The Overview section is a central place to view the current status of Docket Cac
 
 | Label | Description |
 | :--- | :--- |
-| Web Server | Web Server name. |
-| PHP SAPI | PHP version and type of Server API. |
-| Cloudflare | Cloudflare IP and Ray ID. \(1\) |
-| Web Proxy | Web Proxy IP other than Cloudflare. \(2\) |
-| Object Cache Stats | Total object size in cache files. |
-| Object OPcache Stats | Total OPcache size in memory, for objects cache files. |
-| WP OPcache Stats | Total OPcache size in memory, for WordPress files. |
-| PHP Memory Limit | Your Server PHP memory limit setting. |
-| WP Frontend Memory Limit | WordPress Website memory limit. |
-| WP Backend Memory Limit | WordPress Admin memory limit. |
-| WP Multi Site | Status either is Multisite. \(3\) |
-| WP Multi Network | Status either is Multi-Network. \(4\) |
-| Primary Network | Status either is Primary Network. \(4\) |
-| Network Locking File | Network Lock file. \(4\) |
-| Drop-in Writable | Status either Drop-in file can be written, replace or delete. |
-| Drop-in use Wrapper | Status either Drop-in file is wrapper file. \(5\) |
-| Drop-in Wrapper Available | Status either Drop-in wrapper file exists. \(5\) |
-| Drop-in Wrapper File | Drop-in wrapper file location. \(5\) |
-| Drop-in File | Drop-in file path. |
-| Cache Writable | Status either cache file can be written, replace or delete. |
-| Cache Files Limit | Current total cache files and maximum files can be store on disk. |
-| Cache Disk Limit | Current total size cache files and maximum size can be store on disk. |
-| Cache Path | Cache directory path. |
-| Config Writable | Status either config file can be written, replace or delete. |
-| Config Path | Config directory path. |
+| **Web Server** | Web Server name. |
+| **PHP SAPI** | PHP version and type of Server API. |
+| **Cloudflare** | Cloudflare IP and Ray ID. \(1\) |
+| **Web Proxy** | Web Proxy IP other than Cloudflare. \(2\) |
+| **Object Cache Stats** | Total object size in cache files. |
+| **Object OPcache Stats** | Total OPcache size in memory, for objects cache files. |
+| **WP OPcache Stats** | Total OPcache size in memory, for WordPress files. |
+| **PHP Memory Limit** | Your Server PHP memory limit setting. |
+| **WP Frontend Memory Limit** | WordPress Website memory limit. |
+| **WP Backend Memory Limit** | WordPress Admin memory limit. |
+| **WP Multi Site** | Status either is Multisite. \(3\) |
+| **WP Multi Network** | Status either is Multi-Network. \(4\) |
+| **Primary Network** | Status either is Primary Network. \(4\) |
+| **Network Locking File** | Network Lock file. \(4\) |
+| **Drop-in Writable** | Status either Drop-in file can be written, replace or delete. |
+| **Drop-in use Wrapper** | Status either Drop-in file is wrapper file. \(5\) |
+| **Drop-in Wrapper Available** | Status either Drop-in wrapper file exists. \(5\) |
+| **Drop-in Wrapper File** | Drop-in wrapper file location. \(5\) |
+| **Drop-in File** | Drop-in file path. |
+| **Cache Writable** | Status either cache file can be written, replace or delete. |
+| **Cache Files Limit** | Current total cache files and maximum files can be store on disk. |
+| **Cache Disk Limit** | Current total size cache files and maximum size can be store on disk. |
+| **Cache Path** | Cache directory path. |
+| **Config Writable** | Status either config file can be written, replace or delete. |
+| **Config Path** | Config directory path. |
 
 {% hint style="info" %}
 1. Only visible if your website running behind Cloudflare.
@@ -54,11 +54,11 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 | Label | Related Constant |
 | :--- | :--- |
-| Cronbot Service | \`\`[`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot)\`\` |
-| Cache Log | DOCKET\_CACHE\_LOG |
-| Advanced Post Caching | DOCKET\_CACHE\_ADVCPOST |
-| Object Cache Precaching | DOCKET\_CACHE\_PRECACHE |
-| WordPress Translation Caching | DOCKET\_CACHE\_MOCACHE |
+| **Cronbot Service** | \`\`[`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot)\`\` |
+| **Cache Log** | DOCKET\_CACHE\_LOG |
+| **Advanced Post Caching** | DOCKET\_CACHE\_ADVCPOST |
+| **Object Cache Precaching** | DOCKET\_CACHE\_PRECACHE |
+| **WordPress Translation Caching** | DOCKET\_CACHE\_MOCACHE |
 | Optimize WP Query | DOCKET\_CACHE\_OPTWPQUERY |
 | Optimize Term Count Queries | DOCKET\_CACHE\_OPTERMCOUNT |
 | Optimize Database Tables | DOCKET\_CACHE\_CRONOPTMZDB |
