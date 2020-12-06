@@ -97,14 +97,11 @@ The cronbot section allows you to connect Docket Cache with Cronbot Service. Thi
 
 | Label | Description |
 | :--- | :--- |
-| Service Status | Status either connected to Cronbot Service. |
-| Last Received Ping | Timestamp last Cronbot Service connect to your website. |
-| Next Expecting Ping | Timestamp next Cronbot Service expected connect to your website. |
-
-| Button | Description |
-| :--- | :--- |
-| Connect | Connect to Cronbot Service. |
-| Disconnect | Disconnect from Cronbot Service. |
-| Run Scheduled Event | Execute scheduled cron task. |
-| Run All Now | Execute all cron task. |
+| **Service Status** | Status either connected to Cronbot Service. |
+| **Last Received Ping** | Timestamp last Cronbot Service connect to your website. |
+| **Next Expecting Ping** | Timestamp next Cronbot Service expected connect to your website. |
+| **Connect** | Connect to Cronbot Service. |
+| **Disconnect** | Disconnect from Cronbot Service. |
+| **Run Scheduled Event** | Execute scheduled cron task. |
+| **Run All Now** | Execute all cron task. |
 
