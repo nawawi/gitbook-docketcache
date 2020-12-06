@@ -105,3 +105,7 @@ The cronbot section allows you to connect Docket Cache with Cronbot Service. Thi
 | **Run Scheduled Event** | Execute scheduled cron task. |
 | **Run All Now** | Execute all cron task. |
 
+{% hint style="info" %}
+Please refer to [`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot) constant for details.
+{% endhint %}
+
