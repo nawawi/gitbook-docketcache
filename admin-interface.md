@@ -64,24 +64,24 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Optimize Database Tables** | [DOCKET\_CACHE\_CRONOPTMZDB](https://docs.docketcache.com/constants#docket_cache_cronoptmzdb) |
 | **Suspend WP Options Autoload** | [DOCKET\_CACHE\_WPOPTALOAD](https://docs.docketcache.com/constants#docket_cache_wpoptaload) |
 | **Post Missed Schedule Tweaks** | [DOCKET\_CACHE\_POSTMISSEDSCHEDULE](https://docs.docketcache.com/constants#docket_cache_postmissedschedule) |
-| **Misc Performance Tweaks** | DOCKET\_CACHE\_MISC\_TWEAKS |
-| **Misc WooCommerce Tweaks** | DOCKET\_CACHE\_WOOTWEAKS |
-| **Deactivate WooCommerce Admin** | DOCKET\_CACHE\_WOOADMINOFF |
-| **Deactivate WooCommerce Widget** | DOCKET\_CACHE\_WOOWIDGETOFF |
-| **Deactivate WooCommerce WP Dashboard** | DOCKET\_CACHE\_WOOWPDASHBOARDOFF |
-| **Remove XML-RPC / Pingbacks** | DOCKET\_CACHE\_PINGBACK |
-| **Remove WP Header Junk** | DOCKET\_CACHE\_HEADERJUNK |
-| **Remove WP Emoji** | DOCKET\_CACHE\_WPEMOJI |
-| **Remove WP Feed** | DOCKET\_CACHE\_WPFEED |
-| **Remove WP Embed** | DOCKET\_CACHE\_WPEMBED |
-| **Remove WP Lazy Load** | DOCKET\_CACHE\_WPLAZYLOAD |
-| **Remove WP Sitemap** | DOCKET\_CACHE\_WPSITEMAP |
-| **Admin Page Cache Preloading** | DOCKET\_CACHE\_PRELOAD |
-| **Admin Page Loader** | DOCKET\_CACHE\_PAGELOADER |
-| **Object Cache Data Stats** | DOCKET\_CACHE\_STATS |
+| **Misc Performance Tweaks** | [DOCKET\_CACHE\_MISC\_TWEAKS](https://docs.docketcache.com/constants#docket_cache_misc_tweaks) |
+| **Misc WooCommerce Tweaks** | [DOCKET\_CACHE\_WOOTWEAKS](https://docs.docketcache.com/constants#docket_cache_wootweaks) |
+| **Deactivate WooCommerce Admin** | [DOCKET\_CACHE\_WOOADMINOFF](https://docs.docketcache.com/constants#docket_cache_wooadminoff) |
+| **Deactivate WooCommerce Widget** | [DOCKET\_CACHE\_WOOWIDGETOFF](https://docs.docketcache.com/constants#docket_cache_woowidgetoff) |
+| **Deactivate WooCommerce WP Dashboard** | [DOCKET\_CACHE\_WOOWPDASHBOARDOFF](https://docs.docketcache.com/constants#docket_cache_woowpdashboardoff) |
+| **Remove XML-RPC / Pingbacks** | [DOCKET\_CACHE\_PINGBACK](https://docs.docketcache.com/constants#docket_cache_pingback) |
+| **Remove WP Header Junk** | [DOCKET\_CACHE\_HEADERJUNK](https://docs.docketcache.com/constants#docket_cache_headerjunk) |
+| **Remove WP Emoji** | [DOCKET\_CACHE\_WPEMOJI](https://docs.docketcache.com/constants#docket_cache_wpemoji) |
+| **Remove WP Feed** | [DOCKET\_CACHE\_WPFEED](https://docs.docketcache.com/constants#docket_cache_wpfeed) |
+| **Remove WP Embed** | [DOCKET\_CACHE\_WPEMBED](https://docs.docketcache.com/constants#docket_cache_wpembed) |
+| **Remove WP Lazy Load** | [DOCKET\_CACHE\_WPLAZYLOAD](https://docs.docketcache.com/constants#docket_cache_wplazyload) |
+| **Remove WP Sitemap** | [DOCKET\_CACHE\_WPSITEMAP](https://docs.docketcache.com/constants#docket_cache_wpsitemap) |
+| **Admin Page Cache Preloading** | [DOCKET\_CACHE\_PRELOAD](https://docs.docketcache.com/constants#docket_cache_preload) |
+| **Admin Page Loader** | [DOCKET\_CACHE\_PAGELOADER](https://docs.docketcache.com/constants#docket_cache_pageloader) |
+| **Object Cache Data Stats** | [DOCKET\_CACHE\_STATS](https://docs.docketcache.com/constants#docket_cache_stats) |
 | **Garbage Collector Action Button** | DOCKET\_CACHE\_GCACTION |
-| **Docket Cache Auto Update** | DOCKET\_CACHE\_AUTOUPDATE |
-| **Check Critical Version** | DOCKET\_CACHE\_CHECKVERSION |
+| **Docket Cache Auto Update** | [DOCKET\_CACHE\_AUTOUPDATE](https://docs.docketcache.com/constants#docket_cache_autoupdate) |
+| **Check Critical Version** | [DOCKET\_CACHE\_CHECKVERSION](https://docs.docketcache.com/constants#docket_cache_checkversion) |
 
 ## Cache Log
 
