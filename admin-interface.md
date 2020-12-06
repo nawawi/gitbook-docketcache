@@ -99,7 +99,7 @@ The Overview section is a central place to view the current status of Docket Cac
       <td style="text-align:left">Drop-in use Wrapper</td>
       <td style="text-align:left">
         <p>Status either Drop-in file is wrapper file.</p>
-        <p>Only visible if DOCKET_CACHE_CONTENT_PATH constant was defined.</p>
+        <p>Only visible if <code>DOCKET_CACHE_CONTENT_PATH</code> constant was defined.</p>
       </td>
     </tr>
     <tr>
@@ -157,7 +157,7 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 | Label | Related Constant |
 | :--- | :--- |
-| Cronbot Service | \`\`[`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot)\`\` |
+| Cronbot Service | \[[`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot)\] |
 | Cache Log | `DOCKET_CACHE_LOG` |
 | Advanced Post Caching | `DOCKET_CACHE_ADVCPOST` |
 | Object Cache Precaching | `DOCKET_CACHE_PRECACHE` |
