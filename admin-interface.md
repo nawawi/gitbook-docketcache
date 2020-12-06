@@ -87,9 +87,24 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 The cache log section allows you to view cache log for debugging and monitor cache activities. This section only visible if Cache Log option enabled at the configuration section.
 
+|  |
+| :--- |
+
+
 ## Cronbot
 
 The cronbot section allows you to connect Docket Cache with Cronbot Service. This section also provides a function to view and execute registered cron task.
 
+| Label | Description |
+| :--- | :--- |
+| Service Status | Status either connected to Cronbot Service. |
+| Last Received Ping | Timestamp last Cronbot Service connect to your website. |
+| Next Expecting Ping | Timestamp next Cronbot Service expected connect to your website. |
 
+| Button | Description |
+| :--- | :--- |
+| Connect | Connect to Cronbot Service. |
+| Disconnect | Disconnect from Cronbot Service. |
+| Run Scheduled Event | Execute scheduled cron task. |
+| Run All Now | Execute all cron task. |
 
