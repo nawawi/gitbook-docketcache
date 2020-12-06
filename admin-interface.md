@@ -58,12 +58,12 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Cache Log** | [DOCKET\_CACHE\_LOG](https://docs.docketcache.com/constants#docket_cache_log) |
 | **Advanced Post Caching** | [DOCKET\_CACHE\_ADVCPOST](https://docs.docketcache.com/constants#docket_cache_advcpost) |
 | **Object Cache Precaching** | [DOCKET\_CACHE\_PRECACHE](https://docs.docketcache.com/constants#docket_cache_precache) |
-| **WordPress Translation Caching** | DOCKET\_CACHE\_MOCACHE |
-| **Optimize WP Query** | DOCKET\_CACHE\_OPTWPQUERY |
-| **Optimize Term Count Queries** | DOCKET\_CACHE\_OPTERMCOUNT |
-| **Optimize Database Tables** | DOCKET\_CACHE\_CRONOPTMZDB |
-| **Suspend WP Options Autoload** | DOCKET\_CACHE\_WPOPTALOAD |
-| **Post Missed Schedule Tweaks** | DOCKET\_CACHE\_POSTMISSEDSCHEDULE |
+| **WordPress Translation Caching** | [DOCKET\_CACHE\_MOCACHE](https://docs.docketcache.com/constants#docket_cache_mocache) |
+| **Optimize WP Query** | [DOCKET\_CACHE\_OPTWPQUERY](https://docs.docketcache.com/constants#docket_cache_optwpquery) |
+| **Optimize Term Count Queries** | [DOCKET\_CACHE\_OPTERMCOUNT](https://docs.docketcache.com/constants#docket_cache_optermcount) |
+| **Optimize Database Tables** | [DOCKET\_CACHE\_CRONOPTMZDB](https://docs.docketcache.com/constants#docket_cache_cronoptmzdb) |
+| **Suspend WP Options Autoload** | [DOCKET\_CACHE\_WPOPTALOAD](https://docs.docketcache.com/constants#docket_cache_wpoptaload) |
+| **Post Missed Schedule Tweaks** | [DOCKET\_CACHE\_POSTMISSEDSCHEDULE](https://docs.docketcache.com/constants#docket_cache_postmissedschedule) |
 | **Misc Performance Tweaks** | DOCKET\_CACHE\_MISC\_TWEAKS |
 | **Misc WooCommerce Tweaks** | DOCKET\_CACHE\_WOOTWEAKS |
 | **Deactivate WooCommerce Admin** | DOCKET\_CACHE\_WOOADMINOFF |
