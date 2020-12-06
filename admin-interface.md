@@ -144,10 +144,6 @@ The Overview section is a central place to view the current status of Docket Cac
       <td style="text-align:left">Config Path</td>
       <td style="text-align:left">Config directory path.</td>
     </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
   </tbody>
 </table>
 
@@ -157,8 +153,8 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 | Label | Related Constant |
 | :--- | :--- |
-| Cronbot Service | \[[`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot)\] |
-| Cache Log | \[`DOCKET_CACHE_LOG`\] |
+| Cronbot Service | `DOCKET_CACHE_CRONBOT` [🏳 ](https://docs.docketcache.com/constants#docket_cache_cronbot) |
+| Cache Log | DOCKET\_CACHE\_LOG |
 | Advanced Post Caching | DOCKET\_CACHE\_ADVCPOST |
 | Object Cache Precaching | DOCKET\_CACHE\_PRECACHE |
 | WordPress Translation Caching | DOCKET\_CACHE\_MOCACHE |
