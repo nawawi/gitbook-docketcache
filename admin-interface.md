@@ -96,6 +96,17 @@ The Overview section is a central place to view the current status of Docket Cac
       <td style="text-align:left">Status either Drop-in file can be written, replace or delete.</td>
     </tr>
     <tr>
+      <td style="text-align:left">Drop-in use Wrapper</td>
+      <td style="text-align:left">
+        <p>Status either Drop-in file is wrapper file.</p>
+        <p>Only visible if DOCKET_CACHE_CONTENT_PATH constant was defined.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Drop-in Wrapper Available</td>
+      <td style="text-align:left">Status either Drop-in wrapper file exists.</td>
+    </tr>
+    <tr>
       <td style="text-align:left">Drop-in File</td>
       <td style="text-align:left">Drop-in file location.</td>
     </tr>
