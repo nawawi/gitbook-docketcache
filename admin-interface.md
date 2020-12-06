@@ -45,7 +45,7 @@ The Overview section is a central place to view the current status of Docket Cac
 2. Only visible if web proxy is not Cloudflare, like Sucuri.
 3. Only visible in Multisite single-network.
 4. Only visible in Multisite Multi-Network setup.
-5. Only visible if DOCKET\_CACHE\_CONTENT\_PATH constant defined.
+5. Only visible if `DOCKET_CACHE_CONTENT_PATH` constant defined.
 {% endhint %}
 
 ## Configuration
@@ -54,8 +54,8 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 | Label | Related Constant |
 | :--- | :--- |
-| **Cronbot Service** | \`\`[`DOCKET_CACHE_CRONBOT`](https://docs.docketcache.com/constants#docket_cache_cronbot)\`\` |
-| **Cache Log** | DOCKET\_CACHE\_LOG |
+| **Cronbot Service** | [DOCKET\_CACHE\_CRONBOT](https://docs.docketcache.com/constants#docket_cache_cronbot) |
+| **Cache Log** | [DOCKET\_CACHE\_LOG](https://docs.docketcache.com/constants#docket_cache_log) |
 | **Advanced Post Caching** | DOCKET\_CACHE\_ADVCPOST |
 | **Object Cache Precaching** | DOCKET\_CACHE\_PRECACHE |
 | **WordPress Translation Caching** | DOCKET\_CACHE\_MOCACHE |
