@@ -106,14 +106,14 @@ The Overview section is a central place to view the current status of Docket Cac
       <td style="text-align:left">Drop-in Wrapper Available</td>
       <td style="text-align:left">
         <p>Status either Drop-in wrapper file exists.</p>
-        <p>Only visible if DOCKET_CACHE_CONTENT_PATH constant was defined.</p>
+        <p>Only visible if <code>DOCKET_CACHE_CONTENT_PATH</code> constant was defined.</p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">Drop-in Wrapper File</td>
       <td style="text-align:left">
         <p>Drop-in wrapper file location.</p>
-        <p>Only visible if DOCKET_CACHE_CONTENT_PATH constant was defined.</p>
+        <p>Only visible if <code>DOCKET_CACHE_CONTENT_PATH</code> constant was defined.</p>
       </td>
     </tr>
     <tr>
