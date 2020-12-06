@@ -12,152 +12,39 @@ The Docket Cache keeps the admin interface clean, responsive and simple as possi
 
 The Overview section is a central place to view the current status of Docket Cache activities, configuration and other useful information.
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Label</th>
-      <th style="text-align:left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">Web Server</td>
-      <td style="text-align:left">Web Server name.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">PHP SAPI</td>
-      <td style="text-align:left">PHP version and type of Server API.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Cloudflare</td>
-      <td style="text-align:left">
-        <p>Cloudflare IP and Ray ID.</p>
-        <p><code>Only visible if your website running behind Cloudflare.</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Web Proxy</td>
-      <td style="text-align:left">
-        <p>Web Proxy IP other than Cloudflare.</p>
-        <p><code>Only visible if web proxy is not Cloudflare, like Sucuri.</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Object Cache Stats</td>
-      <td style="text-align:left">Total object size in cache files.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Object OPcache Stats</td>
-      <td style="text-align:left">Total OPcache size in memory, for objects cache files.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">WP OPcache Stats</td>
-      <td style="text-align:left">Total OPcache size in memory, for WordPress files.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">PHP Memory Limit</td>
-      <td style="text-align:left">Your Server PHP memory limit setting.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">WP Frontend Memory Limit</td>
-      <td style="text-align:left">WordPress Website memory limit.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">WP Backend Memory Limit</td>
-      <td style="text-align:left">WordPress Admin memory limit.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">WP Multi Site</td>
-      <td style="text-align:left">
-        <p>Status either is Multisite.</p>
-        <p><code>Only visible in Multisite single-network.</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">WP Multi Network</td>
-      <td style="text-align:left">
-        <p>Status either is Multi-Network.</p>
-        <p><code>Only visible in Multisite Multi-Network setup.</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Primary Network</td>
-      <td style="text-align:left">
-        <p>Status either is Primary Network.</p>
-        <p><code>Only visible in Multisite Multi-Network setup.</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Network Locking File</td>
-      <td style="text-align:left">
-        <p>Network Lock file.</p>
-        <p><code>Only visible in Multisite Multi-Network setup.</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Drop-in Writable</td>
-      <td style="text-align:left">Status either Drop-in file can be written, replace or delete.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Drop-in use Wrapper</td>
-      <td style="text-align:left">
-        <p>Status either Drop-in file is wrapper file.</p>
-        <p><code>Only visible if DOCKET_CACHE_CONTENT_PATH constant defined. </code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Drop-in Wrapper Available</td>
-      <td style="text-align:left">
-        <p>Status either Drop-in wrapper file exists.</p>
-        <p><code>Only visible if DOCKET_CACHE_CONTENT_PATH constant defined.</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Drop-in Wrapper File</td>
-      <td style="text-align:left">
-        <p>Drop-in wrapper file location.</p>
-        <p><code>Only visible if DOCKET_CACHE_CONTENT_PATH constant defined.</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Drop-in File</td>
-      <td style="text-align:left">Drop-in file path.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Cache Writable</td>
-      <td style="text-align:left">Status either cache file can be written, replace or delete.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Cache Files Limit</td>
-      <td style="text-align:left">Current total cache files and maximum files can be store on disk.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Cache Disk Limit</td>
-      <td style="text-align:left">Current total size cache files and maximum size can be store on disk.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Cache Path</td>
-      <td style="text-align:left">Cache directory path.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Config Writable</td>
-      <td style="text-align:left">Status either config file can be written, replace or delete.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Config Path</td>
-      <td style="text-align:left">Config directory path.</td>
-    </tr>
-  </tbody>
-</table>
+| Label | Description |
+| :--- | :--- |
+| Web Server | Web Server name. |
+| PHP SAPI | PHP version and type of Server API. |
+| Cloudflare | Cloudflare IP and Ray ID. \(1\) |
+| Web Proxy | Web Proxy IP other than Cloudflare. \(2\) |
+| Object Cache Stats | Total object size in cache files. |
+| Object OPcache Stats | Total OPcache size in memory, for objects cache files. |
+| WP OPcache Stats | Total OPcache size in memory, for WordPress files. |
+| PHP Memory Limit | Your Server PHP memory limit setting. |
+| WP Frontend Memory Limit | WordPress Website memory limit. |
+| WP Backend Memory Limit | WordPress Admin memory limit. |
+| WP Multi Site | Status either is Multisite. \(3\) |
+| WP Multi Network | Status either is Multi-Network. \(4\) |
+| Primary Network | Status either is Primary Network. \(4\) |
+| Network Locking File | Network Lock file. \(4\) |
+| Drop-in Writable | Status either Drop-in file can be written, replace or delete. |
+| Drop-in use Wrapper | Status either Drop-in file is wrapper file. \(5\) |
+| Drop-in Wrapper Available | Status either Drop-in wrapper file exists. \(5\) |
+| Drop-in Wrapper File | Drop-in wrapper file location. \(5\) |
+| Drop-in File | Drop-in file path. |
+| Cache Writable | Status either cache file can be written, replace or delete. |
+| Cache Files Limit | Current total cache files and maximum files can be store on disk. |
+| Cache Disk Limit | Current total size cache files and maximum size can be store on disk. |
+| Cache Path | Cache directory path. |
+| Config Writable | Status either config file can be written, replace or delete. |
+| Config Path | Config directory path. |
+
+1. Only visible if your website running behind Cloudflare.
+2. Only visible if web proxy is not Cloudflare, like Sucuri.
+3. Only visible in Multisite single-network.
+4. Only visible in Multisite Multi-Network setup.
+5. Only visible if DOCKET\_CACHE\_CONTENT\_PATH constant defined.
 
 ## Configuration
 
