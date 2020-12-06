@@ -3,7 +3,7 @@
 * [Welcome](README.md)
 * [About](about.md)
 * [Installation](installation.md)
-* [Configuration](configuration.md)
+* [Constants](constants.md)
 * [WP-CLI](wp-cli.md)
 * [Admin Interface](admin-interface.md)
 * [FAQ](faq.md)

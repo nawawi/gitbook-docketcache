@@ -2,7 +2,7 @@
 description: Docket Cache uses constants variable as main configuration methods.
 ---
 
-# Configuration
+# Constants
 
 `Updated: 05-Dec-2020 | Version: >= 20.10.10`
 

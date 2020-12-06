@@ -8,7 +8,7 @@ description: Welcome to the Docket Cache Documentation Space
 
 * [About](about.md)
 * [Installation](installation.md)
-* [Configuration](configuration.md)
+* [Configuration](constants.md)
 * [WP-CLI](wp-cli.md)
 * [Admin Interface](admin-interface.md)
 * [FAQ](faq.md)
