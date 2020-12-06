@@ -118,7 +118,7 @@ The Overview section is a central place to view the current status of Docket Cac
     </tr>
     <tr>
       <td style="text-align:left">Drop-in File</td>
-      <td style="text-align:left">Drop-in file location.</td>
+      <td style="text-align:left">Drop-in file path.</td>
     </tr>
     <tr>
       <td style="text-align:left">Cache Writable</td>
@@ -134,7 +134,7 @@ The Overview section is a central place to view the current status of Docket Cac
     </tr>
     <tr>
       <td style="text-align:left">Cache Path</td>
-      <td style="text-align:left">Cache directory.</td>
+      <td style="text-align:left">Cache directory path.</td>
     </tr>
     <tr>
       <td style="text-align:left">Config Writable</td>
@@ -142,7 +142,7 @@ The Overview section is a central place to view the current status of Docket Cac
     </tr>
     <tr>
       <td style="text-align:left">Config Path</td>
-      <td style="text-align:left">Config location.</td>
+      <td style="text-align:left">Config directory path.</td>
     </tr>
     <tr>
       <td style="text-align:left"></td>
