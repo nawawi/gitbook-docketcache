@@ -40,11 +40,13 @@ The Overview section is a central place to view the current status of Docket Cac
 | Config Writable | Status either config file can be written, replace or delete. |
 | Config Path | Config directory path. |
 
+{% hint style="info" %}
 1. Only visible if your website running behind Cloudflare.
 2. Only visible if web proxy is not Cloudflare, like Sucuri.
 3. Only visible in Multisite single-network.
 4. Only visible in Multisite Multi-Network setup.
 5. Only visible if DOCKET\_CACHE\_CONTENT\_PATH constant defined.
+{% endhint %}
 
 ## Configuration
 
