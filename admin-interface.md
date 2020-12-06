@@ -38,8 +38,8 @@ The Overview section is a central place to view the current status of Docket Cac
     <tr>
       <td style="text-align:left">Web Proxy</td>
       <td style="text-align:left">
-        <p>Web Proxy IP.</p>
-        <p>Only visible if behind web proxy other than Cloudflare, like Varnish.</p>
+        <p>Web Proxy IP other than Cloudflare.</p>
+        <p>Only visible if web proxy is not Cloudflare, like Sucuri.</p>
       </td>
     </tr>
     <tr>
@@ -48,17 +48,11 @@ The Overview section is a central place to view the current status of Docket Cac
     </tr>
     <tr>
       <td style="text-align:left">Object OPcache Stats</td>
-      <td style="text-align:left">
-        <p>Total OPcache size in memory for an object,</p>
-        <p>compiled from cache files.</p>
-      </td>
+      <td style="text-align:left">Total OPcache size in memory, for objects cache files.</td>
     </tr>
     <tr>
       <td style="text-align:left">WP OPcache Stats</td>
-      <td style="text-align:left">
-        <p>Total OPcache size in memory for your website,</p>
-        <p>compiled from WordPress files.</p>
-      </td>
+      <td style="text-align:left">Total OPcache size in memory, for WordPress files.</td>
     </tr>
     <tr>
       <td style="text-align:left">PHP Memory Limit</td>
@@ -74,15 +68,12 @@ The Overview section is a central place to view the current status of Docket Cac
     </tr>
     <tr>
       <td style="text-align:left">WP Multi Site</td>
-      <td style="text-align:left">
-        <p>Status either is Multisite setup.</p>
-        <p>Only visible in Multisite single network.</p>
-      </td>
+      <td style="text-align:left">Status either is Multisite. Only visible in Multisite single-network.</td>
     </tr>
     <tr>
       <td style="text-align:left">WP Multi Network</td>
       <td style="text-align:left">
-        <p>Status either is Multisite Multi-Network setup.</p>
+        <p>Status either is Multi-Network.</p>
         <p>Only visible in Multisite Multi-Network setup.</p>
       </td>
     </tr>
