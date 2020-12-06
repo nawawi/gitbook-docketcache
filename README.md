@@ -4,16 +4,18 @@ description: Welcome to the Docket Cache Documentation Space
 
 # Welcome
 
-## Index
+## Usage
 
 * [About](about.md)
 * [Installation](installation.md)
-* [Configuration](constants.md)
+* [Constants](constants.md)
 * [WP-CLI](wp-cli.md)
 * [Admin Interface](admin-interface.md)
 * [FAQ](faq.md)
 
 ## Resources
+
+Additional external reference related to Web Hosting, WordPress caching and PHP Zend OPcache.
 
 * [WordPress Hosting](resources/wordpress-hosting.md)
 * [Cache In WordPress](resources/caching-in-wordpress.md)
