@@ -4,7 +4,7 @@ description: Docket Cache WP Admin Interface
 
 # Admin Interface
 
-`Updated: 05-Dec-2020 | Version: >= 20.10.10`
+`Updated: 07-Dec-2020 | Version: >= 20.10.10`
 
 The Docket Cache keeps the admin interface clean, responsive and simple as possible, predefined configuration and reuses WordPress library as much as possible.
 
