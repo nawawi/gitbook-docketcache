@@ -96,7 +96,7 @@ The cache log section allows you to view cache log for debugging and monitor cac
 | **Flush Log** | Flush log file. |
 
 {% hint style="info" %}
-ss
+Please refer to [`DOCKET_CACHE_LOG*`](https://docs.docketcache.com/constants#docket_cache_log) related constant for details.
 {% endhint %}
 
 ## Cronbot
