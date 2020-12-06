@@ -4,7 +4,9 @@ description: Welcome to the Docket Cache Documentation Space
 
 # Welcome
 
-## Usage
+## Docket Cache
+
+The Docket Cache documentation.
 
 * [About](about.md)
 * [Installation](installation.md)
