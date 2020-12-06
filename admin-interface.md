@@ -32,14 +32,16 @@ The Overview section is a central place to view the current status of Docket Cac
       <td style="text-align:left">Cloudflare</td>
       <td style="text-align:left">
         <p>Cloudflare IP and Ray ID.</p>
-        <p>Only visible if your website running behind Cloudflare.</p>
+        <p><code>Only visible if your website running behind Cloudflare.</code>
+        </p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">Web Proxy</td>
       <td style="text-align:left">
         <p>Web Proxy IP other than Cloudflare.</p>
-        <p>Only visible if web proxy is not Cloudflare, like Sucuri.</p>
+        <p><code>Only visible if web proxy is not Cloudflare, like Sucuri.</code>
+        </p>
       </td>
     </tr>
     <tr>
@@ -68,27 +70,34 @@ The Overview section is a central place to view the current status of Docket Cac
     </tr>
     <tr>
       <td style="text-align:left">WP Multi Site</td>
-      <td style="text-align:left">Status either is Multisite. Only visible in Multisite single-network.</td>
+      <td style="text-align:left">
+        <p>Status either is Multisite.</p>
+        <p><code>Only visible in Multisite single-network.</code>
+        </p>
+      </td>
     </tr>
     <tr>
       <td style="text-align:left">WP Multi Network</td>
       <td style="text-align:left">
         <p>Status either is Multi-Network.</p>
-        <p>Only visible in Multisite Multi-Network setup.</p>
+        <p><code>Only visible in Multisite Multi-Network setup.</code>
+        </p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">Primary Network</td>
       <td style="text-align:left">
         <p>Status either is Primary Network.</p>
-        <p>Only visible in Multisite Multi-Network setup.</p>
+        <p><code>Only visible in Multisite Multi-Network setup.</code>
+        </p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">Network Locking File</td>
       <td style="text-align:left">
         <p>Network Lock file.</p>
-        <p>Only visible in Multisite Multi-Network setup.</p>
+        <p><code>Only visible in Multisite Multi-Network setup.</code>
+        </p>
       </td>
     </tr>
     <tr>
@@ -99,21 +108,24 @@ The Overview section is a central place to view the current status of Docket Cac
       <td style="text-align:left">Drop-in use Wrapper</td>
       <td style="text-align:left">
         <p>Status either Drop-in file is wrapper file.</p>
-        <p>Only visible if <code>DOCKET_CACHE_CONTENT_PATH</code> constant defined.</p>
+        <p><code>Only visible if DOCKET_CACHE_CONTENT_PATH constant defined. </code>
+        </p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">Drop-in Wrapper Available</td>
       <td style="text-align:left">
         <p>Status either Drop-in wrapper file exists.</p>
-        <p>Only visible if <code>DOCKET_CACHE_CONTENT_PATH</code> constant defined.</p>
+        <p><code>Only visible if DOCKET_CACHE_CONTENT_PATH constant defined.</code>
+        </p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">Drop-in Wrapper File</td>
       <td style="text-align:left">
         <p>Drop-in wrapper file location.</p>
-        <p>Only visible if <code>DOCKET_CACHE_CONTENT_PATH</code> constant defined.</p>
+        <p><code>Only visible if DOCKET_CACHE_CONTENT_PATH constant defined.</code>
+        </p>
       </td>
     </tr>
     <tr>
