@@ -87,9 +87,17 @@ The configuration section allows you to change the Docket Cache behaviour withou
 
 The cache log section allows you to view cache log for debugging and monitor cache activities. This section only visible if Cache Log option enabled at the configuration section.
 
-|  |
-| :--- |
+| Label | Description |
+| :--- | :--- |
+| **Timestamp** | Timestamp format. |
+| **Log All** | Enable or Disable Log All. |
+| **Log File** | Log file path. |
+| **Log Size** | Log file size. |
+| **Flush Log** | Flush log file. |
 
+{% hint style="info" %}
+ss
+{% endhint %}
 
 ## Cronbot
 
