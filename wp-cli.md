@@ -4,13 +4,13 @@ description: The command line interface for WordPress.
 
 # WP-CLI
 
-`Updated: 29-Nov-2020 | Version: >= 20.09.01`
+`Updated: 08-Dec-2020 | Version: >= 20.11.01`
 
 WP-CLI is the official command-line interface for WordPress. The Docket Cache extends default `wp cache` command with additional sub-commands.
 
 The following command supported:
 
-## cache status
+## wp cache status
 
 Show the Docket object cache status.
 
@@ -18,7 +18,7 @@ Show the Docket object cache status.
 wp cache status
 ```
 
-## cache dropin:enable
+## wp cache dropin:enable
 
 Enables the Docket object cache. The default behaviour is to create the object cache drop-in and replace any object cache drop-in is present.
 
@@ -26,7 +26,7 @@ Enables the Docket object cache. The default behaviour is to create the object c
 wp cache dropin:enable
 ```
 
-## cache dropin:disable
+## wp cache dropin:disable
 
 Disables the Docket object cache. The default behaviour is to delete the object cache drop-in unless an unknown object cache drop-in is present.
 
@@ -34,7 +34,7 @@ Disables the Docket object cache. The default behaviour is to delete the object 
 wp cache dropin:disable
 ```
 
-## cache dropin:update
+## wp cache dropin:update
 
 Updates the Docket object cache drop-in. The default behaviour is to overwrite any existing object cache drop-in.
 
@@ -42,7 +42,7 @@ Updates the Docket object cache drop-in. The default behaviour is to overwrite a
 wp cache update
 ```
 
-## cache flush
+## wp cache flush
 
 Flushes the object cache.
 
@@ -50,7 +50,7 @@ Flushes the object cache.
 wp cache flush
 ```
 
-## cache run:gc
+## wp cache run:gc
 
 Run garbage collector
 
@@ -58,7 +58,7 @@ Run garbage collector
 wp cache run:gc
 ```
 
-## cache reset:lock
+## wp cache reset:lock
 
 Remove all internal lock files
 
