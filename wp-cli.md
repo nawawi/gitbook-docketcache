@@ -71,7 +71,7 @@ wp cache flush:precache
 Reset the Docket Cache lock files.
 
 ```text
-wp cache reset:unlock
+wp cache reset:lock
 ```
 
 ## wp cache reset:cron
