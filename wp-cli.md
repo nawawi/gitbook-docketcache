@@ -18,7 +18,7 @@ Display the Docket Cache status.
 wp cache status
 ```
 
-Example output:
+**Example output:**
 
 ```text
 Cache Status   : Enabled
