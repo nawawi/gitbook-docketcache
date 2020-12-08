@@ -8,7 +8,7 @@ description: The command line interface for WordPress.
 
 WP-CLI is the official command-line interface for WordPress. The Docket Cache extends default `wp cache` command with additional sub-commands.
 
-The following command supported:
+The following command supported.
 
 ## wp cache status
 
@@ -24,14 +24,6 @@ wp cache status
 Cache Status   : Enabled
 Cache Path     : /wp-content/cache/docket-cache
 Cache Size     : 3M
-```
-
-## wp cache flush
-
-Remove the cache files.
-
-```text
-wp cache flush
 ```
 
 ## wp cache dropin:enable
@@ -66,9 +58,17 @@ Remove the cache files.
 wp cache flush
 ```
 
+## wp cache flush:precache
+
+Remove the precache files.
+
+```text
+wp cache flush:precache
+```
+
 ## wp cache reset:lock
 
-Remove the Docket Cache lock files.
+Reset the Docket Cache lock files.
 
 ```text
 wp cache reset:unlock
@@ -154,7 +154,7 @@ Success: Executed a total of 12 cron events.
 
 ## wp cache run:stats
 
-Run the Docket Cache function for collecting cache stats.
+Run the Docket Cache stats function to collect cache data.
 
 ```text
 wp cache run:stats
