@@ -18,23 +18,23 @@ Show the Docket object cache status.
 wp cache status
 ```
 
-## cache enable
+## cache dropin:enable
 
 Enables the Docket object cache. The default behaviour is to create the object cache drop-in and replace any object cache drop-in is present.
 
 ```text
-wp cache enable
+wp cache dropin:enable
 ```
 
-## cache disable
+## cache dropin:disable
 
 Disables the Docket object cache. The default behaviour is to delete the object cache drop-in unless an unknown object cache drop-in is present.
 
 ```text
-wp cache disable
+wp cache dropin:disable
 ```
 
-## cache update
+## cache dropin:update
 
 Updates the Docket object cache drop-in. The default behaviour is to overwrite any existing object cache drop-in.
 
@@ -50,20 +50,20 @@ Flushes the object cache.
 wp cache flush
 ```
 
-## cache gc
+## cache run:gc
 
 Run garbage collector
 
 ```text
-wp cache gc
+wp cache run:gc
 ```
 
-## cache unlock
+## cache reset:lock
 
 Remove all internal lock files
 
 ```text
-cache unlock
+wp cache reset:unlock
 ```
 
 
