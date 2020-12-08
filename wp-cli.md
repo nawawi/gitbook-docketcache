@@ -74,6 +74,21 @@ Reset the Docket Cache cron event.
 wp cache reset:cron
 ```
 
+**Example output:**
+
+```text
+Resetting cron event. Please wait..
++------------------------------------+---------------------+-----------------------+------------+
+| hook                               | next_run_gmt        | next_run_relative     | recurrence |
++------------------------------------+---------------------+-----------------------+------------+
+| docketcache_gc                     | 2020-12-08 16:58:36 | now                   | 5 minutes  |
+| docketcache_watchproc              | 2020-12-08 16:58:36 | now                   | 1 hour     |
+| docketcache_checkversion           | 2020-12-08 16:58:36 | now                   | 5 days     |
++------------------------------------+---------------------+-----------------------+------------+
+Success: Cron event has been reset.
+
+```
+
 ## wp cache run:gc
 
 Run the Docket Cache garbage collector \(GC\).
@@ -82,7 +97,7 @@ Run the Docket Cache garbage collector \(GC\).
 wp cache run:gc
 ```
 
-Example output:
+**Example output:**
 
 ```text
 Executing the garbage collector. Please wait..
@@ -110,7 +125,7 @@ Run all cron event.
 wp cache run:cron
 ```
 
-Example output:
+**Example output:**
 
 ```text
 Executing the cron event. Please wait..
@@ -137,7 +152,7 @@ Run the Docket Cache function for collecting cache stats.
 wp cache run:stats
 ```
 
-Example output:
+**Example output:**
 
 ```text
 Executing the cache stats. Please wait..
