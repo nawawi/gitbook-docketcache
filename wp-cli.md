@@ -26,6 +26,14 @@ Cache Path     : /wp-content/cache/docket-cache
 Cache Size     : 3M
 ```
 
+## wp cache flush
+
+Remove the cache files.
+
+```text
+wp cache flush
+```
+
 ## wp cache dropin:enable
 
 Enable the Docket Cache Drop-In file. The default behaviour is to create the object cache Drop-In and replace any object cache Drop-In is present.
