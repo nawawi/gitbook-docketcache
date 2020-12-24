@@ -69,6 +69,7 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Deactivate WooCommerce Admin** | [DOCKET\_CACHE\_WOOADMINOFF](https://docs.docketcache.com/constants#docket_cache_wooadminoff) |
 | **Deactivate WooCommerce Widget** | [DOCKET\_CACHE\_WOOWIDGETOFF](https://docs.docketcache.com/constants#docket_cache_woowidgetoff) |
 | **Deactivate WooCommerce WP Dashboard** | [DOCKET\_CACHE\_WOOWPDASHBOARDOFF](https://docs.docketcache.com/constants#docket_cache_woowpdashboardoff) |
+| **Deactivate WooCommerce Cart Fragments** | [DOCKET\_CACHE\_WOOCARTFRAGSOFF](https://docs.docketcache.com/constants#docket_cache_woocartfragsoff) |
 | **Remove XML-RPC / Pingbacks** | [DOCKET\_CACHE\_PINGBACK](https://docs.docketcache.com/constants#docket_cache_pingback) |
 | **Remove WP Header Junk** | [DOCKET\_CACHE\_HEADERJUNK](https://docs.docketcache.com/constants#docket_cache_headerjunk) |
 | **Remove WP Emoji** | [DOCKET\_CACHE\_WPEMOJI](https://docs.docketcache.com/constants#docket_cache_wpemoji) |
@@ -76,6 +77,7 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Remove WP Embed** | [DOCKET\_CACHE\_WPEMBED](https://docs.docketcache.com/constants#docket_cache_wpembed) |
 | **Remove WP Lazy Load** | [DOCKET\_CACHE\_WPLAZYLOAD](https://docs.docketcache.com/constants#docket_cache_wplazyload) |
 | **Remove WP Sitemap** | [DOCKET\_CACHE\_WPSITEMAP](https://docs.docketcache.com/constants#docket_cache_wpsitemap) |
+| **Remove WP Application Passwords** | [DOCKET\_CACHE\_WPAPPPASSWORD](https://docs.docketcache.com/constants#docket_cache_wpapppassword) |
 | **Admin Page Cache Preloading** | [DOCKET\_CACHE\_PRELOAD](https://docs.docketcache.com/constants#docket_cache_preload) |
 | **Admin Page Loader** | [DOCKET\_CACHE\_PAGELOADER](https://docs.docketcache.com/constants#docket_cache_pageloader) |
 | **Object Cache Data Stats** | [DOCKET\_CACHE\_STATS](https://docs.docketcache.com/constants#docket_cache_stats) |
