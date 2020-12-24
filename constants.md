@@ -624,6 +624,15 @@ Default:
 define('DOCKET_CACHE_WPSITEMAP', false);
 ```
 
+## DOCKET\_CACHE\_WPAPPPASSWORD
+
+Set to true to disable WordPress Application Passwords feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WPAPPPASSWORD', false);
+```
+
 ## DOCKET\_CACHE\_DISABLED
 
 Set to true to disable the Docket Cache object cache feature at runtime. By defining to true, Docket Cache will ignore to install and uninstall the Drop-in file.  
