@@ -420,6 +420,15 @@ Default:
 define('DOCKET_CACHE_WOOWPDASHBOARDOFF', false);
 ```
 
+## DOCKET\_CACHE\_WOOCARTFRAGSOFF
+
+Set to true to disable WooCommerce Cart Fragments feature.  
+Default:
+
+```php
+define('DOCKET_CACHE_WOOWPDASHBOARDOFF', false);
+```
+
 ## DOCKET\_CACHE\_POSTMISSEDSCHEDULE
 
 Set to `true` or `false` to enable or disable Post Missed Schedule Tweaks features.  
