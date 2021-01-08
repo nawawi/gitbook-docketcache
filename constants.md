@@ -10,7 +10,7 @@ Constants are like variables except that once they are defined they cannot be ch
 
 ## DOCKET\_CACHE\_MAXTTL
 
-Cache file lifespan in seconds.
+Default object lifespan in seconds.
 
 Only numbers between 86400 and 2419200 are allowed.  
 Default: 345600 \(4 days\)
@@ -19,7 +19,7 @@ Default: 345600 \(4 days\)
 define('DOCKET_CACHE_MAXTTL', 345600);
 ```
 
-If there is no expire time was supply to [`wp_cache_set`](https://developer.wordpress.org/reference/functions/wp_cache_set/) function or set to 0, Docket Cache will use this setting as an expiration time.
+If there is no expire time was set to object or set to 0, Docket Cache will use this setting as an expiration time.
 
 This setting does not apply to cache groups below if the value of seconds is lower than the predefined seconds.
 
