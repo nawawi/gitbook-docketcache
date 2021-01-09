@@ -39,7 +39,7 @@ This setting does not apply to cache groups below if the value of seconds is low
 
 Set the maximum size of the object data in bytes, which can be store in a cache file.
 
-Maximum allowed size is 10485760 bytes \(10MB\).  
+Only size between 1048576 \(1MB\) and 10485760 \(10MB\) are allowed.  
 Default: 3145728 \(3MB\)
 
 ```php
