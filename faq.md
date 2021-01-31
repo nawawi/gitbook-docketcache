@@ -53,7 +53,7 @@ By default, WordPress allocates the memory limit to 256 MB. Combined with MySQL 
 
 ## What’s the difference with the other object cache plugin?
 
-Docket Cache is an Object Cache Accelerator. It does some optimization of caching like cache post queries, comments counting, WordPress translation and more before storing the object caches.
+Docket Cache is an Object Cache Accelerator. It does some optimisation like cache post queries, comments counting, WordPress translation and more before storing the object caches.
 
 ## Can I pair using it with other cache plugins?
 
