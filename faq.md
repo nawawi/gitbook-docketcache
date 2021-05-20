@@ -1,5 +1,5 @@
 ---
-description: 'Frequently Asked Questions -- Updated: 20-May-2021'
+description: Frequently Asked Questions
 ---
 
 # FAQ
