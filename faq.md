@@ -18,6 +18,12 @@ By default, the object cache in WordPress is non-persistent. This means that dat
 
 Docket Cache is not just stored the object cache, it converts the object cache into plain PHP code. This solution is faster since WordPress can use the cache directly without running other operation.
 
+## What is the Cronbot Service in Docket Cache?
+
+The Cronbot is an external service that pings your website every hour to keep WordPress Cron running actively.
+
+This service offered as an alternative option and is not compulsory to use. By default, this service not connected to the [end-point server](https://cronbot.docketcache.com/). You can completely disable it at the configuration page.
+
 ## What is OPcache in Docket Cache?
 
 OPcache is a caching engine built into PHP, improves performance by storing precompiled script bytecode in shared memory, thereby removing the need for PHP to load and parse scripts on each request.
