@@ -71,7 +71,7 @@ The information mentioned above will provide you better knowledge about the impo
 
 
 
-{% hint style="info" %}
+{% hint style="success" %}
 This article originally from [milesweb.com](https://www.milesweb.com/hosting-faqs/all-you-need-to-know-about-web-hosting-i-o-usage-iops-limit-and-entry-processes-limit/)
 {% endhint %}
 
