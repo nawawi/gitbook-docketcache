@@ -397,7 +397,7 @@ define('DOCKET_CACHE_WOOTWEAKS', true);
 
 WooCommerce Admin or Analytics page is a new JavaScript-driven interface for managing stores.
 
-Set to true to disable WooCommerce Admin feature.  
+Set to true to disable WooCommerce Admin feature-related.  
 Default:
 
 ```php
