@@ -395,7 +395,9 @@ define('DOCKET_CACHE_WOOTWEAKS', true);
 
 ## DOCKET\_CACHE\_WOOADMINOFF
 
-Set to true to disable WooCommerce Admin feature and turn-off analytic page.  
+WooCommerce Admin or Analytics page is a new JavaScript-driven interface for managing stores.
+
+Set to true to disable WooCommerce Admin feature.  
 Default:
 
 ```php
