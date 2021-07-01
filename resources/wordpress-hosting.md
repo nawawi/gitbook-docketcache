@@ -6,6 +6,10 @@ description: Understanding the different types of hosting for WordPress.
 
 Putting a WordPress website online means having hosting. There are numerous types of hosting to consider, each of which has its benefits, pitfalls and target groups.
 
+{% hint style="success" %}
+This article originally from [Andrew Killen Note](https://www.facebook.com/notes/andrew-killen/understanding-the-different-types-of-hosting-for-wordpress/10155584723456701/).
+{% endhint %}
+
 ## Free Hosted Service
 
 [wordpress.com](https://l.facebook.com/l.php?u=https%3A%2F%2Fwordpress.com%2F%3Ffbclid%3DIwAR08lbNKBfmhPXvcjWH1LVyNWHRmNwBWW7EYww_qHmifWnVI9wAkqfYcqME&h=AT052cjykSEMw60mQLiVE1Gez2d-I9GY4n-nFRiDtyDdyA_XzxXhAkKPEXmigd13QEfD1qtMW4UXNaS5CLxPSwEfYtPUfjCgraCpAbPCqSTCqU1t2JnlkCLPSDc) is a free platform that is maintained and owned by [Automattic](https://l.facebook.com/l.php?u=https%3A%2F%2Fautomattic.com%2F%3Ffbclid%3DIwAR08lbNKBfmhPXvcjWH1LVyNWHRmNwBWW7EYww_qHmifWnVI9wAkqfYcqME&h=AT09ZpuYBhQGmQbxcYaeWYEeYb6JnIWo72g53eU9QRo6oX4hSMdz0W1uavVr-PhhfBp9Ha64fbslix7uN5ssUYHIKHuSQe-AzHb-wKRQxUMShErbnuMqFcI1Lpg). Automattic is owned by [Matt Mullenweg](https://www.facebook.com/matt.mullenweg/?eid=ARBP_zBUaXi0VPAq3ZrF_FOo5UbEc5HCtHOV3kYT8LaT78t-Yc57Ks4bhO0srM_L0_eslvRclWnfaz0v), who is the benevolent dictator for life of WordPress. Hosting on WordPress.com’s platform is very easy to setup, but is limited in the plugins & themes you can use, and force your site to carry advertising in order to pay for this service.  
@@ -284,8 +288,4 @@ Those that cannot afford even 5 mins without their website online.
 Weigh up if you need a ‘like for like’ failover or something that can run in a reduced capacity, to reduce your total costs. Also, have a plan for the human aspects of failover. Do your engineers need to fly to where the servers are? Do you need to tell your editors to stop working on the system so that write traffic is reduced? etc etc.
 
 
-
-{% hint style="success" %}
-This article originally from [Andrew Killen Note](https://www.facebook.com/notes/andrew-killen/understanding-the-different-types-of-hosting-for-wordpress/10155584723456701/).
-{% endhint %}
 

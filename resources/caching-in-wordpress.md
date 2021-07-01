@@ -6,6 +6,10 @@ description: Core Caching Concepts in WordPress.
 
 The purpose of this article is to provide a framework for thinking about caching. It discusses core caching concepts that can be difficult to grasp when first working with caching in web development projects. These concepts are then specifically applied to the WordPress context. Finally, some general tips are given about caching.
 
+{% hint style="success" %}
+This article originally from [tollmanz.com](https://www.tollmanz.com/core-caching-concepts-in-wordpress/) blog.
+{% endhint %}
+
 ## Cache Types
 
 To begin, this section will cover four different types of caches that one may encounter. An understanding of these concepts helps to navigate some of the jargon used when reading about caching systems.
@@ -127,10 +131,6 @@ Now that you know a little about caching in WordPress, here some nuggets of "wis
 In this article, we discussed the essential concepts that one must understand in order to be able to apply caching to a web development project. With this information, in hope, you are better prepared to work with caching in your projects. This article is intended to serve as a primer that makes it easier to understand more complex caching concepts.
 
 
-
-{% hint style="success" %}
-This article originally from [tollmanz.com](https://www.tollmanz.com/core-caching-concepts-in-wordpress/) blog.
-{% endhint %}
 
 
 
