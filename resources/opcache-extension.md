@@ -8,6 +8,10 @@ description: PHP's OPcache extension review.
 
 PHP is a scripting language, that by default will compile any file you ask it to run, obtain OPCodes from a compilation, run them, and trash them away immediately. PHP has been designed like that: it "forgets" everything it's done in request R-1 when it comes to run request R.
 
+{% hint style="success" %}
+This article originally from [blog.jpauli.tech](http://blog.jpauli.tech/2015-03-05-opcache-html/)
+{% endhint %}
+
 On production servers, the PHP code is very unlikely to change between several requests, thus, the compilation step will always read the same source code, leading to the very exact same OPCode to be run. This is a big waste of time and resources, as the PHP compiler is invoked for every request, for every script.
 
 ![](../.gitbook/assets/php-compile-execute-process.png)
@@ -581,10 +585,6 @@ With those settings, your memory should never get wasted, then `opcache.max_wast
 With those settings, you'll need to turn off your main FPM instance when deploying. You may play with several FPM pools to prevent service downtime like explained earlier. That should be enough.
 
 
-
-{% hint style="success" %}
-This article originally from [blog.jpauli.tech](http://blog.jpauli.tech/2015-03-05-opcache-html/)
-{% endhint %}
 
 
 
