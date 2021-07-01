@@ -6,7 +6,13 @@ description: >-
 
 # Web Hosting I/O Usage
 
-While looking for an appropriate web hosting solution for your website, you will come across different web hosting packages that offer various configurations of storage space, monthly bandwidth, memory and CPU. However, apart from the standard factors, there are other important factors that you need to consider while signing up for a web hosting package, they are mentioned below:
+While looking for an appropriate web hosting solution for your website, you will come across different web hosting packages that offer various configurations of storage space, monthly bandwidth, memory and CPU. 
+
+{% hint style="success" %}
+This article originally from [milesweb.com](https://www.milesweb.com/hosting-faqs/all-you-need-to-know-about-web-hosting-i-o-usage-iops-limit-and-entry-processes-limit/)
+{% endhint %}
+
+However, apart from the standard factors, there are other important factors that you need to consider while signing up for a web hosting package, they are mentioned below:
 
 * What is web hosting I/O usage?
 * What does IOPS mean?
@@ -70,10 +76,6 @@ It is beneficial if you have many concurrent users connected to the same server 
 The information mentioned above will provide you better knowledge about the important aspects that you should look for in a web hosting package apart from the standard attributes. Don’t fall for unlimited storage and bandwidth unless you are aware of these important technical factors. If you are promised unlimited space but in reality if your website is getting limited, then there is no point in opting for such a web hosting plan.
 
 
-
-{% hint style="success" %}
-This article originally from [milesweb.com](https://www.milesweb.com/hosting-faqs/all-you-need-to-know-about-web-hosting-i-o-usage-iops-limit-and-entry-processes-limit/)
-{% endhint %}
 
 
 
