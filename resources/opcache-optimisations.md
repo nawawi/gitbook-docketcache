@@ -8,6 +8,10 @@ description: OPcache compiler's optimizer.
 
 So we talked about caching OPCodes into shm and loading them back later. Just before caching them, OPcache may also run optimizer passes.
 
+{% hint style="success" %}
+This article originally from [blog.jpauli.tech](http://blog.jpauli.tech/2015-03-05-opcache-html/)
+{% endhint %}
+
 To fully understand the optimizer, you have to have a good knowledge of how the Zend VM Executor works. Also, you may bring your compiler knowledge, if you are very new to such concepts, perhaps starting [reading some articles on the subject](https://msdn.microsoft.com/en-us/magazine/dn904673.aspx) may help?. Or at least the mandatory-reading [Dragon Book](http://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools)? Anyway, I'll try to make the subject understandable and fun to read.
 
 Basically, the optimizer is given the whole OPArray structure, and may now browse it, find flaws, and fix them. But as we are analyzing OPCodes **at compile-time**, we have no clue at all on everything tied to a "PHP variable". Basically, we don't know yet what will be stored in any `IS_VAR` or `IS_CV` operand, but only in `IS_CONST` or sometimes in `IS_TMP_VAR`.
@@ -400,8 +404,4 @@ Nowadays, OPcache is very mature/stable and achieves its goal of boosting dramat
 Shared memory is used for every process of a PHP pool to be able to access structures that have been added by others. Interned strings buffer is also managed in shared memory, leading to even more memory savings in a PHP pool of workers - typically using PHP-FPM SAPI.
 
 
-
-{% hint style="success" %}
-This article originally from [blog.jpauli.tech](http://blog.jpauli.tech/2015-03-05-opcache-html/)
-{% endhint %}
 
