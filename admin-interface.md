@@ -72,12 +72,12 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Deactivate WooCommerce Cart Fragments** | [DOCKET\_CACHE\_WOOCARTFRAGSOFF](https://docs.docketcache.com/constants#docket_cache_woocartfragsoff) |
 | **Remove XML-RPC / Pingbacks** | [DOCKET\_CACHE\_PINGBACK](https://docs.docketcache.com/constants#docket_cache_pingback) |
 | **Remove WP Header Junk** | [DOCKET\_CACHE\_HEADERJUNK](https://docs.docketcache.com/constants#docket_cache_headerjunk) |
-| **Remove WP Emoji** | [DOCKET\_CACHE\_WPEMOJI](https://docs.docketcache.com/constants#docket_cache_wpemoji) |
-| **Remove WP Feed** | [DOCKET\_CACHE\_WPFEED](https://docs.docketcache.com/constants#docket_cache_wpfeed) |
-| **Remove WP Embed** | [DOCKET\_CACHE\_WPEMBED](https://docs.docketcache.com/constants#docket_cache_wpembed) |
-| **Remove WP Lazy Load** | [DOCKET\_CACHE\_WPLAZYLOAD](https://docs.docketcache.com/constants#docket_cache_wplazyload) |
-| **Remove WP Sitemap** | [DOCKET\_CACHE\_WPSITEMAP](https://docs.docketcache.com/constants#docket_cache_wpsitemap) |
-| **Remove WP Application Passwords** | [DOCKET\_CACHE\_WPAPPPASSWORD](https://docs.docketcache.com/constants#docket_cache_wpapppassword) |
+| **Deactivate WP Emoji** | [DOCKET\_CACHE\_WPEMOJI](https://docs.docketcache.com/constants#docket_cache_wpemoji) |
+| **Deactivate WP Feed** | [DOCKET\_CACHE\_WPFEED](https://docs.docketcache.com/constants#docket_cache_wpfeed) |
+| **Deactivate WP Embed** | [DOCKET\_CACHE\_WPEMBED](https://docs.docketcache.com/constants#docket_cache_wpembed) |
+| **Deactivate WP Lazy Load** | [DOCKET\_CACHE\_WPLAZYLOAD](https://docs.docketcache.com/constants#docket_cache_wplazyload) |
+| **Deactivate WP Sitemap** | [DOCKET\_CACHE\_WPSITEMAP](https://docs.docketcache.com/constants#docket_cache_wpsitemap) |
+| **Deactivate WP Application Passwords** | [DOCKET\_CACHE\_WPAPPPASSWORD](https://docs.docketcache.com/constants#docket_cache_wpapppassword) |
 | **Admin Page Cache Preloading** | [DOCKET\_CACHE\_PRELOAD](https://docs.docketcache.com/constants#docket_cache_preload) |
 | **Admin Page Loader** | [DOCKET\_CACHE\_PAGELOADER](https://docs.docketcache.com/constants#docket_cache_pageloader) |
 | **Object Cache Data Stats** | [DOCKET\_CACHE\_STATS](https://docs.docketcache.com/constants#docket_cache_stats) |
