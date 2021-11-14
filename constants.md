@@ -4,11 +4,11 @@ description: Docket Cache uses constants variable as main configuration methods.
 
 # Constants
 
-`Updated: 05-Dec-2020 | Version: >= 20.11.05`
+`Updated: 14-Nov-2021 | Version: >= 21.08.02`
 
 Constants are like variables except that once they are defined they cannot be changed or undefined. To change the behaviour of Docket Cache, the following PHP constants can be defined in your `wp-config.php` file.
 
-Docket Cache load the configuration by calling `Constan::register_default()` method that can be found in file [includes/src/Constans.php](https://github.com/nawawi/docket-cache/blob/master/includes/src/Constans.php#L155). Some constant marks as @private and for internal use, changing it may result in unpredictable behaviour.
+Docket Cache load the configuration by calling [`Constan::register_default(`](https://github.com/nawawi/docket-cache/blob/master/includes/src/Constans.php#L155)`)` method that can be found in file [includes/src/Constans.php](https://github.com/nawawi/docket-cache/blob/master/includes/src/Constans.php). Some constant marks as @private and for internal use, changing it may result in unpredictable behaviour.
 
 ## DOCKET\_CACHE\_MAXTTL
 
