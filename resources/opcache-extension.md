@@ -16,29 +16,29 @@ On production servers, the PHP code is very unlikely to change between several r
 
 ![](../.gitbook/assets/php-compile-execute-process.png)
 
-Knowing that compilation can really take a lot of time, OPCode cache extensions have been designed. Their main goal is to compile once and only once each PHP script, and cache the resulting OPCodes into shared memory so that every other PHP worker of your production worker pool \(usually using PHP-FPM\) can make use of the OPCodes by reading them and executing then back.
+Knowing that compilation can really take a lot of time, OPCode cache extensions have been designed. Their main goal is to compile once and only once each PHP script, and cache the resulting OPCodes into shared memory so that every other PHP worker of your production worker pool (usually using PHP-FPM) can make use of the OPCodes by reading them and executing then back.
 
-The result is a massive boost in the overall performance of the language, dividing time to run a script by a factor of at least 2 \(very depend on the script\), usually more than 2, as PHP now doesn't have to compile again and again the same PHP scripts.
+The result is a massive boost in the overall performance of the language, dividing time to run a script by a factor of at least 2 (very depend on the script), usually more than 2, as PHP now doesn't have to compile again and again the same PHP scripts.
 
 The boost is higher as the application is more complex. If you take applications running tons of files, like framework based applications, or products like WordPress, you will experience a factor of 10-15 or so. This is because the PHP compiler is slow, and this is just a normal situation: a compiler is slow, whatever it is, because its work is to turn a syntax into another, trying to understand what you asked, and somehow to optimize the generated code for it to later run the fastest as possible; so yes, compiling a PHP script is really slow and eats a lot of memory.
 
 ## Introducing OPcache
 
-OPcache has been open-sourced since 2013 and is bundled into PHP's source starting from PHP 5.5.0. It has thus become a standard for PHP OPcode cache solutions. There exist other solutions, such as XCache, APC, Eaccelerator and others. 
+OPcache has been open-sourced since 2013 and is bundled into PHP's source starting from PHP 5.5.0. It has thus become a standard for PHP OPcode cache solutions. There exist other solutions, such as XCache, APC, Eaccelerator and others.&#x20;
 
 I will not talk about those other solutions, as I myself don't know them except APC. APC support has been discontinued in favour of OPcache. Short, if you were using APC before, please, use OPcache now.
 
 OPcache has become the real official recommended OPCode cache solution by the developers of PHP. You may still use other solutions if you want, however, never ever activate more than one OPCode cache extension at the same time, you will likely crash PHP.
 
-Be aware that new development involving OPcache won't target PHP 5 branch, but PHP 7 branch which is the nowadays stable branch. This article will target OPcache for PHP 5 and PHP 7, so that you may spot the differences \(which are not that big\).
+Be aware that new development involving OPcache won't target PHP 5 branch, but PHP 7 branch which is the nowadays stable branch. This article will target OPcache for PHP 5 and PHP 7, so that you may spot the differences (which are not that big).
 
-So OPcache is an extension, a `zend_extension` more precisely, which is shipped into the PHP source code, starting from PHP 5.5.0 \(Pecl for others\), and that must be activated through the normal php.ini process of activating an extension. For distros, please refer to your distribution manual to know how PHP and OPcache have been bundled.
+So OPcache is an extension, a `zend_extension` more precisely, which is shipped into the PHP source code, starting from PHP 5.5.0 (Pecl for others), and that must be activated through the normal php.ini process of activating an extension. For distros, please refer to your distribution manual to know how PHP and OPcache have been bundled.
 
 ## **Two features into one product**
 
 OPcache is an extension which provides two main features:
 
-* OPCodes caching 
+* OPCodes caching&#x20;
 * OPCodes optimization
 
 Because OPcache triggers the PHP compiler, to get OPCodes and cache them, it could use this step to optimize the OPCodes. Optimizations are basically about compiler optimizations and share many concepts of this computer science discipline. OPcache optimizer is a multi-pass compiler optimizer.
@@ -60,7 +60,7 @@ As you know, there exist many shared memory models under different Operating Sys
 * mmap API
 * Unix socket API
 
-OPcache is able to use the first three of them, as soon as your OS supports the layer. The `INI` setting [`opcache.preferred_memory_model`](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.preferred-memory-model) allows you to explicitly select the memory model you want.  
+OPcache is able to use the first three of them, as soon as your OS supports the layer. The `INI` setting [`opcache.preferred_memory_model`](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.preferred-memory-model) allows you to explicitly select the memory model you want.\
 If you leave the parameter to a null value, OPcache will select the first model which works for your platform, iterating through its table:
 
 ```c
@@ -83,15 +83,15 @@ If you leave the parameter to a null value, OPcache will select the first model 
 
 So by default, `mmap` should be used. It's a nice memory model, mature and robust. However, it is less informative to the sysadmin that System-V SHM model is, and its `ipcs` and `ipcrm` commands.
 
-As soon as OPcache starts \(as soon as PHP starts\), OPcache will try a shared memory model and will allocate one big memory segment that it will then divide and manage on its side. However, it will never free this segment back, nor will it try to resize it.
+As soon as OPcache starts (as soon as PHP starts), OPcache will try a shared memory model and will allocate one big memory segment that it will then divide and manage on its side. However, it will never free this segment back, nor will it try to resize it.
 
 {% hint style="info" %}
 OPcache allocates one segment of shared memory when PHP starts, once for all, and never frees it nor fragments it.
 {% endhint %}
 
-The size of the memory segment can be told using the [`opcache.memory_consumption`](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption) INI setting \(Megabytes\). Size it big, don't hesitate to give space. Never ever run out of shared memory space, if you do, you will lock your processes, we'll get back to that later.
+The size of the memory segment can be told using the [`opcache.memory_consumption`](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption) INI setting (Megabytes). Size it big, don't hesitate to give space. Never ever run out of shared memory space, if you do, you will lock your processes, we'll get back to that later.
 
-Size the shared memory segment according to your needs, don't forget that a production server dedicated to PHP processes may bundle several dozens of Gigabytes of memory, just for PHP. Having a 1Gb shared memory segment \(or more\) is not uncommon, it will depend on your needs, but if you use a modern application stack, aka framework based, with lots of dependencies etc.., then use at least 1Gb of shared memory.
+Size the shared memory segment according to your needs, don't forget that a production server dedicated to PHP processes may bundle several dozens of Gigabytes of memory, just for PHP. Having a 1Gb shared memory segment (or more) is not uncommon, it will depend on your needs, but if you use a modern application stack, aka framework based, with lots of dependencies etc.., then use at least 1Gb of shared memory.
 
 The shared memory segment will be used for several things in OPcache:
 
@@ -108,11 +108,11 @@ So remember, the shared memory segment size will not only contain raw OPCodes bu
 
 Here we go to detail how the caching mechanism works.
 
-The overall idea is to copy into shared memory \(shm\) every pointer data that won't change from request to request, aka immutable things. And there are many of them.
+The overall idea is to copy into shared memory (shm) every pointer data that won't change from request to request, aka immutable things. And there are many of them.
 
 After, once loading back the same script: restore every pointer data from shared memory to standard process memory, tied to the current request.
 
-When the PHP compiler is working, it uses Zend Memory Manager \(ZMM\) to allocate every pointer. This kind of memory used is request bound as ZMM will automatically attempt to free those pointers as soon as the current request finishes. Also, those pointers are allocated from the current process' heap, that is this is some privately mapped memory and thus can't be shared with other PHP processes. Hence, OPcache's job is to browse every structure returned by the PHP compiler, and not leave one single pointer allocated onto this pool, but copy it into a shared memory allocated pool.
+When the PHP compiler is working, it uses Zend Memory Manager (ZMM) to allocate every pointer. This kind of memory used is request bound as ZMM will automatically attempt to free those pointers as soon as the current request finishes. Also, those pointers are allocated from the current process' heap, that is this is some privately mapped memory and thus can't be shared with other PHP processes. Hence, OPcache's job is to browse every structure returned by the PHP compiler, and not leave one single pointer allocated onto this pool, but copy it into a shared memory allocated pool.
 
 And here we talk about compile-time, whatever has been allocated by the compiler, is assumed to be immutable. Non-immutable data will be created at runtime by the Zend Virtual Machine, so it is safe to save everything that the Zend Compiler created, into shared memory.
 
@@ -210,21 +210,21 @@ Now that we have a `persitent_script` structure, we must cache its information. 
 
 The process is as follow:
 
-* Take the PHP script to cache, and compute every variable data size \(every pointer target\).
+* Take the PHP script to cache, and compute every variable data size (every pointer target).
 * Reserve into already allocated shared memory one big block of this precise size.
 * Iterate over the PHP script variable structures, and for each variable-data pointer target, copy it into the just-allocated shared memory block.
 * Do the exact opposite for script loading, when this comes to play.
 
-So OPcache is clever about shared memory, and will not fragment it by freeing it and compacting it.  
-For every script, it computes the exact size this script needs to store information into shared memory and then copies the data into the segment. 
+So OPcache is clever about shared memory, and will not fragment it by freeing it and compacting it.\
+For every script, it computes the exact size this script needs to store information into shared memory and then copies the data into the segment.&#x20;
 
-The memory is never freed nor given back to the OS by OPcache thus the memory is perfectly aligned and never fragmented. This gives a big boost in the performance of shared memory, as there is no linked-list or BTree to store and traverse when managing memory that can be freed \(like malloc/free do\). 
+The memory is never freed nor given back to the OS by OPcache thus the memory is perfectly aligned and never fragmented. This gives a big boost in the performance of shared memory, as there is no linked-list or BTree to store and traverse when managing memory that can be freed (like malloc/free do).&#x20;
 
-OPcache keeps storing things into the shared memory segment, and when the data become stale \(because of script revalidation\); it does not free the buffers but mark them as "wasted". When the max wasted percentage is reached, OPcache triggers a restart. 
+OPcache keeps storing things into the shared memory segment, and when the data become stale (because of script revalidation); it does not free the buffers but mark them as "wasted". When the max wasted percentage is reached, OPcache triggers a restart.&#x20;
 
-This model is very different from the old APC extension, for example, and has the big advantage of providing the same performances as time runs, because the memory buffer from SHM is never managed \(freed, compacted, etc...\), memory management operations are truly technically stuff which brings nothing to functionalities, but performance penalty as they run. 
+This model is very different from the old APC extension, for example, and has the big advantage of providing the same performances as time runs, because the memory buffer from SHM is never managed (freed, compacted, etc...), memory management operations are truly technically stuff which brings nothing to functionalities, but performance penalty as they run.&#x20;
 
-OPcache has been designed with highest possible performance in mind for the PHP environment runtime, not touching back the shared memory segment provides as well a very good rate of CPU caches hits \(especially L1 and L2, as OPcache also aligns the memory pointers for them to better find a hit in an L1/L2 line\).
+OPcache has been designed with highest possible performance in mind for the PHP environment runtime, not touching back the shared memory segment provides as well a very good rate of CPU caches hits (especially L1 and L2, as OPcache also aligns the memory pointers for them to better find a hit in an L1/L2 line).
 
 Caching a script thus involves as a first step computing the exact size of its data. Here is the algorithm:
 
@@ -252,31 +252,31 @@ I repeat, what we have to cache are:
 * The script path.
 * The script structure itself.
 
-For functions, classes and OPArray, the iterating algorithm is deep searching; it caches every pointer data.  
-For example for the functions in PHP 5, we must copy into shared memory \(shm\):
+For functions, classes and OPArray, the iterating algorithm is deep searching; it caches every pointer data.\
+For example for the functions in PHP 5, we must copy into shared memory (shm):
 
 #### **The functions HashTable**
 
-* The functions HashTable buckets table \(Bucket \*\*\)
-* The functions HashTable buckets \(Bucket \*\)
-* The functions HashTable buckets' key \(char \*\)
-* The functions HashTable buckets' data pointer \(void \*\)
-* The functions HashTable buckets' data \(\*\)
+* The functions HashTable buckets table (Bucket \*\*)
+* The functions HashTable buckets (Bucket \*)
+* The functions HashTable buckets' key (char \*)
+* The functions HashTable buckets' data pointer (void \*)
+* The functions HashTable buckets' data (\*)
 
 #### **The functions OPArray**
 
-* The OPArray filename \(char \*\)
-* The OPArray literals \(names \(char \*\) and values \(zval \*\)\)
-* The OPArray OPCodes \(zend\_op \*\)
-* The OPArray function name \(char \*\)
-* The OPArray arg\_infos \(zend\_arg\_info \*, and the name and class name as both char \*\)
-* The OPArray break-continue array \(zend\_brk\_cont\_element \*\)
-* The OPArray static variables \(Full deep HashTable and zval \*\)
-* The OPArray doc comments \(char \*\)
-* The OPArray try-catch array \(zend\_try\_catch\_element \*\)
-* The OPArray compiled variables \(zend\_compiled\_variable \*\)
+* The OPArray filename (char \*)
+* The OPArray literals (names (char \*) and values (zval \*))
+* The OPArray OPCodes (zend\_op \*)
+* The OPArray function name (char \*)
+* The OPArray arg\_infos (zend\_arg\_info \*, and the name and class name as both char \*)
+* The OPArray break-continue array (zend\_brk\_cont\_element \*)
+* The OPArray static variables (Full deep HashTable and zval \*)
+* The OPArray doc comments (char \*)
+* The OPArray try-catch array (zend\_try\_catch\_element \*)
+* The OPArray compiled variables (zend\_compiled\_variable \*)
 
-I did not detail all, and these changes for PHP 7 as the structures \(such as the hashtable\) are different.  
+I did not detail all, and these changes for PHP 7 as the structures (such as the hashtable) are different.\
 The idea is as I expressed it; copy in shared memory every pointer data. As deep copies may involve recursive structures, OPcache uses a translate table for pointer storage; every time it copies a pointer from regular request-bound memory to shared memory, it saves the association between the old pointer address and the new pointer address.
 
 The copy process, before copying, looks up this translate table to know if it has already copied the data if so, it reuses the old pointer data so that it never duplicates any pointer data:
@@ -301,19 +301,19 @@ The copy process, before copying, looks up this translate table to know if it ha
 	}
 ```
 
-`ZCG(mem)` represents the fixed-size shared memory segment and is filled-in as elements are added. It then has already been allocated, there is no need to allocate memory on each copy \(which would have been less performant\), but simply fill-in the memory, and move forward the pointer address border.
+`ZCG(mem)` represents the fixed-size shared memory segment and is filled-in as elements are added. It then has already been allocated, there is no need to allocate memory on each copy (which would have been less performant), but simply fill-in the memory, and move forward the pointer address border.
 
 We detailed the script caching algorithm, which role is to take any request-bound heap memory pointer and data and duplicate it into shared memory, if not already copied.
 
 The loading algorithm does the exact opposite: it gets the `persistent_script` back from shared memory and browse each of its dynamic structures to duplicate every shared pointer to a request-bound allocated pointer.
 
-The script is then ready to be run by the Zend Engine Executor, as it now doesn't embed any shared pointer address \(which would lead to massive bugs of one script modifying the structure of its brother\). The Zend Engine is tricked \(hooked by OPcache\); it has seen nothing of the pointers replacement happening before the execution happens.
+The script is then ready to be run by the Zend Engine Executor, as it now doesn't embed any shared pointer address (which would lead to massive bugs of one script modifying the structure of its brother). The Zend Engine is tricked (hooked by OPcache); it has seen nothing of the pointers replacement happening before the execution happens.
 
-This process of copying from regular memory to shared memory \(cache script\), or the opposite \(load script\), is highly optimized, and even if it involves many memory copies or hash lookups, which are not really nice in term of performance, we are way faster than triggering the PHP compiler every time.
+This process of copying from regular memory to shared memory (cache script), or the opposite (load script), is highly optimized, and even if it involves many memory copies or hash lookups, which are not really nice in term of performance, we are way faster than triggering the PHP compiler every time.
 
 ## Sharing interned strings
 
-Interned strings are a nice memory optimisation that's been added to PHP 5.4. This may feel like some commonsense; every time PHP meets an immutable string \(a char\*\), it stores it into a special buffer and reuses the pointer for every occurrence of this same string next to come.
+Interned strings are a nice memory optimisation that's been added to PHP 5.4. This may feel like some commonsense; every time PHP meets an immutable string (a char\*), it stores it into a special buffer and reuses the pointer for every occurrence of this same string next to come.
 
 You may learn more about interned strings [from this article](http://blog.jpauli.tech/2015/09/18/php-string-management.html#interned-strings). Interned strings are about immutable strings, and thus are nearly exclusively used into the PHP compiler.
 
@@ -325,7 +325,7 @@ The same instance of a string is shared to every pointer. But there still is a p
 
 ![](../.gitbook/assets/php-interned-strings-pools.png)
 
-This leads to a massive waste of memory, especially in case you have tons of workers \(you're likely to have\), and you use very big strings in your PHP code \(tip: PHP's annotation comments are strings\). What OPcache takes care of, is sharing this buffer between every PHP worker of a pool. Something like this:
+This leads to a massive waste of memory, especially in case you have tons of workers (you're likely to have), and you use very big strings in your PHP code (tip: PHP's annotation comments are strings). What OPcache takes care of, is sharing this buffer between every PHP worker of a pool. Something like this:
 
 ![](../.gitbook/assets/php-interned-strings-pools-shared.png)
 
@@ -333,7 +333,7 @@ Et voila! OPcache shares the interned string buffers of all the PHP-FPM worker o
 
 Thus, you need to size the shm segment according to your interned strings usage as well. Also, OPcache allows you to tune the interned strings shm usage using `opcache.interned_strings_buffer` INI setting. Monitor OPcache and once more; make sure you have enough memory.
 
-However here, if you run out of interned strings memory space \(`opcache.interned_strings_buffer`setting is too low\), OPcache will not trigger a restart, because it still has some shm available, only interned strings buffer is full, which is not blocking to continue processing request, you'll simply end up having some strings interned and shared, and some other that use PHP worker's memory. I don't recommend that for performance.
+However here, if you run out of interned strings memory space (`opcache.interned_strings_buffer`setting is too low), OPcache will not trigger a restart, because it still has some shm available, only interned strings buffer is full, which is not blocking to continue processing request, you'll simply end up having some strings interned and shared, and some other that use PHP worker's memory. I don't recommend that for performance.
 
 Read your logs, when you run out of interned string memory, OPcache warns you:
 
@@ -352,7 +352,7 @@ Interned strings are about every piece of immutable string the PHP compiler is g
 
 ## The locking mechanism
 
-As soon as we talk about shared memory \(shm\), we must talk about memory locking mechanisms.  
+As soon as we talk about shared memory (shm), we must talk about memory locking mechanisms.\
 The baseline is simple; every PHP process that is willing to write into shared memory will lock every other process willing to write into shared memory as well. So the critical section is done on write operations, and not read operations.
 
 You may happen to have 150 PHP processes reading the shared memory, only one of them may write into the shm at the same time, write operation doesn't prevent read operation but another write operation.
@@ -390,7 +390,7 @@ Sure there may still be some little scripts not compiled yet, but as soon as the
 
 What you should avoid, is writing PHP files at runtime, and then make use of them. For the exact same reason; as soon as you write a new PHP file onto your production server documentroot, and you make use of it, chances are that it will be rushed by thousands of PHP workers trying to compile and cache it into shm; you will lock.
 
-Those dynamically generated PHP files should be added to the OPcache blacklist, using the `opcache.blacklist-filename` INI setting \(which accepts glob patterns\).
+Those dynamically generated PHP files should be added to the OPcache blacklist, using the `opcache.blacklist-filename` INI setting (which accepts glob patterns).
 
 Technically speaking, the lock mechanism is not very strong, but it works on many flavours of Unix; it uses the famous `fcntl()` call.
 
@@ -419,16 +419,16 @@ There exists however another lock that you should prevent from happening; the me
 
 So I remind you with facts:
 
-1. OPcache creates one unique segment of shared memory, once for all, at PHP startup \(when you start PHP-FPM\).
+1. OPcache creates one unique segment of shared memory, once for all, at PHP startup (when you start PHP-FPM).
 2. OPcache never frees some shm into this segment, the segment is allocated at startup, then filled in according to the needs.
 3. OPcache locks shm when it writes into it.
-4. shm is used for several purposes: 
+4. shm is used for several purposes:&#x20;
    * Script's data-structure caching, involving obviously OPCodes caching but not only.
    * Shared interned strings buffer.
    * Cached scripts HashTable.
    * Global OPcache shared memory state.
 
-If you use validation of your scripts, OPcache will check their modification date at every access \(not every, check `opcache.revalidate_freq` INI setting\), and will have a hint of whether the file is fresh or stale.
+If you use validation of your scripts, OPcache will check their modification date at every access (not every, check `opcache.revalidate_freq` INI setting), and will have a hint of whether the file is fresh or stale.
 
 This check is cached; it is not costly as opposed to what you could think. OPcache comes into the scene sometime after PHP, and PHP has already `stat()`ed the file; OPcache just reuses this information and does not issue a costly `stat()` call to the filesystem again for its own use.
 
@@ -453,7 +453,7 @@ It will not free anything from shm. OPcache flags the shm parts as "wasted". Onl
 
 The picture above details what your shm segment could look like after some time has passed and some scripts have changed. The changed scripts' memory has been marked as "wasted", and OPcache will simply now ignore those memory areas, as well as it will recompile your changed scripts and create a new memory segment for their information's.
 
-When enough wasted memory is reached, a restart will happen, OPcache will then lock shm, reset the shm segment \(empty it entirely\), and release the lock. This will let your server in a situation like if it has just started; every PHP worker is going to stress the lock now because every worker will try to compile some files; your web server will now suffer from very poor performance because of locks.
+When enough wasted memory is reached, a restart will happen, OPcache will then lock shm, reset the shm segment (empty it entirely), and release the lock. This will let your server in a situation like if it has just started; every PHP worker is going to stress the lock now because every worker will try to compile some files; your web server will now suffer from very poor performance because of locks.
 
 The more the load, the less performance, this is unfortunately the rule with locks. So your server may really suffer for long seconds now.
 
@@ -461,15 +461,15 @@ The more the load, the less performance, this is unfortunately the rule with loc
 Never run out of shared memory
 {% endhint %}
 
-More generally, what you should do is disable script modification tracking on a production server, that way you are sure the cache will never trigger a restart \(this is not entirely true as OPcache may still run out of persistent script keyspace, we'll see that later\). A classic deployment should follow the rules:
+More generally, what you should do is disable script modification tracking on a production server, that way you are sure the cache will never trigger a restart (this is not entirely true as OPcache may still run out of persistent script keyspace, we'll see that later). A classic deployment should follow the rules:
 
-* Take out the server from the load \(disconnect it from your load balancer\).
-* Empty OPcache \(call `opcache_reset()`\) or directly shut down FPM \(better, we'll detail in few minutes\).
+* Take out the server from the load (disconnect it from your load balancer).
+* Empty OPcache (call `opcache_reset()`) or directly shut down FPM (better, we'll detail in few minutes).
 * Deploy a new version of your application at once.
 * Restart your FPM pool if needed and prime your new cache smoothly by triggering curl request on major application entry points.
 * Open back your server to traffic.
 
-All this can be done with a 50 line shell script that can be turned very robust playing with `lsof` and `kill` in case some hard requests don't seem to finish. Bring your Unix knowledge ;-\).
+All this can be done with a 50 line shell script that can be turned very robust playing with `lsof` and `kill` in case some hard requests don't seem to finish. Bring your Unix knowledge ;-).
 
 You can even see what happens using one of the numerous GUI frontends for OPcache available anywhere on the web and Github, they all make use of the `opcache_get_status()` function:
 
@@ -479,11 +479,11 @@ This is not the full story though, there is another thing to clearly keep in min
 
 When OPcache stores a cached script into SHM, it stores it's into a HashTable, to be able to find the script back after. But it has to choose a key to index the HashTable. What index/key does OPcache use to achieve this goal? This highly depends on both the configuration and the way your app has been designed.
 
-Normally, OPcache resolves the full path to the script, but take care as it uses the PHP's realpath cache and you may suffer from it. If you change your documentroot using a symlink, put `opcache.revalidate_path` to 1 and empty your realpath cache \(which may be hard to do as it is bound to the PHP worker process handling the current request\).
+Normally, OPcache resolves the full path to the script, but take care as it uses the PHP's realpath cache and you may suffer from it. If you change your documentroot using a symlink, put `opcache.revalidate_path` to 1 and empty your realpath cache (which may be hard to do as it is bound to the PHP worker process handling the current request).
 
-So, OPcache resolves the path to the file, and when resolved, it uses the realpath string as a cache key for the script, and that's all, assuming you have `opcache.revalidate_path` INI setting turned to 1. If not, OPcache will also use the **unresolved path** as a cache key, and that will lead to problems if you were using symlinks, because if you then change the symlink target, OPcache will not notice it, as it will still use the unresolved path as key to find the old targetted script \(this is to save a symlink resolution call\).
+So, OPcache resolves the path to the file, and when resolved, it uses the realpath string as a cache key for the script, and that's all, assuming you have `opcache.revalidate_path` INI setting turned to 1. If not, OPcache will also use the **unresolved path** as a cache key, and that will lead to problems if you were using symlinks, because if you then change the symlink target, OPcache will not notice it, as it will still use the unresolved path as key to find the old targetted script (this is to save a symlink resolution call).
 
-By turning `opcache.use_cwd` to 1, you tell OPcache to prepend the `cwd` to every key, in case you use relative paths to include your files, like `require_once "./foo.php";`. I suggest, if you use relative paths and host several applications on the same PHP instance \(which you shouldn't do\), to always put `opcache.use_cwd` to 1. Also, if you happen to play with symlinks, turn _opcache.revalidate\_path_ to 1. But even with those settings on, you will suffer from PHP's realpath cache, and you may change the _www_ symlink to another target, it won't be noticed by OPcache, even if you empty the cache by using `opcache_reset()`.
+By turning `opcache.use_cwd` to 1, you tell OPcache to prepend the `cwd` to every key, in case you use relative paths to include your files, like `require_once "./foo.php";`. I suggest, if you use relative paths and host several applications on the same PHP instance (which you shouldn't do), to always put `opcache.use_cwd `to 1. Also, if you happen to play with symlinks, turn _opcache.revalidate\_path_ to 1. But even with those settings on, you will suffer from PHP's realpath cache, and you may change the _www _symlink to another target, it won't be noticed by OPcache, even if you empty the cache by using `opcache_reset()`.
 
 {% hint style="info" %}
 Because of PHP's realpath cache, you may experience problems if using symlinks to handle your documentroot for deployment. Turn _opcache.use\_cwd_ and _opcache.revalidate\_path_ to 1, but even with those settings, bad symlink resolutions may happen, this is because PHP answers OPcache realpath resolution requests with a wrong answer, coming from its realpath\_cache mechanism.
@@ -493,8 +493,8 @@ If you want to be extra safe in your deployment, the first option is to not use 
 
 If not, then use a double FPM pool, and use a FastCGI load balancer to balance between the two pools when deploying. Lighttpd and Nginx have this feature enabled by default as far as I remember:
 
-* Take out the server from the load \(disconnect it from your load balancer\).
-* Shut down FPM, you will kill PHP \(and then OPcache\) and will be extra safe especially about PHP's realpath cache, which may trick you. This latter will be cleared if you shut down FPM. Monitor the eventual workers that may be stuck, and kill them if necessary.
+* Take out the server from the load (disconnect it from your load balancer).
+* Shut down FPM, you will kill PHP (and then OPcache) and will be extra safe especially about PHP's realpath cache, which may trick you. This latter will be cleared if you shut down FPM. Monitor the eventual workers that may be stuck, and kill them if necessary.
 * Deploy a new version of your application at once.
 * Restart your FPM pool. Don't forget to prime your new cache smoothly by triggering curl requests on major application entry points before.
 * Open back your server to traffic.
@@ -504,7 +504,7 @@ If you don't want to take your server out of the balancer, what can be done then
 * Deploy your new code into another directory, as your PHP server has one FPM pool still active and serving production requests.
 * Start another FPM pool, listening on another port, while still having the first FPM pool active and serving production requests.
 * Now you have two FPM pools, one hot and working, one idle, waiting to be bound to requests.
-* Change your documentroot symlink target to target the new deploy path, and immediately after, stop the first FPM pool. If you told your webserver about your two pools, it should notice the first pool is dying, and should load balance traffic to the new pool now, with no traffic interruption nor failing requests. The second pool will then be triggered, will resolve the new docroot symlink \(as it is fresh and has a cleared realpath cache\), and serve your new content. This clearly works, I used that on production servers many times, a ~80 lines well-written shell script can take care of all this job.
+* Change your documentroot symlink target to target the new deploy path, and immediately after, stop the first FPM pool. If you told your webserver about your two pools, it should notice the first pool is dying, and should load balance traffic to the new pool now, with no traffic interruption nor failing requests. The second pool will then be triggered, will resolve the new docroot symlink (as it is fresh and has a cleared realpath cache), and serve your new content. This clearly works, I used that on production servers many times, a \~80 lines well-written shell script can take care of all this job.
 
 So depending on the settings, one unique script may lead to several keys computed by OPcache. But the key store is not infinite; it is also allocated into shared memory and may get full, in which case even if there is still a lot of room into the shm, because the persistent script hashtable is full, OPcache will behave like if it had no more memory, and will trigger a restart for next requests.
 
@@ -517,12 +517,12 @@ OPcache gives you this information with the use of `opcache_get_status()`, a fun
 Take care as the name suggests a number of files, in fact, it is the number of keys that OPcache will compute, and as we've seen, one file may lead to several keys being computed. Monitor it, and use the right number. Avoid using relative paths in `require_once` statements, it makes OPcache generate more keys. Using an autoloader is recommended, as this one, if well configured, will always issue `include_once` calls with full paths, and not relative ones.
 
 {% hint style="info" %}
-OPcache preallocates the HashTable to store future persistent scripts when it starts \(when PHP starts\), and never tries to resize it. If it gets full, it will then trigger a restart. This is done for performance reasons.
+OPcache preallocates the HashTable to store future persistent scripts when it starts (when PHP starts), and never tries to resize it. If it gets full, it will then trigger a restart. This is done for performance reasons.
 {% endhint %}
 
 So this is why you may see a `num_cached_scripts` a dimension which is different from the `num_cached_keys` dimension, from OPcache status report. Only the `num_cached_keys` info is relevant if it reaches `max_cached_keys,` you'll be in trouble with a restart pending.
 
-Do not forget that you can understand what happens by lowering OPcache's log level \(`opcache.log_verbosity_level` INI\). It tells you if it runs out of memory, and which kind of OOM \(OutOfMemory\) error it generated; if it is related to the shm being full, or if it is the keys Hashtable which is full.
+Do not forget that you can understand what happens by lowering OPcache's log level (`opcache.log_verbosity_level `INI). It tells you if it runs out of memory, and which kind of OOM (OutOfMemory) error it generated; if it is related to the shm being full, or if it is the keys Hashtable which is full.
 
 ![](../.gitbook/assets/opcache-log.png)
 
@@ -553,38 +553,36 @@ So, to conclude about memory usage, here is the picture:
 
 ![](../.gitbook/assets/opcache-memory-structure.png)
 
-When you start PHP, you start OPcache, it allocates immediately `opcache.memory_consumption` Megabytes of shared memory \(shm\) from the OS.
+When you start PHP, you start OPcache, it allocates immediately `opcache.memory_consumption `Megabytes of shared memory (shm) from the OS.
 
-It then starts using this space, and stores into it the interned strings buffer \(`opcache.interned_strings_buffer`\). After that, it preallocates the HashTable for future persistent scripts and their keys to be stored. The space used depends on the `opcache.max_accelerated_files`.
+It then starts using this space, and stores into it the interned strings buffer (`opcache.interned_strings_buffer`). After that, it preallocates the HashTable for future persistent scripts and their keys to be stored. The space used depends on the `opcache.max_accelerated_files`.
 
-Now, a part of the shm is used by OPcache internals, and the non-occupied space left is dedicated to you; to your scripts data structures. This \(actually free\) memory segment will then be filled in, and as your scripts will change and OPcache will recompile them \(assuming you told it to\), the space will slowly become "wasted"; except if you tell OPcache not to recompile changed scripts \(recommended\).
+Now, a part of the shm is used by OPcache internals, and the non-occupied space left is dedicated to you; to your scripts data structures. This (actually free) memory segment will then be filled in, and as your scripts will change and OPcache will recompile them (assuming you told it to), the space will slowly become "wasted"; except if you tell OPcache not to recompile changed scripts (recommended).
 
 That may look like something like this:
 
 ![](../.gitbook/assets/opcache-memory-structure-hot.png)
 
-If persistent scripts HashTable becomes full, or if free SHM runs out, OPcache will trigger a restart \(which you'd want to prevent absolutely\).
+If persistent scripts HashTable becomes full, or if free SHM runs out, OPcache will trigger a restart (which you'd want to prevent absolutely).
 
 ## Configuring OPcache
 
 If you use a framework based application, like a Symfony based application, I strongly suggest:
 
-* Turn off revalidation mechanism on production \(turn `opcache.validate_timestamps` to 0\).
+* Turn off revalidation mechanism on production (turn `opcache.validate_timestamps `to 0).
 * Deploy using a full new runtime of your scripts, this is the case with Symfony applications.
 * Size correctly your buffers:
   1. `opcache.memory_consumption`, the most important.
-  2. `opcache.interned_strings_buffer` , monitor your usage, and size accordingly, take care if you tell OPcache to save comments, which you will likely do if you use PHP "annotations" .\(`opcache.save_comments` _= 1_\), those are strings, big strings, that will eat your interned strings buffer
-  3. `opcache.max_accelerated_files` , numbers of keys to preallocate, once more: monitor and size accordingly.
+  2. `opcache.interned_strings_buffer` , monitor your usage, and size accordingly, take care if you tell OPcache to save comments, which you will likely do if you use PHP "annotations" .(`opcache.save_comments`_ = 1_), those are strings, big strings, that will eat your interned strings buffer
+  3. `opcache.max_accelerated_files `, numbers of keys to preallocate, once more: monitor and size accordingly.
 * Turn off `opcache.opcache.revalidate_path` and `opcache.use_cwd`. That will save some keyspace.
-* Turn on `opcache.enable_file_override` , this will accelerate the autoloader.
+* Turn on `opcache.enable_file_override `, this will accelerate the autoloader.
 * Fill-in `opcache.blacklist_filename` list with the script names you are likely to generate during runtime; shouldn't be too many of them anyway.
 * Turn off `opcache.consistency_checks`, this basically checks a control sum on your scripts, that eats perf.
 
 With those settings, your memory should never get wasted, then `opcache.max_wasted_percentage` is not very useful in this case.
 
 With those settings, you'll need to turn off your main FPM instance when deploying. You may play with several FPM pools to prevent service downtime like explained earlier. That should be enough.
-
-
 
 
 

@@ -88,6 +88,12 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Docket Cache Auto Update**                   | [DOCKET\_CACHE\_AUTOUPDATE](https://docs.docketcache.com/constants#docket\_cache\_autoupdate)                 |
 | **Check Critical Version**                     | [DOCKET\_CACHE\_CHECKVERSION](https://docs.docketcache.com/constants#docket\_cache\_checkversion)             |
 
+## Runtime Options
+
+Runtime Options is a configuration related to WordPress constants that can only be set at an early stage as in the `wp-config.php` file. Other custom WordPress such as Bedrock in the `config/application.php` file.
+
+![](.gitbook/assets/runtime1-1024x471.png)
+
 ## Cache Log
 
 The cache log section allows you to view cache log for debugging and monitor cache activities. This section only visible if Cache Log option enabled at the configuration section.

@@ -12,15 +12,15 @@ So we talked about caching OPCodes into shm and loading them back later. Just be
 This article originally from [blog.jpauli.tech](http://blog.jpauli.tech/2015-03-05-opcache-html/)
 {% endhint %}
 
-To fully understand the optimizer, you have to have a good knowledge of how the Zend VM Executor works. Also, you may bring your compiler knowledge, if you are very new to such concepts, perhaps starting [reading some articles on the subject](https://msdn.microsoft.com/en-us/magazine/dn904673.aspx) may help?. Or at least the mandatory-reading [Dragon Book](http://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools)? Anyway, I'll try to make the subject understandable and fun to read.
+To fully understand the optimizer, you have to have a good knowledge of how the Zend VM Executor works. Also, you may bring your compiler knowledge, if you are very new to such concepts, perhaps starting [reading some articles on the subject](https://msdn.microsoft.com/en-us/magazine/dn904673.aspx) may help?. Or at least the mandatory-reading [Dragon Book](http://en.wikipedia.org/wiki/Compilers:\_Principles,\_Techniques,\_and\_Tools)? Anyway, I'll try to make the subject understandable and fun to read.
 
-Basically, the optimizer is given the whole OPArray structure, and may now browse it, find flaws, and fix them. But as we are analyzing OPCodes **at compile-time**, we have no clue at all on everything tied to a "PHP variable". Basically, we don't know yet what will be stored in any `IS_VAR` or `IS_CV` operand, but only in `IS_CONST` or sometimes in `IS_TMP_VAR`.
+Basically, the optimizer is given the whole OPArray structure, and may now browse it, find flaws, and fix them. But as we are analyzing OPCodes **at compile-time**, we have no clue at all on everything tied to a "PHP variable". Basically, we don't know yet what will be stored in any `IS_VAR` or `IS_CV `operand, but only in `IS_CONST` or sometimes in `IS_TMP_VAR`.
 
 Like in any compiler for every language; we must create the most optimized structure to be run at runtime so that the runtime will be the fastest as possible.
 
-OPcache optimizer can optimize a lot of things in `IS_CONST`; We can also replace some OPCodes by others \(more optimized at runtime\), we also find and trash dead code branches by using a CFG \(control flow graph\) analysis, but we don't unroll loops, or process to loop invariant motions as such optimizations are hard to apply to PHP.
+OPcache optimizer can optimize a lot of things in `IS_CONST`; We can also replace some OPCodes by others (more optimized at runtime), we also find and trash dead code branches by using a CFG (control flow graph) analysis, but we don't unroll loops, or process to loop invariant motions as such optimizations are hard to apply to PHP.
 
-We also have other possibilities related to PHP internals; we may change the way classes are bound to optimize a bit the process in some specific cases, but we have absolutely not the possibility to do some cross file optimizations, because OPcache plays with OPArrays coming from file compilation \(among other functions' OPArrays\), and there is total isolation of those OPArrays.
+We also have other possibilities related to PHP internals; we may change the way classes are bound to optimize a bit the process in some specific cases, but we have absolutely not the possibility to do some cross file optimizations, because OPcache plays with OPArrays coming from file compilation (among other functions' OPArrays), and there is total isolation of those OPArrays.
 
 PHP has never been built on a cross file-based VM; the Virtual Machine and the language is file bound; when compiling a file, we have absolutely no information about the files that already got compiled, and those to come next.
 
@@ -79,7 +79,7 @@ And optimized compilation:
 
 As we can see, the dead code in the `if(false)` branch has been trashed, the Zend VM executor will then simply have to run a `ZEND_ECHO` OPcode. We then saved some memory, because we threw away some OPCodes, and we may save a little bit of CPU cycles at runtime as well.
 
-I recall you that we cannot know the content of any variable yet, as we are still at compile time \(we are between compilation and execution\). A code with an `IS_CV` operand instead of `IS_CONST`, could not have been optimized:
+I recall you that we cannot know the content of any variable yet, as we are still at compile time (we are between compilation and execution). A code with an `IS_CV `operand instead of `IS_CONST`, could not have been optimized:
 
 ```php
 	/* That cant be optimized, what's in $a ? */
@@ -104,7 +104,7 @@ In PHP 7, the constant `__DIR__` will be substituted and the equality check will
 
 In PHP 5 however, the constant `__DIR__` is still substituted, but the equality check is not performed by PHP 5 compiler. This latter is performed by OPcache.
 
-So here to sum up things, if you run both PHP 5 and PHP 7 with OPcache optimizer activated, you will end up to the exact same optimized OPCodes. But if you don't run OPcache optimizer, then the PHP 5 compiled code will be less efficient than the equivalent PHP 7 one, because the PHP 5 compiler doesn't perform any evaluation, whereas PHP 7 compiler computes a lot of things by itself \(without the need of OPcache optimizer that would come later\).
+So here to sum up things, if you run both PHP 5 and PHP 7 with OPcache optimizer activated, you will end up to the exact same optimized OPCodes. But if you don't run OPcache optimizer, then the PHP 5 compiled code will be less efficient than the equivalent PHP 7 one, because the PHP 5 compiler doesn't perform any evaluation, whereas PHP 7 compiler computes a lot of things by itself (without the need of OPcache optimizer that would come later).
 
 ## **Constant functions pre-evaluation**
 
@@ -112,11 +112,11 @@ However, OP**c**ache is able to turn some `IS_TMP_VAR` to `IS_CONST`. That is, O
 
 Some functions can be run at compile-time because their result will be constant. This is the case of several of them:
 
-\* `function_exists()` and `is_callable()`, for internal functions only.  
-\* `extension_loaded()`, if `dl()` is disabled in userland.  
-\* `defined()` and `constant()` for internal constants only.  
-\* `dirname()` if the argument is constant.  
-\* `strlen()` and `dirname()` with constant argument \(PHP 7 only\).
+\* `function_exists()` and `is_callable()`, for internal functions only.\
+\* `extension_loaded()`, if `dl()` is disabled in userland.\
+\* `defined()` and `constant()` for internal constants only.\
+\* `dirname()` if the argument is constant.\
+\* `strlen()` and `dirname()` with constant argument (PHP 7 only).
 
 So look at that example:
 
@@ -140,16 +140,16 @@ Notice that those functions don't compute userland-based. For example:
 if ( function_exists('my_custom_function') ) { }
 ```
 
-Is not optimized, because you are very likely to have \(or not\) defined the `my_custom_function` is another file. And remember, the PHP compiler and OPcache optimizer only works on a file basis. Even if you do this:
+Is not optimized, because you are very likely to have (or not) defined the `my_custom_function` is another file. And remember, the PHP compiler and OPcache optimizer only works on a file basis. Even if you do this:
 
 ```php
 function my_custom_function() { }
 if ( function_exists('my_custom_function') ) { }
 ```
 
-That will not be optimized, because this is too unlikely to happen, the function call optimizer only works for internal types \(internal functions, internal constants\).
+That will not be optimized, because this is too unlikely to happen, the function call optimizer only works for internal types (internal functions, internal constants).
 
-Another example with `dirname()` \(PHP 7 only\):
+Another example with `dirname()` (PHP 7 only):
 
 ```php
 	if (dirname(__FILE__) == '/tmp') {
@@ -183,7 +183,7 @@ Optimized:
 
 ![](../.gitbook/assets/php-compiler-10-opt.png)
 
-For the example above, you can notice that every statement has been computed at compile/optimization time, and then OPcache optimizer trashed all the 'false' branch \(assuming obviously that the 'true' part was chosen\).
+For the example above, you can notice that every statement has been computed at compile/optimization time, and then OPcache optimizer trashed all the 'false' branch (assuming obviously that the 'true' part was chosen).
 
 ## **Transtyping**
 
@@ -242,7 +242,7 @@ Here is the OPcache optimizer code that does such a job:
 		/* ... ... */
 ```
 
-You should note however, that such optimization has been merged into the PHP 7 compiler. That means that even with OPcache disabled \(or optimizations disabled\), PHP 7 compiler already performs such an optimization, as well as many more that were not performed by the PHP 5 compiler.
+You should note however, that such optimization has been merged into the PHP 7 compiler. That means that even with OPcache disabled (or optimizations disabled), PHP 7 compiler already performs such an optimization, as well as many more that were not performed by the PHP 5 compiler.
 
 A little bit more silly, but adding two `IS_CONST` expressions, the result can then be computed at compile-time, something the PHP compiler does not do by default in PHP 5, OPcache optimizer is needed:
 
@@ -263,7 +263,7 @@ The optimizer computed the maths for `4 + 33`, and erased the `ZEND_ADD` operati
 
 ## **Optimized OPCodes substitution**
 
-Now let's dive deeper into OPCodes. Sometimes \(rarely\), it is possible to substitute a following of OPCodes by other ones, more optimized. Look at that:
+Now let's dive deeper into OPCodes. Sometimes (rarely), it is possible to substitute a following of OPCodes by other ones, more optimized. Look at that:
 
 ```php
 	$i = "foo";
@@ -279,8 +279,8 @@ Optimized compilation:
 
 ![](../.gitbook/assets/php-compiler-4-opt.png)
 
-Here, our knowledge of the Zend VM executor leads us to substitute a `ZEND_ADD` plus a `ZEND_ASSIGN`, into a `ZEND_ASSIGN_ADD`, usually involved in statements such as `$i+=3;`  
-`ZEND_ASSIGN_ADD` is more optimized, it is one OPCode instead of two \(which usually is better, but not every time\)**.**
+Here, our knowledge of the Zend VM executor leads us to substitute a `ZEND_ADD` plus a `ZEND_ASSIGN`, into a `ZEND_ASSIGN_ADD`, usually involved in statements such as `$i+=3;`\
+`ZEND_ASSIGN_ADD` is more optimized, it is one OPCode instead of two (which usually is better, but not every time)**.**
 
 On the same subject:
 
@@ -298,13 +298,13 @@ Optimized compilation:
 
 ![](../.gitbook/assets/php-compiler-5-opt.png)
 
-Here, OPcache optimizer replaced the `$i++` by a `++$i` statement, because it had the same meaning in this piece of code. `ZEND_POST_INC` is not very nice OPCode, because it must read the value, return it as-is, but increment a temporary value in memory, whereas `ZEND_PRE_INC` plays with the value itself, and reads it, increments it and returns it \(this is just the PRE vs POST incrementation difference\).
+Here, OPcache optimizer replaced the `$i++` by a `++$i` statement, because it had the same meaning in this piece of code. `ZEND_POST_INC` is not very nice OPCode, because it must read the value, return it as-is, but increment a temporary value in memory, whereas `ZEND_PRE_INC` plays with the value itself, and reads it, increments it and returns it (this is just the PRE vs POST incrementation difference).
 
 Because the intermediate value returned by `ZEND_POST_INC` is not used in the script above, the compiler must issue a `ZEND_FREE` OPCode, to free it from memory. OPcache optimizer turns the structure into a `ZEND_PRE_INC`, and removes the useless `ZEND_FREE` ; less job to figure out at runtime.
 
 ## **Constant substitution and precomputing**
 
-What about PHP constants? They are more complex than what you think \(much more in fact\). So some optimizations that may seem obvious actually don't happen for many reasons, but let's see the actual ones:
+What about PHP constants? They are more complex than what you think (much more in fact). So some optimizations that may seem obvious actually don't happen for many reasons, but let's see the actual ones:
 
 ```php
 	const FOO = "bar";
@@ -336,13 +336,13 @@ Optimized, is as expected:
 
 ![](../.gitbook/assets/php-compiler-6-opt.png)
 
-`define()` is ugly, because it declares a constant but runs such a job at runtime, issuing a function call \(`define()` is really a function\). This is very bad.
+`define()` is ugly, because it declares a constant but runs such a job at runtime, issuing a function call (`define()` is really a function). This is very bad.
 
-The `const` keyword leads to a `DECLARE_CONST` OPCode. Note that in PHP 7, `define()` may lead to a const construct into the compiler directly \(no optimizer needed\).
+The `const` keyword leads to a `DECLARE_CONST` OPCode. Note that in PHP 7, `define()` may lead to a const construct into the compiler directly (no optimizer needed).
 
 ## **Multiple jump target resolution**
 
-This is actually a little bit hard to detail, but as usual with a simple example, you'll understand. ****This optimization is about jump targets in jump opcodes \(there are several flavours of them\). 
+This is actually a little bit hard to detail, but as usual with a simple example, you'll understand.** **This optimization is about jump targets in jump opcodes (there are several flavours of them).&#x20;
 
 Every time the VM must jump, a jump address is computed by the compiler and stored into the VM operand. A jump is the result of a decision when the VM meets a decision point.
 
@@ -367,7 +367,7 @@ With classical compilation, we end up with such OPCodes:
 
 ![](../.gitbook/assets/php-compiler-11.png)
 
-Translated \(just read it\) as: "if the result of $a evaluation is zero, jump to target 3, in target 3 echo "no". If not, continue, and meet a jump to 4. In 4, echo "a".
+Translated (just read it) as: "if the result of $a evaluation is zero, jump to target 3, in target 3 echo "no". If not, continue, and meet a jump to 4. In 4, echo "a".
 
 This is something like "Jump to 3, and in 3, jump to 4". Why not "jump to 4" directly then?. This is what the optimization does:
 
@@ -377,7 +377,7 @@ Here, we can translate that by "if $a evaluation is not zero, jump to 2 which ec
 
 This optimization shows true power in case of very complex scripts with many levels of decisions. Like having a `while` into an `if`, in which a `goto` is performed, leading to a `switch` which performs `try-catches` , etc...
 
-Without this optimization, the overall OPArray may contain tons of OPCodes. Those will mainly be jumps, but probably jumps leading to jumps. Activating this optimization can sometimes \(depend on the script\) reduce significantly the number of OPCodes and ease the path the VM will branch; leading in little gain of performances at runtime.
+Without this optimization, the overall OPArray may contain tons of OPCodes. Those will mainly be jumps, but probably jumps leading to jumps. Activating this optimization can sometimes (depend on the script) reduce significantly the number of OPCodes and ease the path the VM will branch; leading in little gain of performances at runtime.
 
 ## **Concluding**
 
@@ -389,7 +389,7 @@ The main difficulty in optimizer passes, is to never change the meaning of the s
 
 The main difficulty in optimizer passes, is to never change the meaning of the script, and especially its control flow. Bugs were found about this some time ago in OPcache, and it is all but cool when you come to see that PHP executor doesn't behave the way it should, having your little PHP script written under your eyes. In fact, the OPCodes generated have been altered by the optimizer and the engine just runs something which is wrong. Not cool.
 
-Nowadays, OPcache optimizer is pretty stable but still under development for next PHP versions. It had to be patched in deep for PHP 7 as that latter changed many things in internal structures design, as well as having a PHP 7 compiler doing much more optimization job \(the most trivial however\) than PHP 5 used to do \(PHP 5 compiler really does not optimize anything\).
+Nowadays, OPcache optimizer is pretty stable but still under development for next PHP versions. It had to be patched in deep for PHP 7 as that latter changed many things in internal structures design, as well as having a PHP 7 compiler doing much more optimization job (the most trivial however) than PHP 5 used to do (PHP 5 compiler really does not optimize anything).
 
 {% hint style="info" %}
 The PHP 7 compiler is much more efficient than PHP 5's. A lot of optimizations before performed in PHP 5 OPcache are now embedded directly into PHP 7's heart.
@@ -402,6 +402,4 @@ We've seen that OPcache has finally become the standard recommended PHP OPCode c
 Nowadays, OPcache is very mature/stable and achieves its goal of boosting dramatically the overall performance of the PHP language by both cancelling the time needed to compile a script and by optimizing the OPCodes resulting of the compilation.
 
 Shared memory is used for every process of a PHP pool to be able to access structures that have been added by others. Interned strings buffer is also managed in shared memory, leading to even more memory savings in a PHP pool of workers - typically using PHP-FPM SAPI.
-
-
 
