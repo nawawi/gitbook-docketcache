@@ -536,6 +536,15 @@ Default:
 define('DOCKET_CACHE_CRONBOT_MAX', 10);
 ```
 
+## DOCKET\_CACHE\_OPCVIEWER
+
+Set to true or false to enable or disable the OPcache viewer feature.\
+Default:
+
+```php
+define('DOCKET_CACHE_OPCVIEWER', false);
+```
+
 ## DOCKET\_CACHE\_GCACTION
 
 Set to `true` to enable Docket Cache Garbage Collector action button at Overview section.\
