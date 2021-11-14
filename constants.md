@@ -8,12 +8,14 @@ description: Docket Cache uses constants variable as main configuration methods.
 
 Constants are like variables except that once they are defined they cannot be changed or undefined. To change the behaviour of Docket Cache, the following PHP constants can be defined in your `wp-config.php` file.
 
+Docket Cache load the configuration by calling `Constan::register_default()` method that can be found in file [includes/src/Constans.php](https://github.com/nawawi/docket-cache/blob/master/includes/src/Constans.php#L155). Some constant marks as @private and for internal use, changing it may result in unpredictable behaviour.
+
 ## DOCKET\_CACHE\_MAXTTL
 
 Default object lifespan in seconds.
 
-Only numbers between 86400 and 2419200 are allowed.  
-Default: 345600 \(4 days\)
+Only numbers between 86400 and 2419200 are allowed.\
+Default: 345600 (4 days)
 
 ```php
 define('DOCKET_CACHE_MAXTTL', 345600);
@@ -23,24 +25,24 @@ If there is no expire time was set to object or set to 0, Docket Cache will use 
 
 This setting does not apply to cache groups below if the value of seconds is lower than the predefined seconds.
 
-| Group | Key | Seconds |
-| :--- | :--- | :--- |
-| site-transient | update\_plugins, update\_themes, update\_core | 2419200 \(28 days\) |
-| site-transient | any | 604800 \(7 days\) |
-| transient | any | 604800 \(7 days\) |
-| terms | any | 1209600 \(14 days\) |
-| posts | any | 1209600 \(14 days\) |
-| post\_meta | any | 1209600 \(14 days\) |
-| comments | any | 1209600 \(14 days\) |
-| options | any | 1209600 \(14 days\) |
-| site-options | any | 1209600 \(14 days\) |
+| Group          | Key                                           | Seconds           |
+| -------------- | --------------------------------------------- | ----------------- |
+| site-transient | update\_plugins, update\_themes, update\_core | 2419200 (28 days) |
+| site-transient | any                                           | 604800 (7 days)   |
+| transient      | any                                           | 604800 (7 days)   |
+| terms          | any                                           | 1209600 (14 days) |
+| posts          | any                                           | 1209600 (14 days) |
+| post\_meta     | any                                           | 1209600 (14 days) |
+| comments       | any                                           | 1209600 (14 days) |
+| options        | any                                           | 1209600 (14 days) |
+| site-options   | any                                           | 1209600 (14 days) |
 
 ## DOCKET\_CACHE\_MAXSIZE
 
 Set the maximum size of the object data in bytes, which can be store in a cache file.
 
-Only size between 1048576 \(1MB\) and 10485760 \(10MB\) are allowed.  
-Default: 3145728 \(3MB\)
+Only size between 1048576 (1MB) and 10485760 (10MB) are allowed.\
+Default: 3145728 (3MB)
 
 ```php
 define('DOCKET_CACHE_MAXSIZE', 3145728);
@@ -94,22 +96,22 @@ The size of the cache file is slightly bigger than the object since it contains 
 
 #### Docket Cache Metadata:
 
-| Name | Description |
-| :--- | :--- |
-| timestamp | Data creation time |
-| site\_id | Site Id |
-| group | Object Cache group |
-| key | Object Cache key |
-| type | Object Cache Data type |
-| timeout | Expiration time |
-| data | Object Cache data |
+| Name      | Description            |
+| --------- | ---------------------- |
+| timestamp | Data creation time     |
+| site\_id  | Site Id                |
+| group     | Object Cache group     |
+| key       | Object Cache key       |
+| type      | Object Cache Data type |
+| timeout   | Expiration time        |
+| data      | Object Cache data      |
 
 ## DOCKET\_CACHE\_MAXSIZE\_DISK
 
 Set the maximum size of the cache storage on disk.
 
-The minimum required size is 104857600 bytes \(100MB\).  
-Default:  524288000 \(500MB\)
+The minimum required size is 104857600 bytes (100MB).\
+Default:  524288000 (500MB)
 
 ```php
 define('DOCKET_CACHE_MAXSIZE_DISK', 524288000);
@@ -119,7 +121,7 @@ define('DOCKET_CACHE_MAXSIZE_DISK', 524288000);
 
 Set the maximum cache file can be store on disk.
 
-Only numbers between 200 and 1000000 are allowed.  
+Only numbers between 200 and 1000000 are allowed.\
 Default: 50000
 
 ```php
@@ -128,7 +130,7 @@ define('DOCKET_CACHE_MAXFILE', 50000);
 
 ## DOCKET\_CACHE\_PATH
 
-Set the cache directory.  
+Set the cache directory.\
 Default:
 
 ```php
@@ -137,7 +139,7 @@ define('DOCKET_CACHE_PATH', WP_CONTENT_DIR.'/cache/docket-cache');
 
 ## DOCKET\_CACHE\_DATA\_PATH
 
-Set the configuration directory.  
+Set the configuration directory.\
 Default:
 
 ```php
@@ -146,7 +148,7 @@ define('DOCKET_CACHE_DATA_PATH', WP_CONTENT_DIR.'/docket-cache-data');
 
 ## DOCKET\_CACHE\_CONTENT\_PATH
 
-Set the Docket Cache writable directory.   
+Set the Docket Cache writable directory. \
 Default:
 
 ```php
@@ -155,7 +157,7 @@ define('DOCKET_CACHE_CONTENT_PATH', WP_CONTENT_DIR);
 
 By default, Docket Cache requires writable permission on WordPress **wp-content** directory for internal use. Defining this constant also change the default path for cache, configuration and object-cache Drop-In. The content path must exist and has proper permission. The `object-cache.php` Drop-In file needs to symlink with WordPress `wp-content/object-cache.php` or replace with wrapper file.
 
-Please refer to the PHP [`open_basedir` ](https://www.php.net/manual/en/ini.core.php#ini.open-basedir)setting before set this constant.
+Please refer to the PHP [`open_basedir `](https://www.php.net/manual/en/ini.core.php#ini.open-basedir)setting before set this constant.
 
 #### Example:
 
@@ -235,7 +237,7 @@ WantedBy=multi-user.target
 
 ## DOCKET\_CACHE\_FLUSH\_DELETE
 
-By default Docket Cache only empty the cache file. Set to `true` to delete the cache file when flushed.  
+By default Docket Cache only empty the cache file. Set to `true` to delete the cache file when flushed.\
 Default:
 
 ```php
@@ -244,7 +246,7 @@ define('DOCKET_CACHE_FLUSH_DELETE', false);
 
 ## DOCKET\_CACHE\_GLOBAL\_GROUPS
 
-Set the lists of groups cached at the network level in a Multisite setup.  
+Set the lists of groups cached at the network level in a Multisite setup.\
 Default:
 
 ```php
@@ -273,7 +275,7 @@ define('DOCKET_CACHE_GLOBAL_GROUPS',
 
 ## DOCKET\_CACHE\_IGNORED\_GROUPS
 
-List of cache groups that should not be cached.  
+List of cache groups that should not be cached.\
 Default:
 
 ```php
@@ -288,7 +290,7 @@ define('DOCKET_CACHE_IGNORED_GROUPS',
 
 ## DOCKET\_CACHE\_LOG
 
-Set to `true` or `false` to enable or disable cache log.  
+Set to `true` or `false` to enable or disable cache log.\
 Default:
 
 ```php
@@ -301,7 +303,7 @@ The cache log intended to provide information on how the cache works. For perfor
 
 ## DOCKET\_CACHE\_LOG\_FILE
 
-Set the log file.  
+Set the log file.\
 Default:
 
 ```php
@@ -310,7 +312,7 @@ define('DOCKET_CACHE_LOG_FILE', WP_CONTENT_DIR.'/.object-cache.log');
 
 ## DOCKET\_CACHE\_LOG\_TIME
 
-Set the log time format when viewing. Available options utc, local, wp.  
+Set the log time format when viewing. Available options utc, local, wp.\
 Default:
 
 ```php
@@ -319,7 +321,7 @@ define('DOCKET_CACHE_LOG_TIME', 'utc');
 
 ## DOCKET\_CACHE\_LOG\_FLUSH
 
-Set to `true` to empty the log file when the object cache is flushed.  
+Set to `true` to empty the log file when the object cache is flushed.\
 Default:
 
 ```php
@@ -328,8 +330,8 @@ define('DOCKET_CACHE_LOG_FLUSH', true);
 
 ## DOCKET\_CACHE\_LOG\_SIZE
 
-Set the maximum size of the log file in bytes.  
-Default: 10485760 \(10MB\)
+Set the maximum size of the log file in bytes.\
+Default: 10485760 (10MB)
 
 ```php
 define('DOCKET_CACHE_LOG_SIZE', 10485760);
@@ -339,7 +341,7 @@ define('DOCKET_CACHE_LOG_SIZE', 10485760);
 
 By default, Docket Cache excludes it own process if WP\_DEBUG not defined as true.
 
-Set to `true` or `false` to enable or disable to log all caches.  
+Set to `true` or `false` to enable or disable to log all caches.\
 Default:
 
 ```php
@@ -348,7 +350,7 @@ define('DOCKET_CACHE_LOG_ALL', false);
 
 ## DOCKET\_CACHE\_ADVCPOST
 
-Set to `true` to enable Advanced Post Cache features that cache WordPress Post Queries which results in faster data retrieval and reduced database workload.   
+Set to `true` to enable Advanced Post Cache features that cache WordPress Post Queries which results in faster data retrieval and reduced database workload. \
 Default:
 
 ```php
@@ -359,7 +361,7 @@ define('DOCKET_CACHE_ADVCPOST', true);
 
 Enable Database Tables optimization.
 
-Available options: never, daily, weekly, monthly.  
+Available options: never, daily, weekly, monthly.\
 Default:
 
 ```php
@@ -368,7 +370,7 @@ define('DOCKET_CACHE_CRONOPTMZDB', 'never');
 
 ## DOCKET\_CACHE\_WPOPTALOAD
 
-Set to `true` or `false` to enable or disable Suspend WP Options Autoload features.  
+Set to `true` or `false` to enable or disable Suspend WP Options Autoload features.\
 Default:
 
 ```php
@@ -377,7 +379,7 @@ define('DOCKET_CACHE_WPOPTALOAD', false);
 
 ## DOCKET\_CACHE\_MISC\_TWEAKS
 
-Set to `true` or `false` to enable or disable miscellaneous WordPress performance tweaks.  
+Set to `true` or `false` to enable or disable miscellaneous WordPress performance tweaks.\
 Default:
 
 ```php
@@ -386,7 +388,7 @@ define('DOCKET_CACHE_MISC_TWEAKS', true);
 
 ## DOCKET\_CACHE\_WOOTWEAKS
 
-Set to `true` or `false` to enable or disable miscellaneous WooCommerce tweaks.  
+Set to `true` or `false` to enable or disable miscellaneous WooCommerce tweaks.\
 Default:
 
 ```php
@@ -397,7 +399,7 @@ define('DOCKET_CACHE_WOOTWEAKS', true);
 
 WooCommerce Admin or Analytics page is a new JavaScript-driven interface for managing stores.
 
-Set to true to disable WooCommerce Admin feature-related.  
+Set to true to disable WooCommerce Admin feature-related.\
 Default:
 
 ```php
@@ -406,7 +408,7 @@ define('DOCKET_CACHE_WOOADMINOFF', false);
 
 ## DOCKET\_CACHE\_WOOWIDGETOFF
 
-Set to true to disable WooCommerce Widget feature.  
+Set to true to disable WooCommerce Widget feature.\
 Default:
 
 ```php
@@ -415,7 +417,7 @@ define('DOCKET_CACHE_WOOWIDGETOFF', false);
 
 ## DOCKET\_CACHE\_WOOWPDASHBOARDOFF
 
-Set to true to disable WooCommerce meta box in the WordPress Dashboard.  
+Set to true to disable WooCommerce meta box in the WordPress Dashboard.\
 Default:
 
 ```php
@@ -424,7 +426,7 @@ define('DOCKET_CACHE_WOOWPDASHBOARDOFF', false);
 
 ## DOCKET\_CACHE\_WOOCARTFRAGSOFF
 
-Set to true to disable WooCommerce Cart Fragments feature.  
+Set to true to disable WooCommerce Cart Fragments feature.\
 Default:
 
 ```php
@@ -433,7 +435,7 @@ define('DOCKET_CACHE_WOOWPDASHBOARDOFF', false);
 
 ## DOCKET\_CACHE\_POSTMISSEDSCHEDULE
 
-Set to `true` or `false` to enable or disable Post Missed Schedule Tweaks features.  
+Set to `true` or `false` to enable or disable Post Missed Schedule Tweaks features.\
 Default:
 
 ```php
@@ -442,7 +444,7 @@ define('DOCKET_CACHE_POSTMISSEDSCHEDULE', false);
 
 ## DOCKET\_CACHE\_OPTERMCOUNT
 
-Set to `true` or `false` to enable or disable Term Count Queries optimization features.  
+Set to `true` or `false` to enable or disable Term Count Queries optimization features.\
 Default:
 
 ```php
@@ -451,7 +453,7 @@ define('DOCKET_CACHE_OPTERMCOUNT', true);
 
 ## DOCKET\_CACHE\_OPTWPQUERY
 
-Set to `true` to enable WordPress Core Query optimization features. Docket Cache will attempt to optimize WordPress core query when enabled.  
+Set to `true` to enable WordPress Core Query optimization features. Docket Cache will attempt to optimize WordPress core query when enabled.\
 Default:
 
 ```php
@@ -460,7 +462,7 @@ define('DOCKET_CACHE_OPTWPQUERY', true);
 
 ## DOCKET\_CACHE\_MOCACHE
 
-Set to `true` to enable WordPress Translation Caching features that improve the performance of the Translation function.  
+Set to `true` to enable WordPress Translation Caching features that improve the performance of the Translation function.\
 Default:
 
 ```php
@@ -469,7 +471,7 @@ define('DOCKET_CACHE_MOCACHE', false);
 
 ## DOCKET\_CACHE\_SIGNATURE
 
-Set to `true` or `false` to enable or disable Docket Cache signature at HTML footer and Server Header.  
+Set to `true` or `false` to enable or disable Docket Cache signature at HTML footer and Server Header.\
 Default:
 
 ```php
@@ -478,7 +480,7 @@ define('DOCKET_CACHE_SIGNATURE', true);
 
 ## DOCKET\_CACHE\_PRECACHE
 
-Set to `true` to enable Object Cache Precaching features that increase cache performance by early loading cached objects based on the current URL.  
+Set to `true` to enable Object Cache Precaching features that increase cache performance by early loading cached objects based on the current URL.\
 Default:
 
 ```php
@@ -489,7 +491,7 @@ define('DOCKET_CACHE_PRECACHE', true);
 
 Set the maximum precache file can be store on disk.
 
-Only numbers between 0 and 1000000 are allowed. Set to 0 to disable it.  
+Only numbers between 0 and 1000000 are allowed. Set to 0 to disable it.\
 Default: 0
 
 ```php
@@ -498,7 +500,7 @@ define('DOCKET_CACHE_PRECACHE_MAXFILE', 0);
 
 ## DOCKET\_CACHE\_PRELOAD
 
-Set to `true` or `false` to enable or disable cache preloading. If set to `true`, this plugin will fetch predefined URL related to the admin page.  
+Set to `true` or `false` to enable or disable cache preloading. If set to `true`, this plugin will fetch predefined URL related to the admin page.\
 Default:
 
 ```php
@@ -507,7 +509,7 @@ define('DOCKET_CACHE_PRELOAD', false);
 
 ## DOCKET\_CACHE\_PAGELOADER
 
-Set to `true` or `false` to enable or disable Admin Page Loader features.  
+Set to `true` or `false` to enable or disable Admin Page Loader features.\
 Default:
 
 ```php
@@ -516,9 +518,9 @@ define('DOCKET_CACHE_PAGELOADER', true);
 
 ## DOCKET\_CACHE\_CRONBOT
 
-The Cronbot is an [external service](https://cronbot.docketcache.com/) that pings your website every hour to keep WordPress Cron running actively. Only site Timezone, URL and version are involved when enabling this service.
+The Cronbot is an [external service](https://cronbot.docketcache.com) that pings your website every hour to keep WordPress Cron running actively. Only site Timezone, URL and version are involved when enabling this service.
 
-Set to `true` or `false` to enable or disable Cronbot Service.  
+Set to `true` or `false` to enable or disable Cronbot Service.\
 Default:
 
 ```php
@@ -527,7 +529,7 @@ define('DOCKET_CACHE_CRONBOT', false);
 
 ## DOCKET\_CACHE\_CRONBOT\_MAX
 
-Maximum sites allowed in Multisite setup.  
+Maximum sites allowed in Multisite setup.\
 Default:
 
 ```php
@@ -536,7 +538,7 @@ define('DOCKET_CACHE_CRONBOT_MAX', 10);
 
 ## DOCKET\_CACHE\_GCACTION
 
-Set to `true` to enable Docket Cache Garbage Collector action button at Overview section.  
+Set to `true` to enable Docket Cache Garbage Collector action button at Overview section.\
 Default:
 
 ```php
@@ -545,7 +547,7 @@ define('DOCKET_CACHE_GCACTION', false);
 
 ## DOCKET\_CACHE\_AUTOUPDATE
 
-Set to `true` or `false` to enable or disable Docket Cache auto-update.  
+Set to `true` or `false` to enable or disable Docket Cache auto-update.\
 Default:
 
 ```php
@@ -556,7 +558,7 @@ define('DOCKET_CACHE_AUTOUPDATE', true);
 
 The Check Version allows Docket Cache to check any critical future version that requires removing cache files before doing the updates, purposely to avoid error-prone.
 
-Set to `true` or `false` to enable or disable critical version checking.  
+Set to `true` or `false` to enable or disable critical version checking.\
 Default:
 
 ```php
@@ -565,7 +567,7 @@ define('DOCKET_CACHE_CHECKVERSION', true);
 
 ## DOCKET\_CACHE\_STATS
 
-Set to `true` or `false` to enable or disable object cache data stats at Overview page.  
+Set to `true` or `false` to enable or disable object cache data stats at Overview page.\
 Default:
 
 ```php
@@ -574,7 +576,7 @@ define('DOCKET_CACHE_STATS', true);
 
 ## DOCKET\_CACHE\_PINGBACK
 
-Set to true to disable WordPress XML-RPC and Pingbacks related features.  
+Set to true to disable WordPress XML-RPC and Pingbacks related features.\
 Default:
 
 ```php
@@ -583,7 +585,7 @@ define('DOCKET_CACHE_PINGBACK', false);
 
 ## DOCKET\_CACHE\_HEADERJUNK
 
-Set to true to disable WordPress features related to HTML header such as meta generators and feed links to reduce the page size.  
+Set to true to disable WordPress features related to HTML header such as meta generators and feed links to reduce the page size.\
 Default:
 
 ```php
@@ -592,7 +594,7 @@ define('DOCKET_CACHE_HEADERJUNK', false);
 
 ## DOCKET\_CACHE\_WPEMOJI
 
-Set to true to disable WordPress Emoji feature.  
+Set to true to disable WordPress Emoji feature.\
 Default:
 
 ```php
@@ -601,7 +603,7 @@ define('DOCKET_CACHE_WPEMOJI', false);
 
 ## DOCKET\_CACHE\_WPFEED
 
-Set to true to disable WordPress Feed feature.  
+Set to true to disable WordPress Feed feature.\
 Default:
 
 ```php
@@ -610,7 +612,7 @@ define('DOCKET_CACHE_WPFEED', false);
 
 ## DOCKET\_CACHE\_WPEMBED
 
-Set to true to disable WordPress Embed feature.  
+Set to true to disable WordPress Embed feature.\
 Default:
 
 ```php
@@ -619,7 +621,7 @@ define('DOCKET_CACHE_WPEMBED', false);
 
 ## DOCKET\_CACHE\_WPLAZYLOAD
 
-Set to true to disable WordPress Lazy Load feature.  
+Set to true to disable WordPress Lazy Load feature.\
 Default:
 
 ```php
@@ -628,7 +630,7 @@ define('DOCKET_CACHE_WPLAZYLOAD', false);
 
 ## DOCKET\_CACHE\_WPSITEMAP
 
-Set to true to disable WordPress Auto-Sitemap feature.  
+Set to true to disable WordPress Auto-Sitemap feature.\
 Default:
 
 ```php
@@ -637,7 +639,7 @@ define('DOCKET_CACHE_WPSITEMAP', false);
 
 ## DOCKET\_CACHE\_WPAPPPASSWORD
 
-Set to true to disable WordPress Application Passwords feature.  
+Set to true to disable WordPress Application Passwords feature.\
 Default:
 
 ```php
@@ -646,10 +648,9 @@ define('DOCKET_CACHE_WPAPPPASSWORD', false);
 
 ## DOCKET\_CACHE\_DISABLED
 
-Set to true to disable the Docket Cache object cache feature at runtime. By defining to true, Docket Cache will ignore to install and uninstall the Drop-in file.  
+Set to true to disable the Docket Cache object cache feature at runtime. By defining to true, Docket Cache will ignore to install and uninstall the Drop-in file.\
 Default:
 
 ```php
 define('DOCKET_CACHE_DISABLED', false);
 ```
-
