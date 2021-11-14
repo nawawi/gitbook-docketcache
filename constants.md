@@ -25,7 +25,7 @@ If there is no expire time was set to object or set to 0, Docket Cache will use 
 
 This setting does not apply to cache groups below if the value of seconds is lower than the predefined seconds.
 
-| Group          | Key                                           | Seconds           |
+| **Group**      | **Key**                                       | **Seconds**       |
 | -------------- | --------------------------------------------- | ----------------- |
 | site-transient | update\_plugins, update\_themes, update\_core | 2419200 (28 days) |
 | site-transient | any                                           | 604800 (7 days)   |

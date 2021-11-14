@@ -14,13 +14,13 @@ The following command supported.
 
 Display the Docket Cache status.
 
-```text
+```shell
 wp cache status
 ```
 
 **Example output:**
 
-```text
+```
 Cache Status   : Enabled
 Cache Path     : /wp-content/cache/docket-cache
 Cache Size     : 3M
@@ -30,7 +30,7 @@ Cache Size     : 3M
 
 Enable the Docket Cache Drop-In file. The default behaviour is to create the object cache Drop-In and replace any object cache Drop-In is present.
 
-```text
+```shell
 wp cache dropin:enable
 ```
 
@@ -38,7 +38,7 @@ wp cache dropin:enable
 
 Disable the Docket Cache Drop-In file. The default behaviour is to delete the object cache Drop-In unless an unknown object cache Drop-In is present.
 
-```text
+```shell
 wp cache dropin:disable
 ```
 
@@ -46,7 +46,7 @@ wp cache dropin:disable
 
 Update the Docket Cache Drop-In file. The default behaviour is to overwrite any existing object cache Drop-In.
 
-```text
+```shell
 wp cache update
 ```
 
@@ -54,7 +54,7 @@ wp cache update
 
 Remove the cache files.
 
-```text
+```shell
 wp cache flush
 ```
 
@@ -62,7 +62,7 @@ wp cache flush
 
 Remove the precache files.
 
-```text
+```shell
 wp cache flush:precache
 ```
 
@@ -70,7 +70,7 @@ wp cache flush:precache
 
 Reset the Docket Cache lock files.
 
-```text
+```shell
 wp cache reset:lock
 ```
 
@@ -78,13 +78,13 @@ wp cache reset:lock
 
 Reset the Docket Cache cron event.
 
-```text
+```shell
 wp cache reset:cron
 ```
 
 **Example output:**
 
-```text
+```
 Resetting cron event. Please wait..
 +------------------------------------+---------------------+-----------------------+------------+
 | hook                               | next_run_gmt        | next_run_relative     | recurrence |
@@ -99,15 +99,15 @@ Success: Cron event has been reset.
 
 ## wp cache run:gc
 
-Run the Docket Cache garbage collector \(GC\).
+Run the Docket Cache garbage collector (GC).
 
-```text
+```shell
 wp cache run:gc
 ```
 
 **Example output:**
 
-```text
+```
 Executing the garbage collector. Please wait..
 -----------------------------------:----------
 Cache MaxTTL                       : 345600
@@ -129,13 +129,13 @@ Success: Executing the garbage collector completed.
 
 Run all cron event.
 
-```text
+```shell
 wp cache run:cron
 ```
 
 **Example output:**
 
-```text
+```
 Executing the cron event. Please wait..
 Executed the cron event 'docketcache_watchproc' in 0.011s.
 Executed the cron event 'docketcache_gc' in 0.338s.
@@ -156,19 +156,17 @@ Success: Executed a total of 12 cron events.
 
 Run the Docket Cache stats function to collect cache data.
 
-```text
+```shell
 wp cache run:stats
 ```
 
 **Example output:**
 
-```text
+```
 Executing the cache stats. Please wait..
 Object size    : 3M
 File size      : 4M
 Total file     : 1578
 Success: Executing the cache stats completed.
 ```
-
-
 
