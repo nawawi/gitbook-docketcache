@@ -646,6 +646,47 @@ Default:
 define('DOCKET_CACHE_WPAPPPASSWORD', false);
 ```
 
+## DOCKET\_CACHE\_WPDASHBOARDNEWS
+
+Set to true to disable WordPress Events & News Feed at Dashboard.\
+Default:
+
+```php
+define('DOCKET_CACHE_WPDASHBOARDNEWS', false);
+```
+
+## DOCKET\_CACHE\_LIMITHTTPREQUEST
+
+Set to true to limit HTTP requests in WP-Admin.
+
+This option will block any HTTP requests made by plugins or themes that used `wp_remote_post`, `wp_remote_get` or `wp_remote_request` functions that are not invoked in standard WP-Admin pages like Post, Pages, Plugins, Media and others.
+
+Default:
+
+```php
+define('DOCKET_CACHE_LIMITHTTPREQUEST', false);
+```
+
+## DOCKET\_CACHE\_LIMITHTTPREQUEST\_WHITELIST
+
+Set the list of hosts excluded from Limit HTTP requests options.\
+Default:
+
+```php
+define('DOCKET_CACHE_LIMITHTTPREQUEST_WHITELIST', []);
+```
+
+**Example**
+
+```php
+define('DOCKET_CACHE_LIMITHTTPREQUEST_WHITELIST', 
+    [
+        'feeds.feedburner.com',
+        'api.docketcache.com'
+    ]
+);
+```
+
 ## DOCKET\_CACHE\_DISABLED
 
 Set to true to disable the Docket Cache object cache feature at runtime. By defining to true, Docket Cache will ignore to install and uninstall the Drop-in file.\
