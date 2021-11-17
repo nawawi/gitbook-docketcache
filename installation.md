@@ -12,12 +12,12 @@ To use Docket Cache requires minimum:
 * WordPress 5.4
 * Zend OPCache
 
-## WordPress Plugin 
+## WordPress Plugin&#x20;
 
-1. In your WordPress admin click **Plugins -&gt; Add New .**
+1. In your WordPress admin click **Plugins -> Add New .**
 2. Search plugins "Docket Cache" and click Install Now.
 3. Click **Activate** or **Network Activate** in Multisite setups.
-4. Click **Docket Cache** in the left menu to access the admin page.
+4. Click **Docket Cache** in the left menu to access the admin interface.
 
 {% hint style="info" %}
 Please wait around 5 seconds for Docket Cache ready to cache the objects.
@@ -33,9 +33,9 @@ Please wait around 5 seconds for Docket Cache ready to cache the objects.
 
 ## Via WP-CLI
 
-[`WP-CLI`](http://wp-cli.org/) is the official command-line interface for WordPress. You can install Docket Cache using the `wp` command like this:
+[`WP-CLI`](http://wp-cli.org) is the official command-line interface for WordPress. You can install Docket Cache using the `wp` command like this:
 
-```text
+```
 wp plugin install docket-cache --activate
 ```
 
@@ -43,7 +43,7 @@ wp plugin install docket-cache --activate
 
 The plugin is available as [Composer package](https://packagist.org/packages/nawawi/docket-cache) and can be installed via Composer from the root of your WordPress installation.
 
-```text
+```
 composer create-project -s dev --prefer-dist nawawi/docket-cache wp-content/plugins/docket-cache
 ```
 
@@ -51,7 +51,6 @@ composer create-project -s dev --prefer-dist nawawi/docket-cache wp-content/plug
 
 Go to your WordPress plugins folder `cd wp-content/plugins`
 
-```text
+```
 git clone https://github.com/nawawi/docket-cache
 ```
-
