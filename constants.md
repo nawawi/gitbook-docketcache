@@ -157,7 +157,7 @@ define('DOCKET_CACHE_CONTENT_PATH', WP_CONTENT_DIR);
 
 By default, Docket Cache requires writable permission on WordPress **wp-content** directory for internal use. Defining this constant also change the default path for cache, configuration and object-cache Drop-In. The content path must exist and has proper permission. The `object-cache.php` Drop-In file needs to symlink with WordPress `wp-content/object-cache.php` or replace with wrapper file.
 
-Please refer to the PHP [`open_basedir `](https://www.php.net/manual/en/ini.core.php#ini.open-basedir)setting before set this constant.
+Please refer to the PHP [`open_basedir` ](https://www.php.net/manual/en/ini.core.php#ini.open-basedir)setting before set this constant.
 
 #### Example:
 
@@ -463,6 +463,15 @@ define('DOCKET_CACHE_OPTWPQUERY', true);
 ## DOCKET\_CACHE\_MOCACHE
 
 Set to `true` to enable WordPress Translation Caching features that improve the performance of the Translation function.\
+Default:
+
+```php
+define('DOCKET_CACHE_MOCACHE', false);
+```
+
+## DOCKET\_CACHE\_MENUCACHE
+
+Set to true to enable WordPress Menu Caching features that improve the performance of the WordPress menus generation.\
 Default:
 
 ```php
