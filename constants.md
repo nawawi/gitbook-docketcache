@@ -4,7 +4,7 @@ description: Docket Cache uses constants variable as main configuration methods.
 
 # Constants
 
-`Updated: 14-Nov-2021 | Version: >= 21.08.02`
+`Updated: 05-Feb-2022 | Version: >= 21.08.04`
 
 Constants are like variables except that once they are defined they cannot be changed or undefined. To change the behaviour of Docket Cache, the following PHP constants can be defined in your `wp-config.php` file.
 
@@ -475,7 +475,18 @@ Set to true to enable WordPress Menu Caching features that improve the performan
 Default:
 
 ```php
-define('DOCKET_CACHE_MOCACHE', false);
+define('DOCKET_CACHE_MENUCACHE', false);
+```
+
+## DOCKET\_CACHE\_MENUCACHE\_TTL
+
+Default Menu Cache lifespan in seconds.
+
+Only numbers between 86400 and 2419200 are allowed.\
+Default: 1209600 (14 days)
+
+```php
+define('DOCKET_CACHE_MENUCACHE_TTL', 1209600);
 ```
 
 ## DOCKET\_CACHE\_SIGNATURE
