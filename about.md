@@ -14,7 +14,7 @@ Rather than using [serialize](https://www.php.net/manual/en/function.serialize.p
 
 ## Manifesto
 
-When it comes to reliable persistent Object Cache in WordPress, [Redis](https://redis.io/) or [Memcached](https://memcached.org/) comes on top. However, those solutions require knowledge of server and rarely available at low cost or shared hosting servers
+When it comes to reliable persistent Object Cache in WordPress, [Redis](https://redis.io) or [Memcached](https://memcached.org) comes on top. However, those solutions require knowledge of server and rarely available at low cost or shared hosting servers
 
 The only solution is to store the object caches into files. With WordPress, exporting the PHP objects are not easy, most plugin that implements file-based solution will `serialize` and `unserialize` the object to store and retrieve the data.
 
@@ -43,9 +43,9 @@ Docket cache is an Open Source Software under the MIT License.
 
 Docket Cache
 
-Copyright \(c\) 2020, 2021 [Nawawi Jamili](https://github.com/nawawi)
+Copyright (c) 2020-2022 [Nawawi Jamili](https://github.com/nawawi)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files \(the "Software"\), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
@@ -59,6 +59,4 @@ The portion of following projects has been used in Docket Cache. Thank you for a
 * Lightweight Term Count Update
 * MonoDB
 * Symfony VarExporter Component
-
-
 
