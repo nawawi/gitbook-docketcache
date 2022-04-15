@@ -22,7 +22,7 @@ Docket Cache is not just stored the object cache, it converts the object cache i
 
 The Cronbot is an external service that pings your website every hour to keep WordPress Cron running actively.
 
-This service offered as an alternative option and is not compulsory to use. By default, this service not connected to the [end-point server](https://cronbot.docketcache.com/). You can completely disable it at the configuration page.
+This service offered as an alternative option and is not compulsory to use. By default, this service not connected to the [end-point server](https://cronbot.docketcache.com). You can completely disable it at the configuration page.
 
 ## What is Garbage Collector in Docket Cache?
 
@@ -30,9 +30,11 @@ Garbage Collector is a Cron Events than run every 5 minutes to monitoring cache 
 
 ## What is OPcache in Docket Cache?
 
-OPcache is a caching engine built into PHP, improves performance by storing precompiled script bytecode in shared memory, thereby removing the need for PHP to load and parse scripts on each request.
+OPcache is a caching engine built into PHP, that improves performance by storing precompiled script bytecode in shared memory, thereby removing the need for PHP to load and parse scripts on each request.
 
-Docket Cache converts the object cache into plain PHP code. When read and write cache, it will use OPcache directly which results in faster data retrieval and better performance.
+Docket Cache converts the object cache into plain PHP code. When reading and writing cache, it will use OPcache directly which results in faster data retrieval and better performance.
+
+However, OPcache must operate in shared memory. Docket Cache doesn't work properly if OPcache only caches to a local file by setting PHP configuration "opcache.file\_cache\_only" to 1.
 
 ## What is a RAM disk in Docket Cache?
 
@@ -40,11 +42,11 @@ A RAM disk is a representation of a hard disk using RAM resources, and it can ta
 
 Read and write speed on RAM is multiple times faster than SSD drives therefore storing Docket Cache files on a RAM disk greatly increases it's performance.
 
-Do note that creating RAM disks requires server administrative permission \(root access\) so this solution is not suitable for shared hosting servers.
+Do note that creating RAM disks requires server administrative permission (root access) so this solution is not suitable for shared hosting servers.
 
 This is an example command to create and use a RAM disk with Docket Cache:
 
-```text
+```
 $ cd wp-content/
 $ sudo mount -t tmpfs -o size=500m tmpfs ./cache/docket-cache
 ```
@@ -55,7 +57,7 @@ Kindly refer to the articles below about RAM disk:
 2. [What Is /dev/shm And Its Practical Usage](https://www.cyberciti.biz/tips/what-is-devshm-and-its-practical-usage.html)
 3. [Creating A Filesystem In RAM](https://www.cyberciti.biz/faq/howto-create-linux-ram-disk-filesystem/)
 
-To use it in Windows OS, create RAM Disk and change [DOCKET\_CACHE\_PATH](https://docs.docketcache.com/configuration#docket_cache_path) point to RAM Disk drive.
+To use it in Windows OS, create RAM Disk and change [DOCKET\_CACHE\_PATH](https://docs.docketcache.com/configuration#docket\_cache\_path) point to RAM Disk drive.
 
 ## What is the minimum RAM required to use with shared hosting?
 
@@ -72,4 +74,3 @@ Yes and No. You can pair using it with page caching plugin, but not with the obj
 ## I'm using a VPS server. Can I use Docket Cache to replace Redis?
 
 Yes, you can. It can boost more your WordPress performance since there is no network connection need to makes and no worry about memory burst, cache-key conflict and error-prone caused by the improper settings.
-
