@@ -34,6 +34,8 @@ OPcache is a caching engine built into PHP, that improves performance by storing
 
 Docket Cache converts the object cache into plain PHP code. When reading and writing cache, it will use OPcache directly which results in faster data retrieval and better performance.
 
+Please note that OPcache must operate in shared memory. Docket Cache can't work properly if OPcache only caches to a local file by setting PHP configuration "opcache.file\_cache\_only" to 1.
+
 ## What is a RAM disk in Docket Cache?
 
 A RAM disk is a representation of a hard disk using RAM resources, and it can take the form of a hardware device or a virtual disk.
