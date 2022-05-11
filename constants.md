@@ -187,53 +187,7 @@ if ( !@is_file(DOCKET_CACHE_CONTENT_PATH.'/object-cache.php') ) {
 @include_once DOCKET_CACHE_CONTENT_PATH.'/object-cache.php';
 ```
 
-#### Systemd PrivateTmp
 
-If you're using `/tmp` as root path, you need to set `PrivateTmp=false` in systemd services like httpd.service or php-fpm.service.
-
-Enter`systemctl edit` command.
-
-```php
-$ sudo systemctl edit php-fpm.service
-```
-
-Insert this setting.
-
-```php
-[Service]
-PrivateTmp=false
-```
-
-Execute this command to restart php-fpm service.
-
-```php
-$ sudo systemctl daemon-reload
-$ sudo systemctl restart php-fpm
-```
-
-Example file in CentOS 8: /usr/lib/systemd/system/php-fpm.service
-
-```php
-# It's not recommended to modify this file in-place, because it
-# will be overwritten during upgrades.  If you want to customize,
-# the best way is to use the "systemctl edit" command.
-
-[Unit]
-Description=The PHP FastCGI Process Manager
-After=syslog.target network.target
-
-[Service]
-Type=notify
-ExecStart=/usr/sbin/php-fpm --nodaemonize
-ExecReload=/bin/kill -USR2 $MAINPID
-PrivateTmp=false
-RuntimeDirectory=php-fpm
-RuntimeDirectoryMode=0755
-
-[Install]
-WantedBy=multi-user.target
-
-```
 
 ## DOCKET\_CACHE\_FLUSH\_DELETE
 
