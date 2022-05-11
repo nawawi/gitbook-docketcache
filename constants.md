@@ -191,7 +191,7 @@ if ( !@is_file(DOCKET_CACHE_CONTENT_PATH.'/object-cache.php') ) {
 
 ## DOCKET\_CACHE\_FLUSH\_DELETE
 
-By default Docket Cache only empty the cache file when expire. Set to `true` to delete the cache file when the cache expired.\
+By default Docket Cache only empty the cache file when expire. Set to true to delete the cache file instead of truncate.\
 Default:
 
 ```php
