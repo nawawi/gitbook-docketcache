@@ -384,7 +384,7 @@ Set to true to disable WooCommerce Cart Fragments feature.\
 Default:
 
 ```php
-define('DOCKET_CACHE_WOOWPDASHBOARDOFF', false);
+define('DOCKET_CACHE_WOOCARTFRAGSOFF', false);
 ```
 
 ## DOCKET\_CACHE\_POSTMISSEDSCHEDULE
@@ -492,7 +492,7 @@ define('DOCKET_CACHE_PAGELOADER', true);
 
 ## DOCKET\_CACHE\_CRONBOT
 
-The Cronbot is an [external service](https://cronbot.docketcache.com) that pings your website every hour to keep WordPress Cron running actively. Only site Timezone, URL and version are involved when enabling this service.
+The Cronbot is an [external service](https://cronbot.docketcache.com/) that pings your website every hour to keep WordPress Cron running actively. Only site Timezone, URL and version are involved when enabling this service.
 
 Set to `true` or `false` to enable or disable Cronbot Service.\
 Default:
