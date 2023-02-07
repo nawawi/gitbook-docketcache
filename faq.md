@@ -22,11 +22,11 @@ Docket Cache is not just stored the object cache, it converts the object cache i
 
 The Cronbot is an external service that pings your website every hour to keep WordPress Cron running actively.
 
-This service offered as an alternative option and is not compulsory to use. By default, this service not connected to the [end-point server](https://cronbot.docketcache.com). You can completely disable it at the configuration page.
+This service offered as an alternative option and is not compulsory to use. By default, this service not connected to the [end-point server](https://cronbot.docketcache.com/). You can completely disable it at the configuration page.
 
 ## What is Garbage Collector in Docket Cache?
 
-Garbage Collector is a Cron Events than run every 5 minutes to monitoring cache file purposely for cleanup and collecting stats.
+Garbage Collector is a Cron Event that runs every 5 minutes to monitor cache files purposely for cleanup and collecting stats.
 
 ## What is OPcache in Docket Cache?
 
