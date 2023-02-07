@@ -85,7 +85,6 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Admin Page Loader**                          | [DOCKET\_CACHE\_PAGELOADER](https://docs.docketcache.com/constants#docket\_cache\_pageloader)                 |
 | **Object Cache Data Stats**                    | [DOCKET\_CACHE\_STATS](https://docs.docketcache.com/constants#docket\_cache\_stats)                           |
 | **Garbage Collector Action Button**            | [DOCKET\_CACHE\_GCACTION](https://docs.docketcache.com/constants#docket\_cache\_gcaction)                     |
-| **Docket Cache Auto Update**                   | [DOCKET\_CACHE\_AUTOUPDATE](https://docs.docketcache.com/constants#docket\_cache\_autoupdate)                 |
 | **Check Critical Version**                     | [DOCKET\_CACHE\_CHECKVERSION](https://docs.docketcache.com/constants#docket\_cache\_checkversion)             |
 
 
