@@ -269,16 +269,16 @@ define('DOCKET_CACHE_IGNORED_GROUPKEY',
 
 ## DOCKET\_CACHE\_LOG
 
+{% hint style="info" %}
+The cache log intended to provide information on how the cache works. For performance and security concerns, deactivate if no longer needed.
+{% endhint %}
+
 Set to `true` or `false` to enable or disable cache log.\
 Default:
 
 ```php
 define('DOCKET_CACHE_LOG', false);
 ```
-
-{% hint style="info" %}
-The cache log intended to provide information on how the cache works. For performance and security concerns, deactivate if no longer needed.
-{% endhint %}
 
 ## DOCKET\_CACHE\_LOG\_FILE
 
@@ -415,6 +415,8 @@ Default:
 ```php
 define('DOCKET_CACHE_WOOCARTFRAGSOFF', false);
 ```
+
+## A
 
 ## DOCKET\_CACHE\_POSTMISSEDSCHEDULE
 
