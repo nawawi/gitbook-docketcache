@@ -572,6 +572,31 @@ Default: 20
 define('DOCKET_CACHE_PRECACHE_MAXGROUP', 20);
 ```
 
+## DOCKET\_CACHE\_IGNORED\_PRECACHE
+
+List of cache groups and keys that should not be precached..\
+Default:
+
+```php
+define('DOCKET_CACHE_IGNORED_PRECACHE',
+    [
+     	'freemius' => 'fs_accounts',
+        'options' => [
+            'uninstall_plugins',
+            'auto_update_plugins',
+            'active_plugins',
+            'cron',
+            'litespeed_messages',
+            'litespeed.admin_display.messages',
+        ],
+	'site-options' => [
+            '1:auto_update_plugins',
+            '1:active_sitewide_plugins',
+        ],
+    ]
+);
+```
+
 ## DOCKET\_CACHE\_PRELOAD
 
 Set to `true` or `false` to enable or disable cache preloading. If set to `true`, this plugin will fetch predefined URL related to the admin page.\
