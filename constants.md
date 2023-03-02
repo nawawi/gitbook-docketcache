@@ -416,7 +416,23 @@ Default:
 define('DOCKET_CACHE_WOOCARTFRAGSOFF', false);
 ```
 
-## A
+## DOCKET\_CACHE\_WOOADDTOCHARTCRAWLING
+
+Set to true to enable prevent robots crawling add-to-cart links.\
+Default:
+
+```php
+define('DOCKET_CACHE_WOOADDTOCHARTCRAWLING', true);
+```
+
+## DOCKET\_CACHE\_WOOEXTENSIONPAGEOFF
+
+Set to true to disable WooCommerce Extensions Page feature.\
+Default:
+
+```php
+define('DOCKET_CACHE_WOOEXTENSIONPAGEOFF', true);
+```
 
 ## DOCKET\_CACHE\_POSTMISSEDSCHEDULE
 
