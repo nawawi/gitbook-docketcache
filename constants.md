@@ -304,6 +304,10 @@ define('DOCKET_CACHE_LOG_ALL', false);
 
 ## DOCKET\_CACHE\_ADVCPOST
 
+{% hint style="info" %}
+Since version 22.07.04, this feature is only for WordPress version 6.1 and below. Since it is already implemented in WordPress Core as WP\_Query caching.
+{% endhint %}
+
 Set to `true` to enable Advanced Post Cache features that cache WP Queries for a post which results in faster data retrieval and reduced database workload. By default only for Post Type post, page and attachment.\
 Default:
 
