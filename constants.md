@@ -4,7 +4,7 @@ description: Docket Cache uses constants variable as main configuration methods.
 
 # Constants
 
-`Updated: 05-Feb-2022 | Version: >= 21.08.04`
+`Updated: 02-Mar-2023 | v22.07.04`
 
 Constants are like variables except that once they are defined they cannot be changed or undefined. To change the behaviour of Docket Cache, the following PHP constants can be defined in your `wp-config.php` file.
 
