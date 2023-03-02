@@ -330,14 +330,49 @@ define('DOCKET_CACHE_LOG_ALL', false);
 ## DOCKET\_CACHE\_ADVCPOST
 
 {% hint style="info" %}
-Since version 22.07.04, this feature is only for WordPress version 6.1 and below. Since it is already implemented in WordPress Core as WP\_Query caching.
+Since version 22.07.04, this feature is only for WordPress version 6.1 and below. It is already implemented in WordPress Core as WP\_Query caching.
 {% endhint %}
 
-Set to `true` to enable Advanced Post Cache features that cache WP Queries for a post which results in faster data retrieval and reduced database workload. By default only for Post Type post, page and attachment.\
+Set to `true` to enable Advanced Post Cache features that cache WP Queries for a post which results in faster data retrieval and reduced database workload.\
 Default:
 
 ```php
 define('DOCKET_CACHE_ADVCPOST', true);
+```
+
+## DOCKET\_CACHE\_ADVCPOSTTYPE
+
+List of Post Types allowed for Advanced Post Cache.\
+Default:
+
+```php
+define('DOCKET_CACHE_ADVCPOSTTYPE',
+    [
+     	'post',
+        'page',
+        'attachment',
+        'revision',
+        'nav_menu_item',
+        'custom_css',
+        'customize_changeset',
+        'oembed_cache',
+        'user_request',
+        'wp_block',
+        'wp_template',
+        'wp_template_part',
+        'wp_global_styles',
+        'wp_navigation',
+    ]
+);
+```
+
+## DOCKET\_CACHE\_ADVCPOSTTYPE\_ALL
+
+Set to true to allow all Post Types for Advanced Post Cachee.\
+Default:
+
+```php
+define('DOCKET_CACHE_ADVCPOSTTYPE_ALL', false);
 ```
 
 ## DOCKET\_CACHE\_CRONOPTMZDB
