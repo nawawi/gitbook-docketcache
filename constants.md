@@ -242,6 +242,31 @@ define('DOCKET_CACHE_IGNORED_GROUPS',
 );
 ```
 
+## DOCKET\_CACHE\_IGNORED\_KEYS
+
+List of cache keys that should not be cached.\
+Default: not set.
+
+Example:
+
+```php
+define('DOCKET_CACHE_IGNORED_KEYS',['key1', 'key2']);
+```
+
+## DOCKET\_CACHE\_IGNORED\_GROUPKEY
+
+List of cache groups and keys that should not be cached.\
+Default: not set.
+
+```php
+define('DOCKET_CACHE_IGNORED_GROUPKEY',
+  [
+    'group1' => ['key1', 'key2'],
+    'group2', => ['key1', 'key2']
+  ]
+);
+```
+
 ## DOCKET\_CACHE\_LOG
 
 Set to `true` or `false` to enable or disable cache log.\
