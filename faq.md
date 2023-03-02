@@ -69,6 +69,14 @@ Docket Cache is an Object Cache Accelerator. It does some optimisation like cach
 
 Yes and No. You can pair using it with page caching plugin, but not with the object cache plugin.
 
+## Can I pair using it with LiteSpeed Cache?
+
+Yes, you can. The LiteSpeed Cache plugin has an Object Cache feature. Currently, by default, it will prompt a notice asking to disable Docket Cache. You only need to turn off LiteSpeed Cache Object Cache in order to use Docket Cache.
+
+## Can I use Docket Cache on heavy WooCommerce stores?
+
+Yes and No. As suggested, Docket Cache is an alternative to in-memory caches like Redis and Memcached. It depends on how your store has been setups. It may require further tuning to the configuration and may involve other optimisations.
+
 ## I'm using a VPS server. Can I use Docket Cache to replace Redis?
 
 Yes, you can. It can boost more your WordPress performance since there is no network connection need to makes and no worry about memory burst, cache-key conflict and error-prone caused by the improper settings.
