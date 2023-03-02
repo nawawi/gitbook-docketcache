@@ -469,11 +469,29 @@ define('DOCKET_CACHE_PRECACHE', true);
 
 Set the maximum precache file can be store on disk.
 
-Only numbers between 0 and 1000000 are allowed. Set to 0 to disable it.\
-Default: 0
+Only numbers between 100 and 1000000 are allowed.\
+Default: 100
 
 ```php
-define('DOCKET_CACHE_PRECACHE_MAXFILE', 0);
+define('DOCKET_CACHE_PRECACHE_MAXFILE', 100);
+```
+
+## DOCKET\_CACHE\_PRECACHE\_MAXKEY
+
+Set the maximum precache keys.\
+Default: 20
+
+```php
+define('DOCKET_CACHE_PRECACHE_MAXKEYe', 20);
+```
+
+## DOCKET\_CACHE\_PRECACHE\_MAXGROUP
+
+Set the maximum precache groups.\
+Default: 20
+
+```php
+define('DOCKET_CACHE_PRECACHE_MAXGROUP', 20);
 ```
 
 ## DOCKET\_CACHE\_PRELOAD
