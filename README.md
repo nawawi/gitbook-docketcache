@@ -1,5 +1,5 @@
 ---
-description: Welcome to the Docket Cache Documentation Space
+description: Welcome to the Docket Cache Documentation.
 ---
 
 # Welcome
@@ -26,6 +26,4 @@ Additional external reference related to Web Hosting, WordPress caching and PHP 
 * [OPcache Extension](resources/opcache-extension.md)
 * [OPcache Optimisations](resources/opcache-optimisations.md)
 * [Web Hosting I/O Usage](resources/web-hosting-i-o-usage.md)
-
-
 
