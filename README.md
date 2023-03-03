@@ -1,5 +1,5 @@
 ---
-description: Welcome to the Docket Cache Documentation.
+description: Hi there, welcome to the Docket Cache Documentation.
 ---
 
 # Welcome
