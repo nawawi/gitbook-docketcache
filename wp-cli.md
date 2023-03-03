@@ -4,11 +4,11 @@ description: The command line interface for WordPress.
 
 # WP-CLI
 
-`Updated: 08-Dec-2020 | Version: >= 20.11.01`
+`Updated: 03-Mar-2023 | v22.07.04`
 
-WP-CLI is the official command-line interface for WordPress. The Docket Cache extends default `wp cache` command with additional sub-commands.
+WP-CLI is the official command-line interface for WordPress. The Docket Cache extends the default `wp cache` command with additional sub-commands.
 
-The following command supported.
+The following commands are supported. You may use `--verbose` on some commands to display more output.
 
 ## wp cache status
 
@@ -21,14 +21,16 @@ wp cache status
 **Example output:**
 
 ```
+---------------:--------------------------------
 Cache Status   : Enabled
 Cache Path     : /wp-content/cache/docket-cache
-Cache Size     : 3M
+Cache Size     : 717K
+---------------:--------------------------------
 ```
 
 ## wp cache dropin:enable
 
-Enable the Docket Cache Drop-In file. The default behaviour is to create the object cache Drop-In and replace any object cache Drop-In is present.
+Enable the Docket Cache `object-cache.php` Drop-In file. The default behaviour is to create the object-cache.php Drop-In and replace any existing `object-cache.php` Drop-In.
 
 ```shell
 wp cache dropin:enable
@@ -36,7 +38,7 @@ wp cache dropin:enable
 
 ## wp cache dropin:disable
 
-Disable the Docket Cache Drop-In file. The default behaviour is to delete the object cache Drop-In unless an unknown object cache Drop-In is present.
+Disable the Docket Cache object-cache.php Drop-In file. The default behaviour is to delete the `object-cache.php` Drop-In unless an unknown `object-cache.php` Drop-In is present.
 
 ```shell
 wp cache dropin:disable
@@ -44,7 +46,7 @@ wp cache dropin:disable
 
 ## wp cache dropin:update
 
-Update the Docket Cache Drop-In file. The default behaviour is to overwrite any existing object cache Drop-In.
+Update the Docket Cache `object-cache.php` Drop-In file. The default behaviour is to overwrite any existing `object-cache.php` Drop-In.
 
 ```shell
 wp cache update
@@ -58,13 +60,45 @@ Remove the cache files.
 wp cache flush
 ```
 
+## wp cache flush:menucache
+
+Remove the Menu cache files.
+
+```
+wp cache flush:menucache
+```
+
+## wp cache flush:mocache
+
+Remove the Translation cache files.
+
+```
+wp cache flush:mocache
+```
+
 ## wp cache flush:precache
 
-Remove the precache files.
+Remove the Precache cache files.
 
 ```shell
 wp cache flush:precache
 ```
+
+## wp cache flush:transient
+
+Remove the Transients cache files.
+
+```
+wp cache flush:transient
+```
+
+## wp cache flush:advcpost
+
+Remove the Advanced Post Cache cache files.
+
+{% hint style="info" %}
+Since version 22.07.04, this command is only available for WordPress version 6.1 and below.
+{% endhint %}
 
 ## wp cache reset:lock
 
@@ -152,6 +186,14 @@ Executed the cron event 'wp_site_health_scheduled_check' in 0.091s.
 Success: Executed a total of 12 cron events.
 ```
 
+## wp cache run:optimizedb
+
+Runs the Docket Cache Optimizedb.
+
+```
+wp cache run:optimizedb
+```
+
 ## wp cache run:stats
 
 Run the Docket Cache stats function to collect cache data.
@@ -164,9 +206,27 @@ wp cache run:stats
 
 ```
 Executing the cache stats. Please wait..
-Object size    : 3M
-File size      : 4M
-Total file     : 1578
+---------------:----------                                                                          
+Object size    : 885K
+File size      : 992K
+Total file     : 66
+---------------:----------
 Success: Executing the cache stats completed.
+```
+
+## wp cache runtime:install
+
+Install the Docket Cache runtime code.
+
+```
+wp cache runtime:install
+```
+
+## wp cache runtime:remove
+
+Removes the Docket Cache runtime code.
+
+```
+wp cache runtime:remove
 ```
 
