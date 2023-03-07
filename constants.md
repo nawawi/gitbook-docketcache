@@ -132,16 +132,16 @@ define('DOCKET_CACHE_MAXFILE', 50000);
 
 Split a cache file into smaller directory.
 
-Set to `true` to chunk cache files into smaller directories to avoid an excessive number of cache files in one directory.\
+{% hint style="info" %}
+Only enable it if you have difficulty clearing the cache manually or experience slowdowns when the cache becomes too large.
+{% endhint %}
+
+Set to `true` to enable chunk cache files into smaller directories to avoid an excessive number of cache files in one directory.\
 Default: 
 
 ```php
 define('DOCKET_CACHE_CHUNKCACHEDIR', false);
 ```
-
-{% hint style="info" %}
-Only enable it if you have difficulty clearing the cache manually or experience slowdowns when the cache becomes too large.
-{% endhint %}
 
 ## DOCKET\_CACHE\_PATH
 
