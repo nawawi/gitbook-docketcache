@@ -296,7 +296,7 @@ define('DOCKET_CACHE_IGNORED_GROUPS',
 List of cache keys that should not be cached.\
 Default: not set.
 
-Example:
+#### Example:
 
 ```php
 define('DOCKET_CACHE_IGNORED_KEYS',['key1', 'key2']);
@@ -841,7 +841,7 @@ Default:
 define('DOCKET_CACHE_LIMITHTTPREQUEST_WHITELIST', []);
 ```
 
-**Example**
+#### Example:
 
 ```php
 define('DOCKET_CACHE_LIMITHTTPREQUEST_WHITELIST', 
@@ -852,9 +852,48 @@ define('DOCKET_CACHE_LIMITHTTPREQUEST_WHITELIST',
 );
 ```
 
+## DOCKET\_CACHE\_GCRON\_DISABLED
+
+Set to true to disable Garbage Collector Cron Events. By defining it as true, Docket Cache will not install Cron Event for Garbage Collector. You need to run it manually using wp-cli or a custom Cron Events.\
+Default:
+
+```php
+define('DOCKET_CACHE_GCRON_DISABLED', false);
+```
+
+#### Example for WP-CLI:
+
+```
+wp cache run:gc
+```
+
+#### Example for custom Cron Events:
+
+```php
+<?php
+// Place this code in mu-plugins/docketcache-gcron.php
+!defined('DOCKET_CACHE_GCRON_DISABLED') && define('DOCKET_CACHE_GCRON_DISABLED', true);
+
+add_action('docketcache_custom_gcron', function() {
+    if ( has_filter('docketcache/filter/garbagecollector') ) {
+        $results = apply_filters('docketcache/filter/garbagecollector', true);
+        if (!empty($result) && \is_object($result)) {
+            if ($result->is_locked) {
+                return;
+            }
+        }
+    }
+});
+
+if (!wp_next_scheduled('docketcache_custom_gcron')) {
+    wp_schedule_event(time(), 'hourly', 'docketcache_custom_gcron');
+}
+
+```
+
 ## DOCKET\_CACHE\_DISABLED
 
-Set to true to disable the Docket Cache object cache feature at runtime. By defining to true, Docket Cache will ignore to install and uninstall the Drop-in file.\
+Set to true to disable the Docket Cache object cache feature at runtime. By defining it as true, Docket Cache will ignore to install and uninstall the Drop-in file.\
 Default:
 
 ```php
