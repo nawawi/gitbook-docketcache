@@ -148,17 +148,6 @@ Default:
 define('DOCKET_CACHE_MAXFILE_LIVECHECK', false);
 ```
 
-## DOCKET\_CACHE\_STALECACHE\_IGNORE
-
-Set to `true` to enable excluding stale cache created by WordPress, WooCommerce, and others from being stored on disk.\
-Default:
-
-```php
-define('DOCKET_CACHE_STALECACHE_IGNORE', false);
-```
-
-Only enable it if you have an issue with inode/file limits.
-
 ## DOCKET\_CACHE\_EMPTYCACHE\_IGNORE
 
 Set to `true` to enable excluding empty caches from being stored on disk. \
@@ -237,6 +226,26 @@ Default:
 ```php
 define('DOCKET_CACHE_FLUSH_DELETE', false);
 ```
+
+## DOCKET\_CACHE\_FLUSH\_STALECACHE
+
+Set to `true` to allow Garbage Collector (GC) immediately remove the stale cache abandoned by WordPress, WooCommerce and others after doing cache invalidation.\
+Default:
+
+```php
+define('DOCKET_CACHE_FLUSH_STALECACHE', false);
+```
+
+## DOCKET\_CACHE\_STALECACHE\_IGNORE
+
+Set to `true` to enable excluding stale cache created by WordPress, WooCommerce, and others from being stored on disk.\
+Default:
+
+```php
+define('DOCKET_CACHE_STALECACHE_IGNORE', false);
+```
+
+Only enable it if you have an issue with inode/file limits.
 
 ## DOCKET\_CACHE\_GLOBAL\_GROUPS
 
