@@ -877,8 +877,8 @@ wp cache run:gc
 add_action('docketcache_custom_gcron', function() {
     if ( has_filter('docketcache/filter/garbagecollector') ) {
         $results = apply_filters('docketcache/filter/garbagecollector', true);
-        if (!empty($result) && \is_object($result)) {
-            if ($result->is_locked) {
+        if (!empty($results) && \is_object($results)) {
+            if ($results->is_locked) {
                 return;
             }
         }
