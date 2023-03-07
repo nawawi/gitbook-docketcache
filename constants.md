@@ -881,8 +881,10 @@ add_action('docketcache_custom_gcron', function() {
         $results = apply_filters('docketcache/filter/garbagecollector', true);
         if (!empty($results) && \is_object($results)) {
             if ($results->is_locked) {
+                // Process is locked.
                 return;
             }
+            // Process is Ok.
         }
     }
 });
