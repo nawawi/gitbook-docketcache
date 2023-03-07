@@ -152,11 +152,7 @@ define('DOCKET_CACHE_MAXFILE_LIVECHECK', false);
 
 ## DOCKET\_CACHE\_STALECACHE\_IGNORE
 
-{% hint style="info" %}
-Only enable it if you have an issue with inode/file limits.
-{% endhint %}
-
-Set to `true` to enable excluding stale cache created by WordPress, WooCommerce, and others from being stored on disk.\
+Set to `true` to enable excluding stale cache created by WordPress, WooCommerce, and others from being stored on disk. Only enable it if you have an issue with inode/file limits.\
 Default:
 
 ```php
@@ -165,11 +161,7 @@ define('DOCKET_CACHE_STALECACHE_IGNORE', false);
 
 ## DOCKET\_CACHE\_EMPTYCACHE\_IGNORE
 
-{% hint style="info" %}
-Only enable it if you have an issue with inode/file limits.
-{% endhint %}
-
-Set to `true` to enable excluding empty caches from being stored on disk.\
+Set to `true` to enable excluding empty caches from being stored on disk. Only enable it if you have an issue with inode/file limits.\
 Default:
 
 ```php
