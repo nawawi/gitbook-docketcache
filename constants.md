@@ -130,17 +130,50 @@ define('DOCKET_CACHE_MAXFILE', 50000);
 
 ## DOCKET\_CACHE\_CHUNKCACHEDIR
 
-Split a cache file into smaller directory.
-
 {% hint style="info" %}
 Only enable it if you have difficulty clearing the cache manually or experience slowdowns when the cache becomes too large.
 {% endhint %}
 
-Set to `true` to enable chunk cache files into smaller directories to avoid an excessive number of cache files in one directory.\
+Set to `true` to enable chunking cache files into smaller directories to avoid an excessive number of cache files in one directory.\
 Default: 
 
 ```php
 define('DOCKET_CACHE_CHUNKCACHEDIR', false);
+```
+
+## DOCKET\_CACHE\_MAXFILE\_LIVECHECK
+
+Set to `true` to allow Docket Cache to monitor the cache file limit in real-time.\
+Default:
+
+```php
+define('DOCKET_CACHE_MAXFILE_LIVECHECK', false);
+```
+
+## DOCKET\_CACHE\_STALECACHE\_IGNORE
+
+{% hint style="info" %}
+Only enable it if you have an issue with inode/file limits.
+{% endhint %}
+
+Set to `true` to enable excluding stale cache created by WordPress, WooCommerce, and others from being stored on disk.\
+Default:
+
+```php
+define('DOCKET_CACHE_STALECACHE_IGNORE', false);
+```
+
+## DOCKET\_CACHE\_EMPTYCACHE\_IGNORE
+
+{% hint style="info" %}
+Only enable it if you have an issue with inode/file limits.
+{% endhint %}
+
+Set to `true` to enable excluding empty caches from being stored on disk.\
+Default:
+
+```php
+define('DOCKET_CACHE_EMPTYCACHE_IGNORE', false);
 ```
 
 ## DOCKET\_CACHE\_PATH
