@@ -111,7 +111,7 @@ The size of the cache file is slightly bigger than the object since it contains 
 Set the maximum size of the cache storage on disk.
 
 The minimum required size is 104857600 bytes (100MB).\
-Default:  524288000 (500MB)
+Default: 524288000 (500MB)
 
 ```php
 define('DOCKET_CACHE_MAXSIZE_DISK', 524288000);
@@ -130,16 +130,14 @@ define('DOCKET_CACHE_MAXFILE', 50000);
 
 ## DOCKET\_CACHE\_CHUNKCACHEDIR
 
-{% hint style="info" %}
-Only enable it if you have difficulty clearing the cache manually or experience slowdowns when the cache becomes too large.
-{% endhint %}
-
 Set to `true` to enable chunking cache files into smaller directories to avoid an excessive number of cache files in one directory.\
-Default: 
+Default:
 
 ```php
 define('DOCKET_CACHE_CHUNKCACHEDIR', false);
 ```
+
+Only enable it if you have difficulty clearing the cache manually or experience slowdowns when the cache becomes too large.
 
 ## DOCKET\_CACHE\_MAXFILE\_LIVECHECK
 
@@ -152,21 +150,25 @@ define('DOCKET_CACHE_MAXFILE_LIVECHECK', false);
 
 ## DOCKET\_CACHE\_STALECACHE\_IGNORE
 
-Set to `true` to enable excluding stale cache created by WordPress, WooCommerce, and others from being stored on disk. Only enable it if you have an issue with inode/file limits.\
+Set to `true` to enable excluding stale cache created by WordPress, WooCommerce, and others from being stored on disk.\
 Default:
 
 ```php
 define('DOCKET_CACHE_STALECACHE_IGNORE', false);
 ```
 
+Only enable it if you have an issue with inode/file limits.
+
 ## DOCKET\_CACHE\_EMPTYCACHE\_IGNORE
 
-Set to `true` to enable excluding empty caches from being stored on disk. Only enable it if you have an issue with inode/file limits.\
+Set to `true` to enable excluding empty caches from being stored on disk. \
 Default:
 
 ```php
 define('DOCKET_CACHE_EMPTYCACHE_IGNORE', false);
 ```
+
+Only enable it if you have an issue with inode/file limits.
 
 ## DOCKET\_CACHE\_PATH
 
@@ -188,7 +190,7 @@ define('DOCKET_CACHE_DATA_PATH', WP_CONTENT_DIR.'/docket-cache-data');
 
 ## DOCKET\_CACHE\_CONTENT\_PATH
 
-Set the Docket Cache writable directory. \
+Set the Docket Cache writable directory.\
 Default:
 
 ```php
@@ -226,8 +228,6 @@ if ( !@is_file(DOCKET_CACHE_CONTENT_PATH.'/object-cache.php') ) {
 
 @include_once DOCKET_CACHE_CONTENT_PATH.'/object-cache.php';
 ```
-
-
 
 ## DOCKET\_CACHE\_FLUSH\_DELETE
 
