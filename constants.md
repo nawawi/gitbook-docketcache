@@ -871,7 +871,7 @@ wp cache run:gc
 
 ```php
 <?php
-// Place this code in mu-plugins/docketcache-gcron.php
+// Place this code in wp-content/mu-plugins/docketcache-gcron.php
 !defined('DOCKET_CACHE_GCRON_DISABLED') && define('DOCKET_CACHE_GCRON_DISABLED', true);
 
 add_action('docketcache_custom_gcron', function() {
