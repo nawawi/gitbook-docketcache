@@ -18,7 +18,7 @@ When it comes to reliable persistent Object Cache in WordPress, [Redis](https://
 
 The only solution is to store the object caches into files. With WordPress, exporting the PHP objects are not easy, most plugin that implements file-based solution will `serialize` and `unserialize` the object to store and retrieve the data.
 
-The Docket Cache is better because it converts the object cache into plain PHP code. This solution is faster since WordPress can use the cache directly without running other operation.
+Docket Cache takes a better approach by turning the object cache into plain PHP code. This solution is faster since WordPress can use the cache directly without running other operations.
 
 ## How Versions Work
 
@@ -32,8 +32,8 @@ Versions are as follows: Year.Month.Day
 
 Anyone can contribute to Docket Cache. Please do so by posting issues when you've found something that is unexpected or sending a pull request for improvements.
 
-* [Report issues](https://github.com/nawawi/docket-cache/issues)
-* [Send Pull requests](https://github.com/nawawi/docket-cache/pulls)
+* [Report issues](https://wordpress.org/support/plugin/docket-cache/)
+* [Github Repo](https://github.com/nawawi/docket-cache/)
 
 ## License
 
@@ -53,10 +53,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Credits
 
-The portion of following projects has been used in Docket Cache. Thank you for all the great works.
-
-* Advanced Post Cache
-* Lightweight Term Count Update
-* MonoDB
-* Symfony VarExporter Component
+Some parts of the Docket Cache code are borrowed from different open-source projects.\
+The full list can be found here https://github.com/nawawi/docket-cache/blob/master/credits.txt.
 
