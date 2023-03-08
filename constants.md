@@ -319,16 +319,16 @@ define('DOCKET_CACHE_IGNORED_GROUPKEY',
 
 ## DOCKET\_CACHE\_LOG
 
-{% hint style="info" %}
-The cache log intended to provide information on how the cache works. For performance and security concerns, deactivate if no longer needed.
-{% endhint %}
-
 Set to `true` or `false` to enable or disable cache log.\
 Default:
 
 ```php
 define('DOCKET_CACHE_LOG', false);
 ```
+
+{% hint style="info" %}
+The cache log intended to provide information on how the cache works. For performance and security concerns, deactivate if no longer needed.
+{% endhint %}
 
 ## DOCKET\_CACHE\_LOG\_FILE
 
@@ -379,10 +379,6 @@ define('DOCKET_CACHE_LOG_ALL', false);
 
 ## DOCKET\_CACHE\_ADVCPOST
 
-{% hint style="info" %}
-Since version 22.07.04, the Advanced Post Cache feature is only available for WordPress version 6.1 and below. Since it is already implemented in WordPress Core as WP\_Query caching.
-{% endhint %}
-
 Set to `true` to enable Advanced Post Cache features that cache WP Queries for a post which results in faster data retrieval and reduced database workload.\
 Default:
 
@@ -390,11 +386,11 @@ Default:
 define('DOCKET_CACHE_ADVCPOST', true);
 ```
 
-## DOCKET\_CACHE\_ADVCPOSTTYPE
-
 {% hint style="info" %}
-Since version 22.07.04, this constant only works for WordPress version 6.1 and below.
+Since version 22.07.04, the Advanced Post Cache feature is only available for WordPress version 6.1 and below. Since it is already implemented in WordPress Core as WP\_Query caching.
 {% endhint %}
+
+## DOCKET\_CACHE\_ADVCPOSTTYPE
 
 List of Post Types allowed for Advanced Post Cache.\
 Default:
@@ -420,11 +416,11 @@ define('DOCKET_CACHE_ADVCPOSTTYPE',
 );
 ```
 
-## DOCKET\_CACHE\_ADVCPOSTTYPE\_ALL
-
 {% hint style="info" %}
 Since version 22.07.04, this constant only works for WordPress version 6.1 and below.
 {% endhint %}
+
+## DOCKET\_CACHE\_ADVCPOSTTYPE\_ALL
 
 Set to true to allow all Post Types for Advanced Post Cache.\
 Default:
@@ -432,6 +428,10 @@ Default:
 ```php
 define('DOCKET_CACHE_ADVCPOSTTYPE_ALL', false);
 ```
+
+{% hint style="info" %}
+Since version 22.07.04, this constant only works for WordPress version 6.1 and below.
+{% endhint %}
 
 ## DOCKET\_CACHE\_CRONOPTMZDB
 
@@ -663,6 +663,8 @@ Default:
 ```php
 define('DOCKET_CACHE_PRELOAD', false);
 ```
+
+The preload only runs when doing a cache flush.
 
 ## DOCKET\_CACHE\_PAGELOADER
 
