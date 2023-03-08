@@ -4,7 +4,7 @@ description: Docket Cache uses constants variable as main configuration methods.
 
 # Constants
 
-`Updated: 07-Mar-2023 | v22.07.04`
+`Updated: 08-Mar-2023 | v22.07.04`
 
 Constants are like variables except that once they are defined they cannot be changed or undefined. To change the behaviour of Docket Cache, the following PHP constants can be defined in your `wp-config.php` file.
 
@@ -96,15 +96,16 @@ The size of the cache file is slightly bigger than the object since it contains 
 
 #### Docket Cache Metadata:
 
-| Name      | Description            |
-| --------- | ---------------------- |
-| timestamp | Data creation time     |
-| site\_id  | Site Id                |
-| group     | Object Cache group     |
-| key       | Object Cache key       |
-| type      | Object Cache Data type |
-| timeout   | Expiration time        |
-| data      | Object Cache data      |
+| Name        | Description               |
+| ----------- | ------------------------- |
+| timestamp   | Data creation time        |
+| site\_id    | Site Id                   |
+| network\_id | Network Id (on multisite) |
+| group       | Object Cache group        |
+| key         | Object Cache key          |
+| type        | Object Cache Data type    |
+| timeout     | Expiration time           |
+| data        | Object Cache data         |
 
 ## DOCKET\_CACHE\_MAXSIZE\_DISK
 
@@ -150,7 +151,7 @@ define('DOCKET_CACHE_MAXFILE_LIVECHECK', false);
 
 ## DOCKET\_CACHE\_EMPTYCACHE\_IGNORE
 
-Set to `true` to enable excluding empty caches from being stored on disk. \
+Set to `true` to enable excluding empty caches from being stored on disk.\
 Default:
 
 ```php
