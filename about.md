@@ -54,5 +54,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## Credits
 
 Some parts of the Docket Cache code are borrowed from different open-source projects.\
-The full list can be found here https://github.com/nawawi/docket-cache/blob/master/credits.txt.
+The full list can be found here [https://github.com/nawawi/docket-cache/blob/master/credits.tx](https://github.com/nawawi/docket-cache/blob/master/credits.txt).
 
