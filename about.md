@@ -1,7 +1,6 @@
 ---
 description: >-
-  Supercharge your website using a persistent object cache, accelerates caching
-  with OPcache backend.
+  About Docket Cache and some relevant information.
 ---
 
 # About
