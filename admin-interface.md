@@ -60,6 +60,7 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Advanced Post Caching**                      | [DOCKET\_CACHE\_ADVCPOST](https://docs.docketcache.com/constants#docket\_cache\_advcpost)                     |
 | **Object Cache Precaching**                    | [DOCKET\_CACHE\_PRECACHE](https://docs.docketcache.com/constants#docket\_cache\_precache)                     |
 | **WordPress Translation Caching**              | [DOCKET\_CACHE\_MOCACHE](https://docs.docketcache.com/constants#docket\_cache\_mocache)                       |
+| **Admin Page Cache Preloading**                | [DOCKET\_CACHE\_PRELOAD](https://docs.docketcache.com/constants#docket\_cache\_preload)                       |
 | **Optimize WP Query**                          | [DOCKET\_CACHE\_OPTWPQUERY](https://docs.docketcache.com/constants#docket\_cache\_optwpquery)                 |
 | **Optimize Term Count Queries**                | [DOCKET\_CACHE\_OPTERMCOUNT](https://docs.docketcache.com/constants#docket\_cache\_optermcount)               |
 | **Optimize Database Tables**                   | [DOCKET\_CACHE\_CRONOPTMZDB](https://docs.docketcache.com/constants#docket\_cache\_cronoptmzdb)               |
@@ -81,7 +82,6 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Deactivate WP Application Passwords**        | [DOCKET\_CACHE\_WPAPPPASSWORD](https://docs.docketcache.com/constants#docket\_cache\_wpapppassword)           |
 | **Deactivate WP Events & News Feed Dashboard** | [DOCKET\_CACHE\_WPDASHBOARDNEWS](https://docs.docketcache.com/constants#docket\_cache\_wpdashboardnews)       |
 | **Limit WP-Admin HTTP Requests**               | [DOCKET\_CACHE\_LIMITHTTPREQUEST](https://docs.docketcache.com/constants#docket\_cache\_limithttprequest)     |
-| **Admin Page Cache Preloading**                | [DOCKET\_CACHE\_PRELOAD](https://docs.docketcache.com/constants#docket\_cache\_preload)                       |
 | **Admin Page Loader**                          | [DOCKET\_CACHE\_PAGELOADER](https://docs.docketcache.com/constants#docket\_cache\_pageloader)                 |
 | **Object Cache Data Stats**                    | [DOCKET\_CACHE\_STATS](https://docs.docketcache.com/constants#docket\_cache\_stats)                           |
 | **Garbage Collector Action Button**            | [DOCKET\_CACHE\_GCACTION](https://docs.docketcache.com/constants#docket\_cache\_gcaction)                     |
