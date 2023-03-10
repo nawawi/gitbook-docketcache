@@ -4,13 +4,13 @@ description: Docket Cache WP Admin Interface
 
 # Admin Interface
 
-`Updated: 14-Nov-2021 | Version: >= 21.08.02`
+`Updated: 10-Mar-2023 | v22.07.04`
 
 The Docket Cache keeps the admin interface clean, responsive and simple as possible, predefined configuration and reuses WordPress library as much as possible.
 
 ## Overview
 
-The Overview section is a central place to view the current status of Docket Cache activities, configuration and other useful information.
+The Overview screen is the primary place to view the current status of Docket Cache activity, configuration, and other useful information.
 
 | Label                         | Description                                                           |
 | ----------------------------- | --------------------------------------------------------------------- |
@@ -50,7 +50,7 @@ The Overview section is a central place to view the current status of Docket Cac
 
 ## Configuration
 
-The configuration section allows you to change the Docket Cache behaviour without using constant variables. If related constant defined in the `wp-config.php` file, it will overwrite the changes in this section.
+The configuration screen allows you to change the Docket Cache behaviour without using constant variables. If related constant defined in the `wp-config.php` file, it will overwrite the changes in this screen.
 
 | Label                                          | Related Constant                                                                                              |
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -87,11 +87,9 @@ The configuration section allows you to change the Docket Cache behaviour withou
 | **Garbage Collector Action Button**            | [DOCKET\_CACHE\_GCACTION](https://docs.docketcache.com/constants#docket\_cache\_gcaction)                     |
 | **Check Critical Version**                     | [DOCKET\_CACHE\_CHECKVERSION](https://docs.docketcache.com/constants#docket\_cache\_checkversion)             |
 
-
-
 ## Cache Log
 
-The cache log section allows you to view cache log for debugging and monitor cache activities. This section only visible if Cache Log option enabled at the configuration section.
+The cache log section allows you to view cache log for debugging and monitor cache activities. This section only visible if Cache Log option enabled at the configuration screen.
 
 | Label         | Description                |
 | ------------- | -------------------------- |
