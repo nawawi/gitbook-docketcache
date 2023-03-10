@@ -771,7 +771,7 @@ define('DOCKET_CACHE_FLUSHACTION', false);
 
 ## DOCKET\_CACHE\_AUTOUPDATE
 
-Set to `true` or `false` to enable or disable Docket Cache auto-update.\
+Set to `true` or `false` to force enable or disable automatic updates of the Docket Cache.\
 Default:
 
 ```php
