@@ -786,7 +786,24 @@ Set to `true` or `false` to enable or disable critical version checking.\
 Default:
 
 ```php
-define('DOCKET_CACHE_CHECKVERSION', true);
+define('DOCKET_CACHE_CHECKVERSION', false);
+```
+
+## DOCKET\_CACHE\_FLUSH\_SHUTDOWN
+
+Set to `true` or `false` to enable or disable to flush the object cache when disabling or uninstalling Docket Cache.\
+Default:
+
+```php
+define('DOCKET_CACHE_FLUSH_SHUTDOWN', false);
+```
+
+## DOCKET\_CACHE\_OPCSHUTDOWN
+
+Set to `true` or `false` to enable or disable to flush OPcache when disabling or uninstalling Docket Cache.
+
+```php
+define('DOCKET_CACHE_OPCSHUTDOWN', false);
 ```
 
 ## DOCKET\_CACHE\_STATS
