@@ -12,11 +12,11 @@ To use Docket Cache requires minimum:
 * WordPress 5.4
 * Zend OPCache
 
-## WordPress Plugin&#x20;
+## WordPress Plugin
 
-1. In your WordPress admin click **Plugins -> Add New .**
-2. Search plugins "Docket Cache" and click Install Now.
-3. Click **Activate** or **Network Activate** in Multisite setups.
+1. In your WordPress admin click `Plugins -> Add New` **.**
+2. Search plugins **Docket Cache** and click `Install Now`.
+3. Click `Activate` or `Network Activate` in Multisite setups.
 4. Click **Docket Cache** in the left menu to access the admin interface.
 
 {% hint style="info" %}
