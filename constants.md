@@ -753,11 +753,20 @@ define('DOCKET_CACHE_OPCVIEWER', false);
 
 ## DOCKET\_CACHE\_GCACTION
 
-Set to `true` to enable Docket Cache Garbage Collector action button at Overview section.\
+Set to `true` to enable Docket Cache Garbage Collector action button at Overview screen.\
 Default:
 
 ```php
 define('DOCKET_CACHE_GCACTION', false);
+```
+
+## DOCKET\_CACHE\_FLUSHACTION
+
+Set to `true` to enable Docket Cache the additional Flush Cache action button on the Configuration screen.\
+Default:
+
+```php
+define('DOCKET_CACHE_FLUSHACTION', false);
 ```
 
 ## DOCKET\_CACHE\_AUTOUPDATE
@@ -782,7 +791,7 @@ define('DOCKET_CACHE_CHECKVERSION', true);
 
 ## DOCKET\_CACHE\_STATS
 
-Set to `true` or `false` to enable or disable object cache data stats at Overview page.\
+Set to `true` or `false` to enable or disable object cache data stats at Overview screen.\
 Default:
 
 ```php
