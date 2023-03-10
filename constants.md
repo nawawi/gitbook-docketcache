@@ -870,6 +870,24 @@ Default:
 define('DOCKET_CACHE_WPDASHBOARDNEWS', false);
 ```
 
+## DOCKET\_CACHE\_WPBROWSEHAPPY
+
+Set to true to disable the WordPress Browse Happy HTTP API requests, which checks whether the user needs a browser update.\
+Default:
+
+```php
+define('DOCKET_CACHE_WPBROWSEHAPPY', false);
+```
+
+## DOCKET\_CACHE\_WPSERVEHAPPY
+
+Set to true to disable the WordPress Serve Happy HTTP API request, which checks whether the user needs to update PHP.\
+Default:
+
+```php
+define('DOCKET_CACHE_WPSERVEHAPPY', false);
+```
+
 ## DOCKET\_CACHE\_POSTVIAEMAIL
 
 Set to true to disable the WordPress post-via-email functionality.\
