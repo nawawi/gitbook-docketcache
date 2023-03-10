@@ -72,6 +72,8 @@ The configuration screen allows you to change the Docket Cache behaviour without
 
 ### Optimisations
 
+| Label                                          | Related Constant                                                                                              |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Optimize WP Query**                          | [DOCKET\_CACHE\_OPTWPQUERY](https://docs.docketcache.com/constants#docket\_cache\_optwpquery)                 |
 | **Optimize Term Count Queries**                | [DOCKET\_CACHE\_OPTERMCOUNT](https://docs.docketcache.com/constants#docket\_cache\_optermcount)               |
 | **Optimize Database Tables**                   | [DOCKET\_CACHE\_CRONOPTMZDB](https://docs.docketcache.com/constants#docket\_cache\_cronoptmzdb)               |
