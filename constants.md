@@ -554,6 +554,24 @@ Default:
 define('DOCKET_CACHE_OPTWPQUERY', true);
 ```
 
+## DOCKET\_CACHE\_LIMITBULKEDIT
+
+Set to `true` or `false` to enable or disable the Bulk Edit Actions when reaching the listed item limit.\
+Default:
+
+```php
+define('DOCKET_CACHE_LIMITBULKEDIT', false);
+```
+
+## DOCKET\_CACHE\_LIMITBULKEDIT\_LIMIT
+
+Set a limit of items listed for Bulk Edit Actions.\
+Default:
+
+```php
+define('DOCKET_CACHE_LIMITBULKEDIT_LIMIT', 100);
+```
+
 ## DOCKET\_CACHE\_MOCACHE
 
 Set to `true` to enable WordPress Translation Caching features that improve the performance of the Translation function.\
