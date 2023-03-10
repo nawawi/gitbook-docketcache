@@ -52,26 +52,48 @@ The Overview screen is the primary place to view the current status of Docket Ca
 
 The configuration screen allows you to change the Docket Cache behaviour without using constant variables. If related constants are defined in the `wp-config.php` file, it will overwrite the changes on this screen.
 
+### Feature Options
+
 | Label                                          | Related Constant                                                                                              |
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Cronbot Service**                            | [DOCKET\_CACHE\_CRONBOT](https://docs.docketcache.com/constants#docket\_cache\_cronbot)                       |
 | **OPcache Viewer**                             | [DOCKET\_CACHE\_OPCVIEWER](admin-interface.md#overview)                                                       |
 | **Cache Log**                                  | [DOCKET\_CACHE\_LOG](https://docs.docketcache.com/constants#docket\_cache\_log)                               |
+
+### Cache Options
+
+| Label                                          | Related Constant                                                                                              |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Advanced Post Caching**                      | [DOCKET\_CACHE\_ADVCPOST](https://docs.docketcache.com/constants#docket\_cache\_advcpost)                     |
 | **Object Cache Precaching**                    | [DOCKET\_CACHE\_PRECACHE](https://docs.docketcache.com/constants#docket\_cache\_precache)                     |
 | **WordPress Translation Caching**              | [DOCKET\_CACHE\_MOCACHE](https://docs.docketcache.com/constants#docket\_cache\_mocache)                       |
 | **Admin Page Cache Preloading**                | [DOCKET\_CACHE\_PRELOAD](https://docs.docketcache.com/constants#docket\_cache\_preload)                       |
+| **Retain Transients in Db**                    | [DOCKET\_CACHE\_TRANSIENTDB](https://docs.docketcache.com/constants#docket\_cache\_transientdb)               |
+
+### Optimisations
+
 | **Optimize WP Query**                          | [DOCKET\_CACHE\_OPTWPQUERY](https://docs.docketcache.com/constants#docket\_cache\_optwpquery)                 |
 | **Optimize Term Count Queries**                | [DOCKET\_CACHE\_OPTERMCOUNT](https://docs.docketcache.com/constants#docket\_cache\_optermcount)               |
 | **Optimize Database Tables**                   | [DOCKET\_CACHE\_CRONOPTMZDB](https://docs.docketcache.com/constants#docket\_cache\_cronoptmzdb)               |
 | **Suspend WP Options Autoload**                | [DOCKET\_CACHE\_WPOPTALOAD](https://docs.docketcache.com/constants#docket\_cache\_wpoptaload)                 |
 | **Post Missed Schedule Tweaks**                | [DOCKET\_CACHE\_POSTMISSEDSCHEDULE](https://docs.docketcache.com/constants#docket\_cache\_postmissedschedule) |
+| **Limit Bulk Edit Actions**                    | [DOCKET\_CACHE\_LIMITBULKEDIT](https://docs.docketcache.com/constants#docket\_cache\_limitbulkedit)           |
 | **Misc Performance Tweaks**                    | [DOCKET\_CACHE\_MISC\_TWEAKS](https://docs.docketcache.com/constants#docket\_cache\_misc\_tweaks)             |
+
+### Woo Tweaks
+
+| Label                                          | Related Constant                                                                                              |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Misc WooCommerce Tweaks**                    | [DOCKET\_CACHE\_WOOTWEAKS](https://docs.docketcache.com/constants#docket\_cache\_wootweaks)                   |
 | **Deactivate WooCommerce Admin**               | [DOCKET\_CACHE\_WOOADMINOFF](https://docs.docketcache.com/constants#docket\_cache\_wooadminoff)               |
 | **Deactivate WooCommerce Widget**              | [DOCKET\_CACHE\_WOOWIDGETOFF](https://docs.docketcache.com/constants#docket\_cache\_woowidgetoff)             |
 | **Deactivate WooCommerce WP Dashboard**        | [DOCKET\_CACHE\_WOOWPDASHBOARDOFF](https://docs.docketcache.com/constants#docket\_cache\_woowpdashboardoff)   |
 | **Deactivate WooCommerce Cart Fragments**      | [DOCKET\_CACHE\_WOOCARTFRAGSOFF](https://docs.docketcache.com/constants#docket\_cache\_woocartfragsoff)       |
+
+### WP Tweaks
+
+| Label                                          | Related Constant                                                                                              |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Remove XML-RPC / Pingbacks**                 | [DOCKET\_CACHE\_PINGBACK](https://docs.docketcache.com/constants#docket\_cache\_pingback)                     |
 | **Remove WP Header Junk**                      | [DOCKET\_CACHE\_HEADERJUNK](https://docs.docketcache.com/constants#docket\_cache\_headerjunk)                 |
 | **Deactivate WP Emoji**                        | [DOCKET\_CACHE\_WPEMOJI](https://docs.docketcache.com/constants#docket\_cache\_wpemoji)                       |
@@ -82,9 +104,19 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **Deactivate WP Application Passwords**        | [DOCKET\_CACHE\_WPAPPPASSWORD](https://docs.docketcache.com/constants#docket\_cache\_wpapppassword)           |
 | **Deactivate WP Events & News Feed Dashboard** | [DOCKET\_CACHE\_WPDASHBOARDNEWS](https://docs.docketcache.com/constants#docket\_cache\_wpdashboardnews)       |
 | **Limit WP-Admin HTTP Requests**               | [DOCKET\_CACHE\_LIMITHTTPREQUEST](https://docs.docketcache.com/constants#docket\_cache\_limithttprequest)     |
+
+### Admin Interface
+
+| Label                                          | Related Constant                                                                                              |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Admin Page Loader**                          | [DOCKET\_CACHE\_PAGELOADER](https://docs.docketcache.com/constants#docket\_cache\_pageloader)                 |
 | **Object Cache Data Stats**                    | [DOCKET\_CACHE\_STATS](https://docs.docketcache.com/constants#docket\_cache\_stats)                           |
 | **Garbage Collector Action Button**            | [DOCKET\_CACHE\_GCACTION](https://docs.docketcache.com/constants#docket\_cache\_gcaction)                     |
+
+### Plugin Options
+
+| Label                                          | Related Constant                                                                                              |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Check Critical Version**                     | [DOCKET\_CACHE\_CHECKVERSION](https://docs.docketcache.com/constants#docket\_cache\_checkversion)             |
 
 ## Cache Log

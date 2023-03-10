@@ -398,7 +398,7 @@ Default:
 ```php
 define('DOCKET_CACHE_ADVCPOSTTYPE',
     [
-     	'post',
+        'post',
         'page',
         'attachment',
         'revision',
