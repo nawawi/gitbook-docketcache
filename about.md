@@ -1,6 +1,5 @@
 ---
-description: >-
-  About Docket Cache and some relevant information.
+description: About Docket Cache and some relevant information.
 ---
 
 # About
@@ -27,13 +26,6 @@ Versions are as follows: Year.Month.Day
 * Month: Two digits representation of a month.
 * Day: Two digits representation of a day.
 
-## Contributions
-
-Anyone can contribute to Docket Cache. Please do so by posting issues when you've found something that is unexpected or sending a pull request for improvements.
-
-* [Report issues](https://wordpress.org/support/plugin/docket-cache/)
-* [Github Repo](https://github.com/nawawi/docket-cache/)
-
 ## License
 
 {% hint style="info" %}
@@ -54,4 +46,3 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 Some parts of the Docket Cache code are borrowed from different open-source projects.\
 The full list can be found here [https://github.com/nawawi/docket-cache/blob/master/credits.tx](https://github.com/nawawi/docket-cache/blob/master/credits.txt).
-
