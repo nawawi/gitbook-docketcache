@@ -52,7 +52,7 @@ The Overview screen is the primary place to view the current status of Docket Ca
 
 The configuration screen allows you to change the Docket Cache behaviour without using constant variables. If related constants are defined in the `wp-config.php` file, it will overwrite the changes on this screen.
 
-#### Feature Options
+#### FEATURE OPTIONS
 
 | Label               | Related Constant                                                                        |
 | ------------------- | --------------------------------------------------------------------------------------- |
@@ -60,7 +60,7 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **OPcache Viewer**  | [DOCKET\_CACHE\_OPCVIEWER](admin-interface.md#overview)                                 |
 | **Cache Log**       | [DOCKET\_CACHE\_LOG](https://docs.docketcache.com/constants#docket\_cache\_log)         |
 
-#### Cache Options
+#### CACHE OPTIONS
 
 | Label                             | Related Constant                                                                                |
 | --------------------------------- | ----------------------------------------------------------------------------------------------- |
@@ -70,7 +70,7 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **Admin Page Cache Preloading**   | [DOCKET\_CACHE\_PRELOAD](https://docs.docketcache.com/constants#docket\_cache\_preload)         |
 | **Retain Transients in Db**       | [DOCKET\_CACHE\_TRANSIENTDB](https://docs.docketcache.com/constants#docket\_cache\_transientdb) |
 
-#### Optimisations
+#### OPTIMISATIONS
 
 | Label                           | Related Constant                                                                                              |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -82,7 +82,7 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **Limit Bulk Edit Actions**     | [DOCKET\_CACHE\_LIMITBULKEDIT](https://docs.docketcache.com/constants#docket\_cache\_limitbulkedit)           |
 | **Misc Performance Tweaks**     | [DOCKET\_CACHE\_MISC\_TWEAKS](https://docs.docketcache.com/constants#docket\_cache\_misc\_tweaks)             |
 
-#### Woo Tweaks
+#### WOO TWEAKS
 
 | Label                                     | Related Constant                                                                                            |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -92,7 +92,7 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **Deactivate WooCommerce WP Dashboard**   | [DOCKET\_CACHE\_WOOWPDASHBOARDOFF](https://docs.docketcache.com/constants#docket\_cache\_woowpdashboardoff) |
 | **Deactivate WooCommerce Cart Fragments** | [DOCKET\_CACHE\_WOOCARTFRAGSOFF](https://docs.docketcache.com/constants#docket\_cache\_woocartfragsoff)     |
 
-#### WP Tweaks
+#### WP TWEAKS
 
 | Label                                          | Related Constant                                                                                          |
 | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -107,7 +107,7 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **Deactivate WP Events & News Feed Dashboard** | [DOCKET\_CACHE\_WPDASHBOARDNEWS](https://docs.docketcache.com/constants#docket\_cache\_wpdashboardnews)   |
 | **Limit WP-Admin HTTP Requests**               | [DOCKET\_CACHE\_LIMITHTTPREQUEST](https://docs.docketcache.com/constants#docket\_cache\_limithttprequest) |
 
-#### Admin Interface
+#### ADMIN INTERFACE
 
 | Label                               | Related Constant                                                                              |
 | ----------------------------------- | --------------------------------------------------------------------------------------------- |
@@ -115,7 +115,7 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **Object Cache Data Stats**         | [DOCKET\_CACHE\_STATS](https://docs.docketcache.com/constants#docket\_cache\_stats)           |
 | **Garbage Collector Action Button** | [DOCKET\_CACHE\_GCACTION](https://docs.docketcache.com/constants#docket\_cache\_gcaction)     |
 
-#### Plugin Options
+#### PLUGIN OPTIONS
 
 | Label                      | Related Constant                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------------- |
