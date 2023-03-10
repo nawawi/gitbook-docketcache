@@ -131,14 +131,14 @@ define('DOCKET_CACHE_MAXFILE', 50000);
 
 ## DOCKET\_CACHE\_CHUNKCACHEDIR
 
-Set to `true` to enable chunking cache files into smaller directories to avoid an excessive number of cache files in one directory.\
+Set to `true` to enable chunking cache files into smaller directories to avoid an excessive number of cache files in one directory.
+
+Only enable it if you have difficulty clearing the cache manually or experience slowdowns when the cache becomes too large.\
 Default:
 
 ```php
 define('DOCKET_CACHE_CHUNKCACHEDIR', false);
 ```
-
-Only enable it if you have difficulty clearing the cache manually or experience slowdowns when the cache becomes too large.
 
 ## DOCKET\_CACHE\_MAXFILE\_LIVECHECK
 
@@ -151,14 +151,14 @@ define('DOCKET_CACHE_MAXFILE_LIVECHECK', false);
 
 ## DOCKET\_CACHE\_EMPTYCACHE\_IGNORE
 
-Set to `true` to enable excluding empty caches from being stored on disk.\
+Set to `true` to enable excluding empty caches from being stored on disk.
+
+Only enable it if you have an issue with inode/file limits.\
 Default:
 
 ```php
 define('DOCKET_CACHE_EMPTYCACHE_IGNORE', false);
 ```
-
-Only enable it if you have an issue with inode/file limits.
 
 ## DOCKET\_CACHE\_PATH
 
@@ -632,7 +632,7 @@ define('DOCKET_CACHE_PRECACHE_MAXGROUP', 20);
 
 ## DOCKET\_CACHE\_IGNORED\_PRECACHE
 
-List of cache groups and keys that should not be precached..\
+List of cache groups and keys that should not be precached.\
 Default:
 
 ```php
@@ -657,14 +657,14 @@ define('DOCKET_CACHE_IGNORED_PRECACHE',
 
 ## DOCKET\_CACHE\_PRELOAD
 
-Set to `true` or `false` to enable or disable cache preloading. If set to `true`, this plugin will fetch predefined URL related to the admin page.\
+Set to `true` or `false` to enable or disable cache preloading. If set to `true`, this plugin will fetch predefined URL related to the admin page.
+
+The preload only runs when doing a cache flush.\
 Default:
 
 ```php
 define('DOCKET_CACHE_PRELOAD', false);
 ```
-
-The preload only runs when doing a cache flush.
 
 ## DOCKET\_CACHE\_PAGELOADER
 
@@ -673,6 +673,35 @@ Default:
 
 ```php
 define('DOCKET_CACHE_PAGELOADER', true);
+```
+
+## DOCKET\_CACHE\_TRANSIENTDB
+
+By default WordPress stores Transients Cache in Database. When a persistent object cache is available, it switches Transients from Database to the object cache.
+
+Some plugins use Transients not in the right way, they store too big data without expiration time. Without expiration, WordPress will place the Transient in the "alloptions" variable. It will make persistent object caching solutions like Docket Cache unable to handle it.
+
+Set to `true` or `false` to enable or disable retaining Transients in the Database.\
+Default:
+
+```php
+define('DOCKET_CACHE_TRANSIENTDB', false);
+```
+
+## DOCKET\_CACHE\_IGNORED\_TRANSIENTDB
+
+A list of Transient names is excluded from being stored in the Database.\
+Default:
+
+```php
+define('DOCKET_CACHE_IGNORED_TRANSIENTDB',
+    [
+        'doing_cron',
+        'update_plugins',
+        'update_themes',
+        'update_core',
+    ]
+);
 ```
 
 ## DOCKET\_CACHE\_CRONBOT
