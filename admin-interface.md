@@ -88,9 +88,11 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | **Misc WooCommerce Tweaks**               | [DOCKET\_CACHE\_WOOTWEAKS](https://docs.docketcache.com/constants#docket\_cache\_wootweaks)                 |
 | **Deactivate WooCommerce Admin**          | [DOCKET\_CACHE\_WOOADMINOFF](https://docs.docketcache.com/constants#docket\_cache\_wooadminoff)             |
-| **Deactivate WooCommerce Widget**         | [DOCKET\_CACHE\_WOOWIDGETOFF](https://docs.docketcache.com/constants#docket\_cache\_woowidgetoff)           |
+| **Deactivate WooCommerce Classic Widget**         | [DOCKET\_CACHE\_WOOWIDGETOFF](https://docs.docketcache.com/constants#docket\_cache\_woowidgetoff)           |
 | **Deactivate WooCommerce WP Dashboard**   | [DOCKET\_CACHE\_WOOWPDASHBOARDOFF](https://docs.docketcache.com/constants#docket\_cache\_woowpdashboardoff) |
+| **Deactivate WooCommerce Extensions Page**   | [DOCKET\_CACHE\_WOOEXTENSIONPAGEOFF](https://docs.docketcache.com/constants#docket\_cache\_wooextensionpageoff) |
 | **Deactivate WooCommerce Cart Fragments** | [DOCKET\_CACHE\_WOOCARTFRAGSOFF](https://docs.docketcache.com/constants#docket\_cache\_woocartfragsoff)     |
+| **Prevent robots crawling add-to-cart links** | [DOCKET\_CACHE\_WOOADDTOCHARTCRAWLING](https://docs.docketcache.com/constants#docket\_cache\_wooaddtochartcrawling)     |
 
 #### WP TWEAKS
 
@@ -105,6 +107,9 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **Deactivate WP Sitemap**                      | [DOCKET\_CACHE\_WPSITEMAP](https://docs.docketcache.com/constants#docket\_cache\_wpsitemap)               |
 | **Deactivate WP Application Passwords**        | [DOCKET\_CACHE\_WPAPPPASSWORD](https://docs.docketcache.com/constants#docket\_cache\_wpapppassword)       |
 | **Deactivate WP Events & News Feed Dashboard** | [DOCKET\_CACHE\_WPDASHBOARDNEWS](https://docs.docketcache.com/constants#docket\_cache\_wpdashboardnews)   |
+| **Deactivate Post Via Email** | [DOCKET\_CACHE\_POSTVIAEMAIL](https://docs.docketcache.com/constants#docket\_cache\_postviaemail)   |
+| **Deactivate Browse Happy Checking** | [DOCKET\_CACHE\_WPBROWSEHAPPY](https://docs.docketcache.com/constants#docket\_cache\_wpbrowsehappy)   |
+| **Deactivate Serve Happy Checking** | [DOCKET\_CACHE\_WPSERVEHAPPY](https://docs.docketcache.com/constants#docket\_cache\_wpservehappy)   |
 | **Limit WP-Admin HTTP Requests**               | [DOCKET\_CACHE\_LIMITHTTPREQUEST](https://docs.docketcache.com/constants#docket\_cache\_limithttprequest) |
 
 #### ADMIN INTERFACE
@@ -114,12 +119,15 @@ The configuration screen allows you to change the Docket Cache behaviour without
 | **Admin Page Loader**               | [DOCKET\_CACHE\_PAGELOADER](https://docs.docketcache.com/constants#docket\_cache\_pageloader) |
 | **Object Cache Data Stats**         | [DOCKET\_CACHE\_STATS](https://docs.docketcache.com/constants#docket\_cache\_stats)           |
 | **Garbage Collector Action Button** | [DOCKET\_CACHE\_GCACTION](https://docs.docketcache.com/constants#docket\_cache\_gcaction)     |
+| **Additional Flush Cache Action Button** | [DOCKET\_CACHE\_FLUSHACTION](https://docs.docketcache.com/constants#docket\_cache\_flushaction)     |
 
 #### PLUGIN OPTIONS
 
 | Label                      | Related Constant                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------------- |
 | **Check Critical Version** | [DOCKET\_CACHE\_CHECKVERSION](https://docs.docketcache.com/constants#docket\_cache\_checkversion) |
+| **Flush Object Cache During Deactivation** | [DOCKET\_CACHE\_FLUSH\_SHUTDOWN](https://docs.docketcache.com/constants#docket\_cache\_flush\_shutdown) |
+| **Flush OPcache During Deactivation** | [DOCKET\_CACHE\_OPCSHUTDOWN](https://docs.docketcache.com/constants#docket\_cache\_opcshutdown) |
 
 ## Cache Log
 
