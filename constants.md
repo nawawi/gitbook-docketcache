@@ -484,7 +484,7 @@ define('DOCKET_CACHE_WOOADMINOFF', false);
 
 ## DOCKET\_CACHE\_WOOWIDGETOFF
 
-Set to true to disable WooCommerce Widget feature.\
+Set to true to disable WooCommerce Classic Widget feature.\
 Default:
 
 ```php
@@ -868,6 +868,15 @@ Default:
 
 ```php
 define('DOCKET_CACHE_WPDASHBOARDNEWS', false);
+```
+
+## DOCKET\_CACHE\_POSTVIAEMAIL
+
+Set to true to disable the WordPress post-via-email functionality.\
+Default:
+
+```php
+define('DOCKET_CACHE_POSTVIAEMAIL', false);
 ```
 
 ## DOCKET\_CACHE\_LIMITHTTPREQUEST
