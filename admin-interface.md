@@ -6,7 +6,7 @@ description: Docket Cache WP Admin Interface
 
 `Updated: 10-Mar-2023 | v22.07.04`
 
-The Docket Cache keeps the admin interface clean, responsive and simple as possible, predefined configuration and reuses WordPress library as much as possible.
+The Docket Cache keeps the admin interface clean, responsive and as simple as possible, with predefined configurations and reusing WordPress libraries as much as possible.
 
 ## Overview
 
@@ -50,7 +50,7 @@ The Overview screen is the primary place to view the current status of Docket Ca
 
 ## Configuration
 
-The configuration screen allows you to change the Docket Cache behaviour without using constant variables. If related constant defined in the `wp-config.php` file, it will overwrite the changes in this screen.
+The configuration screen allows you to change the Docket Cache behaviour without using constant variables. If related constants are defined in the `wp-config.php` file, it will overwrite the changes on this screen.
 
 | Label                                          | Related Constant                                                                                              |
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -89,7 +89,7 @@ The configuration screen allows you to change the Docket Cache behaviour without
 
 ## Cache Log
 
-The cache log section allows you to view cache log for debugging and monitor cache activities. This section only visible if Cache Log option enabled at the configuration screen.
+The cache log screen allows you to view the cache log for debugging and monitor cache activities. This screen is only visible if the Cache Log option is enabled on the configuration screen.
 
 | Label         | Description                |
 | ------------- | -------------------------- |
@@ -105,7 +105,7 @@ Please refer to [`DOCKET_CACHE_LOG*`](https://docs.docketcache.com/constants#doc
 
 ## Cronbot
 
-The cronbot section allows you to connect Docket Cache with Cronbot Service. This section also provides a function to view and execute registered cron task.
+The cronbot screen allows you to connect Docket Cache with Cronbot Service. This screen also provides a function to view and execute registered cron tasks.
 
 | Label                   | Description                                                      |
 | ----------------------- | ---------------------------------------------------------------- |
