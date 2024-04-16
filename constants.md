@@ -312,7 +312,7 @@ Default: not set.
 define('DOCKET_CACHE_IGNORED_GROUPKEY',
   [
     'group1' => ['key1', 'key2'],
-    'group2', => ['key1', 'key2']
+    'group2' => ['key1', 'key2']
   ]
 );
 ```
