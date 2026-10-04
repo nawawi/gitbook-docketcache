@@ -4,11 +4,11 @@ description: Docket Cache uses constants variable as main configuration methods.
 
 # Constants
 
-`Updated: 08-Mar-2023 | v22.07.04`
+`Updated: 04-Oct-2026 | v26.04.07`
 
 Constants are like variables except that once they are defined they cannot be changed or undefined. To change the behaviour of Docket Cache, the following PHP constants can be defined in your `wp-config.php` file.
 
-Docket Cache load the configuration by calling [`Constan::register_default()`](https://github.com/nawawi/docket-cache/blob/master/includes/src/Constans.php#L155) method that can be found in file [includes/src/Constans.php](https://github.com/nawawi/docket-cache/blob/master/includes/src/Constans.php). Some constant marks as @private and for internal use, changing it may result in unpredictable behaviour.
+Docket Cache load the configuration by calling [`Constan::register_default()`](https://github.com/nawawi/docket-cache/blob/master/includes/src/Constans.php#L161) method that can be found in file [includes/src/Constans.php](https://github.com/nawawi/docket-cache/blob/master/includes/src/Constans.php). Some constant marks as @private and for internal use, changing it may result in unpredictable behaviour.
 
 ## DOCKET\_CACHE\_MAXTTL
 
@@ -27,15 +27,18 @@ This setting does not apply to cache groups below if the value of seconds is low
 
 | **Group**      | **Key**                                       | **Seconds**       |
 | -------------- | --------------------------------------------- | ----------------- |
-| site-transient | update\_plugins, update\_themes, update\_core | 2419200 (28 days) |
-| site-transient | any                                           | 604800 (7 days)   |
-| transient      | any                                           | 604800 (7 days)   |
+| site-transient | update\_plugins, update\_themes, update\_core, \_woocommerce\_helper\_updates | 2419200 (28 days) |
 | terms          | any                                           | 1209600 (14 days) |
 | posts          | any                                           | 1209600 (14 days) |
 | post\_meta     | any                                           | 1209600 (14 days) |
 | comments       | any                                           | 1209600 (14 days) |
+| comment\_feed  | any                                           | 1209600 (14 days) |
+| sites          | any                                           | 1209600 (14 days) |
+| networks       | any                                           | 1209600 (14 days) |
 | options        | any                                           | 1209600 (14 days) |
 | site-options   | any                                           | 1209600 (14 days) |
+
+Any other key in the transient and site-transient groups is limited to 86400 seconds (1 day).
 
 ## DOCKET\_CACHE\_MAXSIZE
 
@@ -169,6 +172,32 @@ Default:
 define('DOCKET_CACHE_PATH', WP_CONTENT_DIR.'/cache/docket-cache');
 ```
 
+## DOCKET\_CACHE\_PATH\_NETWORK\_(n)
+
+Set the cache directory for a network in a Multinetwork setup. Replace (n) with the network Id.
+
+It does not apply to the main network, and the `network-(n)` directory is appended to the path.\
+Default: not set.
+
+#### Example:
+
+```php
+define('DOCKET_CACHE_PATH_NETWORK_2', '/path/to/cache/docket-cache');
+```
+
+## DOCKET\_CACHE\_MULTINETWORK
+
+Set to `true` or `false` to force the Multinetwork detection in a Multisite setup, instead of checking the number of networks in the database.
+
+It is ignored if the `MULTINETWORK` constant is defined.\
+Default: not set.
+
+#### Example:
+
+```php
+define('DOCKET_CACHE_MULTINETWORK', true);
+```
+
 ## DOCKET\_CACHE\_DATA\_PATH
 
 Set the configuration directory.\
@@ -261,11 +290,13 @@ define('DOCKET_CACHE_GLOBAL_GROUPS',
     'blog-lookup',
     'global-posts',
     'networks',
+    'network-queries',
     'rss',
     'sites',
     'site-details',
     'site-lookup',
     'site-options',
+    'site-queries',
     'site-transient',
     'users',
     'useremail',
@@ -294,8 +325,14 @@ define('DOCKET_CACHE_IGNORED_GROUPS',
 
 ## DOCKET\_CACHE\_IGNORED\_KEYS
 
-List of cache keys that should not be cached.\
-Default: not set.
+List of cache keys that should not be cached.
+
+This constant is marked as @private and for internal use.\
+Default:
+
+```php
+define('DOCKET_CACHE_IGNORED_KEYS', ['dnh_dismissed_notices']);
+```
 
 #### Example:
 
@@ -305,14 +342,40 @@ define('DOCKET_CACHE_IGNORED_KEYS',['key1', 'key2']);
 
 ## DOCKET\_CACHE\_IGNORED\_GROUPKEY
 
-List of cache groups and keys that should not be cached.\
-Default: not set.
+List of cache groups and keys that should not be cached.
+
+This constant is marked as @private and for internal use.\
+Default:
+
+```php
+define('DOCKET_CACHE_IGNORED_GROUPKEY', []);
+```
+
+#### Example:
 
 ```php
 define('DOCKET_CACHE_IGNORED_GROUPKEY',
   [
     'group1' => ['key1', 'key2'],
     'group2' => ['key1', 'key2']
+  ]
+);
+```
+
+## DOCKET\_CACHE\_FILTERED\_GROUPS
+
+List of cache groups and keys that will be removed from the cache when a post is saved, edited or deleted.
+
+This constant is marked as @private and for internal use.\
+Default:
+
+```php
+define('DOCKET_CACHE_FILTERED_GROUPS',
+  [
+    'counts' => [
+        'posts-page',
+        'posts-post',
+    ],
   ]
 );
 ```
@@ -377,26 +440,37 @@ Default:
 define('DOCKET_CACHE_LOG_ALL', false);
 ```
 
+## DOCKET\_CACHE\_CAPTURE\_FATALERROR
+
+Set to `true` to capture a non-throwable fatal error caused by a cache file. When captured, the cache file is emptied and suspended for 5 minutes. Set true for debugging only.
+
+This constant is marked as @private and for internal use.\
+Default:
+
+```php
+define('DOCKET_CACHE_CAPTURE_FATALERROR', false);
+```
+
 ## DOCKET\_CACHE\_ADVCPOST
 
 Set to `true` to enable Advanced Post Cache features that cache WP Queries for a post which results in faster data retrieval and reduced database workload.\
 Default:
 
 ```php
-define('DOCKET_CACHE_ADVCPOST', true);
+define('DOCKET_CACHE_ADVCPOST', false);
 ```
 
 {% hint style="info" %}
 Since version 22.07.04, the Advanced Post Cache feature is only available for WordPress version 6.1 and below. Since it is already implemented in WordPress Core as WP\_Query caching.
 {% endhint %}
 
-## DOCKET\_CACHE\_ADVCPOSTTYPE
+## DOCKET\_CACHE\_ADVCPOST\_POSTTYPE
 
 List of Post Types allowed for Advanced Post Cache.\
 Default:
 
 ```php
-define('DOCKET_CACHE_ADVCPOSTTYPE',
+define('DOCKET_CACHE_ADVCPOST_POSTTYPE',
     [
         'post',
         'page',
@@ -420,13 +494,13 @@ define('DOCKET_CACHE_ADVCPOSTTYPE',
 Since version 22.07.04, this constant only works for WordPress version 6.1 and below.
 {% endhint %}
 
-## DOCKET\_CACHE\_ADVCPOSTTYPE\_ALL
+## DOCKET\_CACHE\_ADVCPOST\_POSTTYPE\_ALL
 
 Set to true to allow all Post Types for Advanced Post Cache.\
 Default:
 
 ```php
-define('DOCKET_CACHE_ADVCPOSTTYPE_ALL', false);
+define('DOCKET_CACHE_ADVCPOST_POSTTYPE_ALL', false);
 ```
 
 {% hint style="info" %}
@@ -460,6 +534,19 @@ Default:
 
 ```php
 define('DOCKET_CACHE_MISC_TWEAKS', true);
+```
+
+## DOCKET\_CACHE\_TWEAKS\_SINGLESEARCHREDIRECT\_DISABLED
+
+By default, the miscellaneous WordPress performance tweaks redirect the search results to the post if only one post is found.
+
+Set to `true` to disable the redirection.\
+Default: not set.
+
+#### Example:
+
+```php
+define('DOCKET_CACHE_TWEAKS_SINGLESEARCHREDIRECT_DISABLED', true);
 ```
 
 ## DOCKET\_CACHE\_WOOTWEAKS
@@ -524,7 +611,7 @@ Set to true to disable WooCommerce Extensions Page feature.\
 Default:
 
 ```php
-define('DOCKET_CACHE_WOOEXTENSIONPAGEOFF', true);
+define('DOCKET_CACHE_WOOEXTENSIONPAGEOFF', false);
 ```
 
 ## DOCKET\_CACHE\_POSTMISSEDSCHEDULE
@@ -616,14 +703,14 @@ Set to `true` to enable Object Cache Precaching features that increase cache per
 Default:
 
 ```php
-define('DOCKET_CACHE_PRECACHE', true);
+define('DOCKET_CACHE_PRECACHE', false);
 ```
 
 ## DOCKET\_CACHE\_PRECACHE\_MAXFILE
 
 Set the maximum precache file can be store on disk.
 
-Only numbers between 100 and 1000000 are allowed.\
+Only numbers between 200 and 1000000 are allowed, a lower number is reset to the default.\
 Default: 100
 
 ```php
@@ -636,7 +723,7 @@ Set the maximum precache keys.\
 Default: 20
 
 ```php
-define('DOCKET_CACHE_PRECACHE_MAXKEYe', 20);
+define('DOCKET_CACHE_PRECACHE_MAXKEY', 20);
 ```
 
 ## DOCKET\_CACHE\_PRECACHE\_MAXGROUP
@@ -650,7 +737,9 @@ define('DOCKET_CACHE_PRECACHE_MAXGROUP', 20);
 
 ## DOCKET\_CACHE\_IGNORED\_PRECACHE
 
-List of cache groups and keys that should not be precached.\
+List of cache groups and keys that should not be precached.
+
+This constant is marked as @private and for internal use.\
 Default:
 
 ```php
@@ -682,6 +771,40 @@ Default:
 
 ```php
 define('DOCKET_CACHE_PRELOAD', false);
+```
+
+## DOCKET\_CACHE\_PRELOAD\_ADMIN
+
+Set the list of admin page paths to fetch when doing cache preloading, instead of the predefined list.\
+Default: not set.
+
+#### Example:
+
+```php
+define('DOCKET_CACHE_PRELOAD_ADMIN',
+    [
+        'index.php',
+        'edit.php',
+        'plugins.php',
+    ]
+);
+```
+
+## DOCKET\_CACHE\_PRELOAD\_NETWORK
+
+Set the list of network admin page paths to fetch when doing cache preloading in a Multisite setup, instead of the predefined list.\
+Default: not set.
+
+#### Example:
+
+```php
+define('DOCKET_CACHE_PRELOAD_NETWORK',
+    [
+        'index.php',
+        'sites.php',
+        'plugins.php',
+    ]
+);
 ```
 
 ## DOCKET\_CACHE\_PAGELOADER
@@ -726,11 +849,11 @@ define('DOCKET_CACHE_IGNORED_TRANSIENTDB',
 
 The Cronbot is an [external service](https://cronbot.docketcache.com/) that pings your website every hour to keep WordPress Cron running actively. Only site Timezone, URL and version are involved when enabling this service.
 
-Set to `true` or `false` to enable or disable Cronbot Service.\
+Set to `true` or `false` to enable or disable the Cronbot screen, which shows the cron events of your site. Enabling it does not connect your site to the service; the connection is made only when you click Connect on that screen.\
 Default:
 
 ```php
-define('DOCKET_CACHE_CRONBOT', false);
+define('DOCKET_CACHE_CRONBOT', true);
 ```
 
 ## DOCKET\_CACHE\_CRONBOT\_MAX
@@ -751,6 +874,17 @@ Default:
 define('DOCKET_CACHE_OPCVIEWER', false);
 ```
 
+## DOCKET\_CACHE\_OPCVIEWER\_SHOWALL
+
+By default, the OPcache viewer only lists files within the WordPress installation path.
+
+Set to `true` to list all files.\
+Default:
+
+```php
+define('DOCKET_CACHE_OPCVIEWER_SHOWALL', false);
+```
+
 ## DOCKET\_CACHE\_GCACTION
 
 Set to `true` to enable Docket Cache Garbage Collector action button at Overview screen.\
@@ -769,13 +903,35 @@ Default:
 define('DOCKET_CACHE_FLUSHACTION', false);
 ```
 
-## DOCKET\_CACHE\_AUTOUPDATE
+## DOCKET\_CACHE\_CONFIGACTION
 
-Set to `true` or `false` to force enable or disable automatic updates of the Docket Cache.\
+Set to `true` to enable the Export/Import Settings action button on the Configuration screen.\
 Default:
 
 ```php
+define('DOCKET_CACHE_CONFIGACTION', false);
+```
+
+## DOCKET\_CACHE\_AUTOUPDATE
+
+Set to `true` or `false` to force enable or disable automatic updates of the Docket Cache.\
+Default: not set.
+
+#### Example:
+
+```php
 define('DOCKET_CACHE_AUTOUPDATE', true);
+```
+
+## DOCKET\_CACHE\_AUTOUPDATE\_TOGGLE
+
+The state of the Docket Cache Auto Update option on the Configuration screen. It is only to sync with the WordPress `auto_update_plugins` option, use DOCKET\_CACHE\_AUTOUPDATE to force an automatic update.
+
+This constant is marked as @private and for internal use.\
+Default:
+
+```php
+define('DOCKET_CACHE_AUTOUPDATE_TOGGLE', false);
 ```
 
 ## DOCKET\_CACHE\_CHECKVERSION
@@ -795,7 +951,7 @@ Set to `true` or `false` to enable or disable to flush the object cache when dis
 Default:
 
 ```php
-define('DOCKET_CACHE_FLUSH_SHUTDOWN', false);
+define('DOCKET_CACHE_FLUSH_SHUTDOWN', true);
 ```
 
 ## DOCKET\_CACHE\_OPCSHUTDOWN
@@ -804,6 +960,28 @@ Set to `true` or `false` to enable or disable to flush OPcache when disabling or
 
 ```php
 define('DOCKET_CACHE_OPCSHUTDOWN', false);
+```
+
+## DOCKET\_CACHE\_WPCLI
+
+Determine if Docket Cache is running under WP-CLI. The value follows the `WP_CLI` constant.
+
+This constant is marked as @private and for internal use.\
+Default:
+
+```php
+define('DOCKET_CACHE_WPCLI', defined('WP_CLI') && WP_CLI);
+```
+
+## DOCKET\_CACHE\_WPCLI\_OPCACHE
+
+Set to `true` or `false` to enable or disable notifying the web server to invalidate OPcache after cache files are flushed using WP-CLI.
+
+The WP-CLI and the web server have separate OPcache, when enabled Docket Cache sends a non-blocking HTTP request to the web server after flushing so the OPcache invalidation runs in the correct process.\
+Default:
+
+```php
+define('DOCKET_CACHE_WPCLI_OPCACHE', true);
 ```
 
 ## DOCKET\_CACHE\_STATS
@@ -821,7 +999,7 @@ Set to true to disable WordPress XML-RPC and Pingbacks related features.\
 Default:
 
 ```php
-define('DOCKET_CACHE_PINGBACK', false);
+define('DOCKET_CACHE_PINGBACK', true);
 ```
 
 ## DOCKET\_CACHE\_HEADERJUNK
@@ -830,7 +1008,7 @@ Set to true to disable WordPress features related to HTML header such as meta ge
 Default:
 
 ```php
-define('DOCKET_CACHE_HEADERJUNK', false);
+define('DOCKET_CACHE_HEADERJUNK', true);
 ```
 
 ## DOCKET\_CACHE\_WPEMOJI
@@ -858,6 +1036,17 @@ Default:
 
 ```php
 define('DOCKET_CACHE_WPEMBED', false);
+```
+
+## DOCKET\_CACHE\_WPEMBED\_BODYCLASS\_FILTER
+
+Set to `true` to remove the `wp-embed-responsive` class from the HTML body class. It only works when DOCKET\_CACHE\_WPEMBED is set to true.\
+Default: not set.
+
+#### Example:
+
+```php
+define('DOCKET_CACHE_WPEMBED_BODYCLASS_FILTER', true);
 ```
 
 ## DOCKET\_CACHE\_WPLAZYLOAD
@@ -955,6 +1144,225 @@ define('DOCKET_CACHE_LIMITHTTPREQUEST_WHITELIST',
 );
 ```
 
+## DOCKET\_CACHE\_HTTPHEADERSEXPECT
+
+By default, cURL sends the "Expect" header all the time which severely impacts performance.
+
+Set to `true` to only send it if the request body is larger than 1MB.\
+Default:
+
+```php
+define('DOCKET_CACHE_HTTPHEADERSEXPECT', false);
+```
+
+{% hint style="info" %}
+This constant only works for WordPress below version 5.8.
+{% endhint %}
+
+## DOCKET\_CACHE\_CACHEHTTPRESPONSE
+
+Set to `true` to enable caching the HTTP response of requests made by plugins or themes that used `wp_remote_request` function. Only responses with HTTP status code 200 are cached.
+
+Requests to the site itself, localhost, wordpress.org, docketcache.com, paypal.com, braintree-api.com, stripe.com, cloudflare.com and woocommerce.com are excluded.\
+Default:
+
+```php
+define('DOCKET_CACHE_CACHEHTTPRESPONSE', false);
+```
+
+## DOCKET\_CACHE\_CACHEHTTPRESPONSE\_TTL
+
+Default HTTP response cache lifespan in seconds.\
+Default: 300 (5 minutes)
+
+```php
+define('DOCKET_CACHE_CACHEHTTPRESPONSE_TTL', 300);
+```
+
+## DOCKET\_CACHE\_CACHEHTTPRESPONSE\_INCLUDE
+
+Set the list of URLs included in the HTTP response caching. If empty, any URL will be included.\
+Default:
+
+```php
+define('DOCKET_CACHE_CACHEHTTPRESPONSE_INCLUDE', []);
+```
+
+## DOCKET\_CACHE\_CACHEHTTPRESPONSE\_EXCLUDE
+
+Set the list of URLs excluded from the HTTP response caching.\
+Default:
+
+```php
+define('DOCKET_CACHE_CACHEHTTPRESPONSE_EXCLUDE', []);
+```
+
+#### Example:
+
+```php
+define('DOCKET_CACHE_CACHEHTTPRESPONSE_EXCLUDE',
+    [
+        'https://example.com/api/status',
+    ]
+);
+```
+
+## DOCKET\_CACHE\_RTPOSTAUTOSAVE
+
+The post auto-save interval in minutes, applied to the WordPress `AUTOSAVE_INTERVAL` constant.
+
+Available options: 1, 5, 15, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default:
+
+```php
+define('DOCKET_CACHE_RTPOSTAUTOSAVE', 1);
+```
+
+## DOCKET\_CACHE\_RTPOSTREVISION
+
+The post revisions limit, applied to the WordPress `WP_POST_REVISIONS` constant.
+
+Available options: 3, 5, on (no limit), off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default:
+
+```php
+define('DOCKET_CACHE_RTPOSTREVISION', 'on');
+```
+
+## DOCKET\_CACHE\_RTPOSTEMPTYTRASH
+
+The number of days before WordPress empties the trash bin, applied to the WordPress `EMPTY_TRASH_DAYS` constant.
+
+Available options: 7, 14, 30, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default:
+
+```php
+define('DOCKET_CACHE_RTPOSTEMPTYTRASH', 30);
+```
+
+## DOCKET\_CACHE\_RTPLUGINTHEMEEDITOR
+
+Disable the plugin and theme editor, applied to the WordPress `DISALLOW_FILE_EDIT` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: off, or on if `DISALLOW_FILE_EDIT` is defined as true.
+
+```php
+define('DOCKET_CACHE_RTPLUGINTHEMEEDITOR', 'off');
+```
+
+## DOCKET\_CACHE\_RTPLUGINTHEMEINSTALL
+
+Disable the plugin and theme installation and update from the WordPress admin area, applied to the WordPress `DISALLOW_FILE_MODS` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: off, or on if `DISALLOW_FILE_MODS` is defined as true.
+
+```php
+define('DOCKET_CACHE_RTPLUGINTHEMEINSTALL', 'off');
+```
+
+## DOCKET\_CACHE\_RTIMAGEOVERWRITE
+
+Overwrite the images after editing instead of creating a new set of images, applied to the WordPress `IMAGE_EDIT_OVERWRITE` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: off, or on if `IMAGE_EDIT_OVERWRITE` is defined as true.
+
+```php
+define('DOCKET_CACHE_RTIMAGEOVERWRITE', 'off');
+```
+
+## DOCKET\_CACHE\_RTWPDEBUG
+
+Turn on WordPress debugging, applied to the WordPress `WP_DEBUG` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: off, or on if `WP_DEBUG` is defined as true.
+
+```php
+define('DOCKET_CACHE_RTWPDEBUG', 'off');
+```
+
+## DOCKET\_CACHE\_RTWPDEBUGDISPLAY
+
+Print the debug info, applied to the WordPress `WP_DEBUG_DISPLAY` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: off, or on if `WP_DEBUG_DISPLAY` is defined as true.
+
+```php
+define('DOCKET_CACHE_RTWPDEBUGDISPLAY', 'off');
+```
+
+## DOCKET\_CACHE\_RTWPDEBUGLOG
+
+Log the debug info, applied to the WordPress `WP_DEBUG_LOG` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: off, or on if `WP_DEBUG_LOG` is defined as true.
+
+```php
+define('DOCKET_CACHE_RTWPDEBUGLOG', 'off');
+```
+
+## DOCKET\_CACHE\_RTWPCOREUPDATE
+
+The state of the Disallows WP Auto Update Core option, related to the WordPress `WP_AUTO_UPDATE_CORE` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: on, or off if `WP_AUTO_UPDATE_CORE` is defined as true.
+
+```php
+define('DOCKET_CACHE_RTWPCOREUPDATE', 'on');
+```
+
+## DOCKET\_CACHE\_RTCONCATENATESCRIPTS
+
+Disable compression and concatenation of WP-Admin scripts and CSS, applied to the WordPress `CONCATENATE_SCRIPTS` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: off, or on if `CONCATENATE_SCRIPTS` is defined as false.
+
+```php
+define('DOCKET_CACHE_RTCONCATENATESCRIPTS', 'off');
+```
+
+## DOCKET\_CACHE\_RTDISABLEWPCRON
+
+Disable the WP pseudo-cron, applied to the WordPress `DISABLE_WP_CRON` constant.
+
+Available options: on, off.
+
+This constant is marked as @private and set by Docket Cache from the Runtime Options on the Configuration screen.\
+Default: off, or on if `DISABLE_WP_CRON` is defined as true.
+
+```php
+define('DOCKET_CACHE_RTDISABLEWPCRON', 'off');
+```
+
 ## DOCKET\_CACHE\_GCRON\_DISABLED
 
 Set to true to disable Garbage Collector Cron Events. By defining it as true, Docket Cache will not install Cron Event for Garbage Collector. You need to run it manually using wp-cli or a custom Cron Events.\
@@ -1005,4 +1413,17 @@ Default:
 
 ```php
 define('DOCKET_CACHE_DISABLED', false);
+```
+
+## DOCKET\_CACHE\_IGNORE\_REQUEST
+
+List of request keys that bypass the Docket Cache object cache if any of them exists in the current request.
+
+Just for development, it may cause uncertain results.\
+Default: not set.
+
+#### Example:
+
+```php
+define('DOCKET_CACHE_IGNORE_REQUEST', ['key1', 'key2']);
 ```

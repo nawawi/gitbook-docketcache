@@ -1,136 +1,183 @@
 ---
-description: Core Caching Concepts in WordPress.
+description: How the caching layers in WordPress fit together, from the object cache API and transients to page caching and OPcache.
 ---
 
 # Caching In WordPress
 
-The purpose of this article is to provide a framework for thinking about caching. It discusses core caching concepts that can be difficult to grasp when first working with caching in web development projects. These concepts are then specifically applied to the WordPress context. Finally, some general tips are given about caching.
+"Caching" in WordPress is not one thing. A typical site has several independent caches, each storing a different kind of result at a different point in the request. Most confusion, and most misconfiguration, comes from treating them as interchangeable. In this article we walk through each layer, show how to use the object cache API correctly, and explain where a file-based persistent object cache such as Docket Cache sits among them.
 
-{% hint style="success" %}
-This article originally from [tollmanz.com](https://www.tollmanz.com/core-caching-concepts-in-wordpress/) blog.
+## The Layers At A Glance
+
+| Layer | What it stores | Where it lives | Survives the request |
+| --- | --- | --- | --- |
+| OPcache | Compiled PHP bytecode | Shared memory of the PHP process | Yes |
+| Object cache (default) | PHP values keyed by name and group | Memory of the current request | No |
+| Object cache (persistent) | The same values | Redis, Memcached, files and so on | Yes |
+| Transients | Values with an optional lifetime | Options table, or the object cache | Yes |
+| Page cache | Complete HTML responses | Disk, memory or a reverse proxy | Yes |
+
+The layers complement each other. A page cache avoids running WordPress at all for requests it can answer. The object cache makes the requests that do reach WordPress cheaper. OPcache makes the PHP code behind both faster to load.
+
+## The Object Cache
+
+WordPress core wraps almost every expensive lookup in the object cache: posts, post meta, terms, users, options and, since WordPress 6.1, the results of `WP_Query` database queries. The API is a small set of functions backed by a global `WP_Object_Cache` instance.
+
+Every entry is identified by a key and a group. The group is a namespace, so the key `42` in group `posts` is unrelated to the key `42` in group `users`.
+
+| Function | Purpose |
+| --- | --- |
+| `wp_cache_get( $key, $group, $force, &$found )` | Read a value |
+| `wp_cache_set( $key, $data, $group, $expire )` | Write a value, replacing any existing one |
+| `wp_cache_add( $key, $data, $group, $expire )` | Write only if the key does not exist yet |
+| `wp_cache_delete( $key, $group )` | Remove a single entry |
+| `wp_cache_flush()` | Remove everything |
+
+### Non-persistent By Default
+
+Out of the box, `WP_Object_Cache` keeps its data in a PHP array. The cache is created at the start of a request and discarded at the end. That still helps, because the same post or option is often requested many times while one page is built, but nothing carries over to the next visitor. Every request starts cold and repeats the same database queries.
+
+### Persistent With A Drop-in
+
+To keep cached values between requests, WordPress looks for a file named `object-cache.php` in the `wp-content` directory. If it exists, WordPress loads it instead of its built-in implementation, and that file is free to define the `wp_cache_*` functions against any storage backend. This file is called a drop-in. It is not a normal plugin: it loads very early, before plugins, and only one can be present at a time.
+
+When a drop-in is active, `wp_using_ext_object_cache()` returns `true`. Core and plugins use that function to change their behaviour, most notably for transients, as described below. Since WordPress 6.1, the Site Health screen also reports whether a persistent object cache is in use and recommends one when the site would benefit.
+
+With WP-CLI you can check which backend is active:
+
+```shell
+wp cache type
+```
+
+### Using The API Correctly
+
+The standard pattern is read, fall back, write:
+
+```php
+function myplugin_get_report( int $year ) {
+    $key    = 'report_' . $year;
+    $report = wp_cache_get( $key, 'myplugin', false, $found );
+
+    if ( ! $found ) {
+        $report = myplugin_build_report( $year ); // The slow part.
+        wp_cache_set( $key, $report, 'myplugin', HOUR_IN_SECONDS );
+    }
+
+    return $report;
+}
+```
+
+Two details matter here. First, `wp_cache_get()` returns `false` on a miss, which is indistinguishable from a cached `false`, `0` or empty result. The fourth parameter, `$found`, is set by reference and tells you whether the key really existed. Without it, a legitimately empty result is rebuilt on every request. Second, always use your own group name so that your keys cannot collide with core or with other plugins.
+
+When you need several entries, fetch them in one call. `wp_cache_get_multiple()` was added in WordPress 5.5, and the matching `wp_cache_set_multiple()`, `wp_cache_add_multiple()` and `wp_cache_delete_multiple()` in 6.0. Backends with a network round trip per lookup benefit the most.
+
+```php
+$keys   = array( 'report_2024', 'report_2025', 'report_2026' );
+$values = wp_cache_get_multiple( $keys, 'myplugin' );
+
+foreach ( $values as $key => $value ) {
+    if ( false === $value ) {
+        // Not cached: rebuild this one.
+    }
+}
+```
+
+### Invalidation
+
+Delete or overwrite the entry at the moment the underlying data changes, rather than waiting for it to expire. For a single entry that is `wp_cache_delete()`. To clear everything your plugin has cached, WordPress 6.1 introduced `wp_cache_flush_group()`. Not every backend can flush a single group, so check first with `wp_cache_supports()`, also added in 6.1:
+
+```php
+function myplugin_clear_cache() {
+    if ( wp_cache_supports( 'flush_group' ) ) {
+        wp_cache_flush_group( 'myplugin' );
+        return;
+    }
+
+    // Fallback: delete the keys you know about.
+    foreach ( array( 'report_2024', 'report_2025', 'report_2026' ) as $key ) {
+        wp_cache_delete( $key, 'myplugin' );
+    }
+}
+```
+
+`wp_cache_supports()` accepts `add_multiple`, `set_multiple`, `get_multiple`, `delete_multiple`, `flush_runtime` and `flush_group`.
+
+{% hint style="info" %}
+Avoid calling `wp_cache_flush()` from plugin code. It empties the cache for the whole site, and on a busy site every visitor then pays to rebuild it at the same time.
 {% endhint %}
 
-## Cache Types
+## Transients
 
-To begin, this section will cover four different types of caches that one may encounter. An understanding of these concepts helps to navigate some of the jargon used when reading about caching systems.
+A transient is a named value with an optional lifetime, set with `set_transient()` and read with `get_transient()`. Transients exist to give plugin and theme authors something that persists between requests on every site, whether or not a persistent object cache is installed.
 
-### 1. Run-time Cache
+```php
+$rates = get_transient( 'myplugin_rates' );
 
-A run time cache is a cache that only lasts the duration of a request. Objects are stored in memory but expelled as soon as the request is completed. Any time that you set a value or the results of a routine to variable and use it multiple times, you are making use of a run-time cache. If you need the same data twice in one request, there is no point in regenerating the data multiple times.
+if ( false === $rates ) {
+    $response = wp_remote_get( 'https://api.example.com/rates' );
 
-As a WordPress example, the main query and the current post object are stored in the `$wp_query` and `$post` global variables, respectively. When data about the current post is needed, MySQL isn’t queried again; rather, the data is pulled from the `$post` global variable. The run-time cache is a simple and efficient strategy for caching data.
+    if ( ! is_wp_error( $response ) ) {
+        $rates = json_decode( wp_remote_retrieve_body( $response ), true );
+        set_transient( 'myplugin_rates', $rates, 15 * MINUTE_IN_SECONDS );
+    }
+}
+```
 
-The major problem with the run-time cache is that it only lasts the duration of the request. As soon as the request is completed, the cache is dumped. Even though a visitor would generate data that might be used across multiple requests, that data does not persist across requests and will need to be regenerated for every single request. This problem can be solved with object caching.
+Where the value ends up depends on the site:
 
-### 2. Object Caching
+- Without a persistent object cache, the transient is written to the options table as a `_transient_{name}` row, plus a `_transient_timeout_{name}` row when it has an expiry.
+- With a persistent object cache, `set_transient()` calls `wp_cache_set()` in the `transient` group instead and the database is not touched. Site transients use the `site-transient` group.
 
-Object caching is the act of moving data from a place of expensive and slow retrieval to a place of cheap and fast retrieval. An object cache is also typically persistent, meaning that data cached during one request is available during subsequent requests.
+This switch has practical consequences:
 
-In addition to making data access much easier, cached data should always be replaceable and regenerable. If an application experiences database corruption \(e.g., MySQL, Postgres, Couchbase\), there will and should be severe consequences for this database \(and let us hope that there is a good backup plan in place\). In contrast with the main data store for the application, if a cache is corrupted, the application should continue to function as the cached data should regenerate itself. No data will be lost, although there will likely be some performance problems as the cache regenerates.
+- A transient is never guaranteed to exist until its expiry. A cache flush or an eviction can remove it early, so the code must always be able to rebuild the value.
+- In the database, a transient without an expiry is stored as an autoloaded option and is therefore loaded on every request. Give transients an expiry unless they are small and genuinely needed everywhere.
+- `get_transient()` returns `false` on a miss and has no `$found` equivalent, so do not store a bare `false`. Store an empty array or another sentinel value instead.
+- Transient names should be 172 characters or fewer.
 
-The storage engine for an object cache can be a number of technologies. Popular object caching engines include Memcached, Redis, OPcache and the file system. The caching engine used should be dictated by the needs of the application. Each has its advantages and disadvantages. At a bare minimum, the engine used should make accessing the data more performant than regenerating the data.
+## Options And The alloptions Cache
 
-The object cache tends to be very critical for the application because it can be used to implement the other caches that will be discussed in this article. In other words, if your object cache is implemented incorrectly, you may undermine the rest of your caching architecture.
+Options have their own caching built on top of the object cache. Early in each request, `wp_load_alloptions()` reads every autoloaded option in a single query and stores the whole set under the key `alloptions` in the `options` group. Any later `get_option()` call for an autoloaded option is answered from that array. Options that are not autoloaded are queried on first use and cached individually in the same group.
 
-### 3. Page Cache
+This is efficient as long as the autoloaded set stays small. It becomes a problem when plugins store large blobs or rarely used data as autoloaded options, because the whole array is loaded on every request, and with a persistent object cache it is also read from and written back to the backend as one large value. Since WordPress 6.6, core decides for itself whether an option should autoload when the caller does not specify, and it keeps very large values out of the autoloaded set by default.
 
-A page cache stores HTML data that represents a single page. In many cases, the page uses the object cache to store its data. In such cases, a page cache is simply a special type of object cache. That said, the page cache can use an entirely different storage engine than the object cache. In fact, two popular choices for a page cache are Varnish and Nginx, which are a reverse proxy implementation of a page cache that stores data separately from the object cache.
+When you add an option that is only needed on a few screens, say so explicitly:
 
-Unlike the object cache engine that could be used for the page cache storage, the reverse proxy caching would not be good candidates for object caching storage engines and there are also some major technical limitations for using a reverse proxy cache for an object cache.
+```php
+add_option( 'myplugin_import_log', $log, '', false );
+```
 
-It is important to distinguish object and page caches. Page caches can lead to significant performance boosts for a web site with a minimal amount of effort; however, they are limited in that many page caching systems make the assumption that every page is rendered identically for every visitor. In other words, the assumption is often made that the page is never unique for an individual user. If your site meets this requirement, you will experience significant gains from implementing a page cache.
+## Page Caching
 
-Page caching becomes extremely tricky and nearly impossible when the need for unique page views is introduced. In the case of unique pages for every visitor, effective use of object caching is crucial, but you likely will not see the same gains from only object caching that you will see from the only page cache.
+A page cache stores the finished HTML of a response and serves it for later requests to the same URL. On a hit, little or no WordPress code runs, which is why it gives the largest improvement of any layer for anonymous traffic.
 
-It is always important to remember that, with some exceptions, when you implement a page cache, every user will see the same page. If you develop your site with data that is rendered uniquely for an individual \(e.g., printing the user’s name in the header\), that data will be cached for all users. There are certainly ways around this \(e.g., do not cache logged in views\) and you must consider this when implementing a page cache.
+Inside WordPress, page caching plugins hook in through another drop-in, `wp-content/advanced-cache.php`, which is loaded very early when the `WP_CACHE` constant is `true`. Outside WordPress, the same job can be done by the web server, a reverse proxy or a CDN.
 
-### 4. Fragment Caching
+The limitation is that a cached page is the same for everyone who receives it. Logged-in users, carts, checkouts, the dashboard, REST API and AJAX requests are normally excluded. Those requests run the full WordPress stack, and that is exactly where the object cache does its work. A site with many logged-in users or an active shop depends far more on the object cache than a brochure site does.
 
-Fragment caching is the act of caching only part of a full page. Fragments are merely objects that are not full pages. It can be really tough to distinguish objects from fragments. When people talk about fragments, they are usually referring to identifiable chunks of a page. For example, a profile widget, footer, or related posts listing would all be considered fragments \(but, ugh, they are also objects\).
+## OPcache
 
-Typically, the fragment cache uses the object cache as the storage engine for the fragments. In that sense, a fragment cache is usually nothing more than an object cache that is storing named parts of a page.
+OPcache is a PHP extension, not a WordPress feature. It keeps the compiled bytecode of PHP scripts in shared memory so that PHP does not have to read and compile the same files on every request. It speeds up loading WordPress core, plugins and themes, but it knows nothing about posts, options or queries. It caches code, not data.
 
-## A Caching Metaphor
+## Where Docket Cache Fits
 
-As the primary purpose of this article is to make sense of the caching concepts presented above, a metaphor will use to enhance the understanding of these concepts with particular emphasis on the page and object caching. Previously stated that we all have experience with caching and the concepts were presented. Let go too deep explanation.
+Docket Cache is a persistent object cache. It installs the `object-cache.php` drop-in, so everything described above about a persistent backend applies: core object caching survives between requests, and transients move out of the options table into the cache.
 
-Caching is like buying and storing groceries. When you go to the store, you purchase a variety of items. After returning from the store, you store items in your cabinets, refrigerator and counter. Your tip to the store is an act of caching. Obtaining food from one location and storing it in a new location that allows for cheaper and faster access follows the same principle. Let us compare a specific food item to caching.
+What differs is the storage. Instead of sending values to a Redis or Memcached server, or writing them to files with `serialize` and reading them back with `unserialize`, Docket Cache writes each cached object as plain PHP code. Because the cache files are ordinary PHP files, OPcache compiles them and keeps them in shared memory, and reading a cached object becomes a matter of loading an already compiled script. In effect, the data layer borrows the mechanism PHP already uses for code. It needs no extra service, which makes it suitable for shared hosting where Redis and Memcached are not available. It still works when OPcache is not available, only slower, because the files are then read from disk.
 
-Many of us buy eggs for use in different meals. One strategy for purchasing eggs would be to go to a market that sells them individually. If you wake up in the morning and want a 2 egg omelette, you could walk to the market, buy 2 eggs, return home and make the omelette. If you want an omelette for the next’s morning breakfast, you can repeat the process. Most of you will see this as a rather absurd process and will instantly see a more efficient strategy of buying a dozen eggs during a single trip to the market, then storing them in the refrigerator for quick access when making your morning meals.
+A few behaviours are worth knowing when you write code that runs on top of it:
 
-The process of buying eggs and storing them in your refrigerator is similar to caching objects in web development. The process is similar in that you are moving a resource from a place of difficult access to a place of easy access.
+- An entry stored with no expiry, or an expiry of `0`, is given a default lifespan set by `DOCKET_CACHE_MAXTTL`, which is four days unless changed.
+- The groups `counts`, `plugins` and `themes` are not stored by default. The list is controlled by `DOCKET_CACHE_IGNORED_GROUPS`.
+- If a plugin misuses transients, for example by storing very large values with no expiry, `DOCKET_CACHE_TRANSIENTDB` keeps transients in the database rather than the object cache.
 
-To further improve on this metaphor, one purpose of going to the store is to obtain ingredients to make a meal. A meal is composed of numerous ingredients. If you have the ingredients in your refrigerator or cupboards, you can access those ingredients to compose the meal. The meal, in this case, is analogous to the page cache. The page cache is composed of many components, some of which are cached items. With making a meal, you pull items from your refrigerator or cabinets and you must visit the store if you are missing some items. The meal is then composed of items found in your house and the store. If you are really efficient, then the meal is composed entirely of items found in your house. This is similar to page caching in that if your application takes advantage of an object cache, your page cache can be composed entirely of cached objects that are pulled together to form a single page view.
+Docket Cache replaces other object cache plugins, since only one `object-cache.php` can exist, but it works alongside a page cache. The two solve different problems and are best used together.
 
-Sometimes, we can also be really efficient and make extras when we cook a meal. Perhaps when cooking your omelette, you decide to cook 5 omelettes, which you store for later meals. This is similar to a page cache in that you will build the page cache and store that as an object for later use. Rather than making omelettes 5 times, you can make 5 omelettes at once and store them in the fridge for later meals.
+## Practical Guidelines
 
-But the comparisons are not done there. An object cache can be implemented with various storage engines just as you can store your food in various storage devices. You can put your haul in the refrigerator, the freezer, a cabinet, the counter, on shelves, in the pantry, in the basement, etc. You make these decisions based on what storage options you have, how full the storage devices are, your access to additional storage devices, etc. When deciding on a storage engine for your application, you mull over these same decisions. Just like it makes good sense to put your eggs in the refrigerator instead of the cupboard, it might make more sense to hold your page cache in Varnish vs. Memcached; however, sometimes you do not have a refrigerator at your disposal, you have to improvise and store your eggs in a cooler full of ice.
-
-### Use the Metaphor
-
-The purpose of this metaphor is to make it clear that you know more about caching than you think you do. You have used caching strategies before. You can get a lot of mileage out of comparing caching in web development with the process of retrieving groceries to prepare meals.
-
-For instance, you would laugh at someone who went to the store and bought a cup of flour every time the individual needed a single cup of flour for a meal. You would instantly realize that this strategy is time consuming, inefficient and expensive. As a web developer, you should have the exact same reaction when a developer pings Twitter’s API to get Tweets every time a page is loaded. This is an expensive process that is slow and inefficient. In both situations, you should recognize the importance of getting the objects that you need and storing them in a place that is easier to access for future use.
-
-Remember that object caching is like grocery shopping. Storing the acquired objects is like putting away the groceries in your house. Building a page cache is making the meal from your cached items. By thinking of your application as an analogy for making a meal, you can gain some insight into inefficiencies in your caching strategy.
-
-## Applying Caching Concepts to WordPress
-
-Now that we have a good understanding of core caching concepts, it is time to apply them to WordPress. In this section of the article, we will focus on the object cache and page cache as there are clear correlates to those concepts in WordPress. There is no fragment cache in WordPress, so that will not be discussed.
-
-### 1. WordPress Object Caching
-
-WordPress implements an object cache through two different mechanisms: `transients` and the `WP_Object_Cache` class. The hallmark of object caching is to provide a persistent caching backend that allows cached data to be available across requests. Both `transients` and the `WP_Object_Cache` class can provide this persistence.
-
-### **2. Transients**
-
-Out of the box, WordPress supports persistent object caching via transients. The WordPress transients API allows you to store, retrieve, and delete objects from the database. By default, the transients cache uses the `wp_options` table for data storage. A point of confusion regarding transients as an object cache often comes from fact that transients are stored in WordPress’s MySQL database table. A MySQL database is a minimally sufficient place to store objects as it can be a location that allows much faster retrieval of data than the object’s original location.
-
-Transients are an excellent object cache option in WordPress because they provide a persistent cache with zero configuration. For plugin and theme developers, you can nearly guarantee that you will be using a persistent cache when you use the transients API. The downside to the transient cache is that it is using MySQL, which is one of the slower and riskier options for storing cached data. It is usually a better strategy to separate the caching engine from the main data store in order to maximize the efficiency of both stores.
-
-### **3. The WP\_Object\_Cache Class**
-
-The [WP\_Object\_Cache](https://developer.wordpress.org/reference/classes/wp_object_cache/) class is a class that defines the storage engine for WordPress’s object cache. This class can be overridden with a custom class, meaning that a developer can configure WordPress to use any storage engine as an object cache. The two most popular in the WordPress world is Memcached and Redis.
-
-The advantage of using the WP\_Object\_Cache class is primarily performance. Using this class allows you to extend WordPress to use the absolute best caching engines in the world. For instance, using Memcached as WordPress’s object cache gives ridiculously fast data access that easily scales to multiple servers. Memcached is an important caching engine for use with high traffic websites. With the WP\_Object\_Cache class, developers can finely tune the caching experience in WordPress, whereas using the transients API gives you very little control over the caching engine. Relating this class back to the metaphor, the WP\_Object\_Cache class allows you to precisely decide where your food will be stored.
-
-As an added benefit of using the WP\_Object\_Cache class, code that uses the transient API will actually use the storage engine in WP\_Object\_Cache class if it is defined. For instance, if you have a finely tuned system using Memcached as the caching engine and you install a plugin that uses the transients API, it will take full advantage of your Memcached installation instead of storing data in the MySQL database.
-
-By default, the WP\_Object\_Cache is defined, but only implements a run-time cache. Since WordPress cannot decide whether or not you have a storage engine available and because it has to make sure that use of the object cache API does not cause fatal errors, it implements a default WP\_Object\_Cache class. This default class merely stores data in a PHP variable during run time and is non-persistent. This, however, can be overridden.
-
-To define your own object cache, you must add a file to `wp-content/` named `object-cache.php`. If this file is defined, it will be loaded instead of the default class. This type of file is known as a WordPress drop-in. A few different `object-cache.php` files exist in the plugin repository for different caching engines like Memcached, Redis or OPcache.
-
-### 4. WordPress Page Caching
-
-Similar to the WP\_Object\_Cache class, WordPress offers a drop-in to define a page cache. By placing a file named `advanced-cache.php` into the `wp-content/` directory, you can define all of the logic related to caching a page.
-
-The general idea for the logic behind the page caching mechanism is as follows:
-
-1. Based on the URL of the request \(as well as a few other pieces of information\), look in the object cache to see if the cached version of the page exists.
-2. If the page exists, serve it and complete the request.
-3. If the page does not exist, start output buffering, load the page, finish output buffering and store the output for subsequent requests.
-
-There are some finer nuances to a page caching system, but that logic defines the main mechanism for generating a page cache.
-
-The beauty of `advanced-cache.php` is that it is loaded in the first 1% of the WordPress page load. As such, if the cached page is found, 99% of the WordPress load is avoided, which leads to a significant performance boost in the application. An important thing to note with `advanced-cache.php` is that it needs a persistent cache to store its data. The most effective solution is to use a persistent object cache as the data store, but solid solutions exist that utilize the file system for this cache.
-
-While use of `advanced-cache.php` is the easiest and most accessible form of page caching in WordPress, you can also use a reverse proxy approach with Varnish, Nginx, or a hosted caching solution. We will not go into these solutions here because these are mostly configured at the systems level and have little to do with WordPress specifically. We only touch on this as an alternative to `advanced-cache.php`.
-
-## Caching Tips
-
-Now that you know a little about caching in WordPress, here some nuggets of "wisdom" that has been collected through experience with caching in WordPress. In hope, you can avoid some struggles that some people have faced before.
-
-1. Never depend on your cache for application functionality. You should always develop your application with the assumption that the cache is 100% broken. Whether or not the cache is operational, your application should still provide the intended functionality. Your cache should always be able to regenerate itself if it is corrupted.
-2. Use your cache as a "progressive enhancement" for performance. While your application should function without the cache, that does not mean that it should perform well. The caching layer is to provide better performance, not functionality. As such, you can think of the caching layer as a progressive enhancement that improves the performance of the application but still works without caching.
-3. Test your application with caching on and off. To verify that your application is functioning properly, it should be tested with and without the cache turned on. Depending on the caching strategy and storage engines used this can be more or less difficult. To avoid really inconvenient surprises, it is best to check the application in both states.
-4. Always set an expiration value for every object that is cached. Theoretically, for maximum efficiency, you should only refresh a cached object when it changes; however, you will eventually stumble upon a very difficult to debug situation if you do not set your cached objects to eventually expire. This will help avoid issues of stale data being served.
-5. Know the system that you are caching for. Different caching strategies can be used only if certain requirements are met by the environment. It is always best to learn as much about the environment as possible before building the application.
-
-## Conclusion
-
-In this article, we discussed the essential concepts that one must understand in order to be able to apply caching to a web development project. With this information, in hope, you are better prepared to work with caching in your projects. This article is intended to serve as a primer that makes it easier to understand more complex caching concepts.
-
-
-
-
-
+- Treat every cached value as disposable. The site must produce correct results with an empty cache, only more slowly.
+- Use the `$found` parameter of `wp_cache_get()` so that empty results are cached as well.
+- Namespace your entries with your own group, and invalidate them when the source data changes.
+- Set an expiry as a safety net, even when you also invalidate explicitly.
+- Choose the object cache for data derived from the database, and transients for data that must outlive the request on any site, such as remote API responses.
+- Keep autoloaded options small, and pass `false` for autoload when an option is rarely needed.
+- Test with the persistent object cache both enabled and disabled. Stale data bugs often only appear once values survive between requests.

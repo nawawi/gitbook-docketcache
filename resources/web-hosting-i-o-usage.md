@@ -1,81 +1,126 @@
 ---
-description: >-
-  All You Need To Know About Web Hosting I/O Usage, IOPS Limit And Entry
-  Processes Limit
+description: How disk I/O, IOPS, inode and process limits work on shared hosting, what happens when a WordPress site reaches them, and how to keep Docket Cache within them.
 ---
 
 # Web Hosting I/O Usage
 
-While looking for an appropriate web hosting solution for your website, you will come across different web hosting packages that offer various configurations of storage space, monthly bandwidth, memory and CPU. 
+Shared hosting plans advertise disk space and bandwidth, but the limits that decide how a WordPress site behaves under load are usually the ones in the small print: how fast the account may read and write to disk, how many files it may hold, and how many processes it may run at once. Because Docket Cache stores the object cache as files, we think it is worth explaining these limits plainly, including what our plugin adds to them and how to keep that bounded.
 
-{% hint style="success" %}
-This article originally from [milesweb.com](https://www.milesweb.com/hosting-faqs/all-you-need-to-know-about-web-hosting-i-o-usage-iops-limit-and-entry-processes-limit/)
+## Three different disk limits
+
+Disk limits are often lumped together as "I/O", but there are three separate things being measured.
+
+| Limit | What it measures | Typical unit |
+| --- | --- | --- |
+| I/O throughput | The amount of data read and written per second, combined | KB/s or MB/s |
+| IOPS | The number of read and write operations per second, whatever their size | operations per second |
+| Inodes | The number of files and directories the account owns | count |
+
+Throughput and IOPS are rate limits: they cap how hard the account can work the disk at any moment. A backup that writes one large archive is heavy on throughput, while a job that touches thousands of small files is heavy on IOPS.
+
+The inode limit is a quota, not a rate. Every file and every directory uses one inode regardless of its size, so an account can run out of inodes while most of its disk space is still free.
+
+## How the limits are enforced
+
+Most cPanel shared hosts run CloudLinux, which places each account in its own container called an LVE (Lightweight Virtual Environment) and applies a set of limits to it. The values are chosen by the hosting provider and differ from plan to plan.
+
+| Limit | Meaning | When it is reached |
+| --- | --- | --- |
+| SPEED | CPU share, relative to one core | Processes are slowed down |
+| PMEM | Physical memory, including shared memory and disk cache | Disk cache is released first, then processes are killed, which usually shows as a 500 or 503 error |
+| IO | Read and write throughput | Processes are put to sleep until they are back under the limit |
+| IOPS | Read and write operations per second | Further operations wait until the current second ends |
+| EP | Entry processes: concurrent requests to PHP and other dynamic scripts, plus SSH sessions and cron jobs | The web server returns a 508 "Resource Limit Reached" error |
+| NPROC | Total number of processes in the account | No new process can be created, which usually shows as a 500 or 503 error |
+
+The important distinction is that the two disk limits throttle and do not fail. A site that reaches its IO or IOPS limit keeps working, only slowly. Nothing is written to the PHP error log, so the cause is easy to miss.
+
+Slow requests then create a second problem. Each PHP request holds an entry process for as long as it runs, so when requests are stalled waiting for the disk they overlap, the EP limit fills up, and visitors start receiving 508 errors. An account that shows EP faults is quite often an account with a disk or CPU bottleneck underneath.
+
+Inodes are enforced separately through the disk quota. Once the hard limit is reached, the account can no longer create files, so uploads, updates, sessions and cache writes all fail.
+
+{% hint style="info" %}
+On CloudLinux, the IO limit does not count data served from the operating system's disk cache. Files that are read repeatedly cost far less than files that are constantly rewritten.
 {% endhint %}
 
-However, apart from the standard factors, there are other important factors that you need to consider while signing up for a web hosting package, they are mentioned below:
+## Reading the numbers in cPanel
 
-* What is web hosting I/O usage?
-* What does IOPS mean?
-* What Is Entry Processes Limit?
-* What Is Number Of Processes?
+CloudLinux adds a Resource Usage page to the Metrics section of cPanel, where the host has enabled it. It has three parts:
 
-The factors mentioned above are extremely crucial considerations and usually, they are not mentioned by the web hosting companies to the end-users. You can only know about these factors when you purchase the web hosting package. You will be able to see the I/O usage, IOPS, entry processes and number of processes in your web hosting control panel only if your web host allows these specifications to be displayed.
+- **Dashboard** reports whether the account has been limited in the last 24 hours and which resource was responsible.
+- **Current Usage** charts each limit over time with its usage, its limit and its faults. A fault is recorded each time a limit is hit.
+- **Snapshot** lists the processes, database queries and HTTP requests that were running when a limit was hit.
 
-At times, you can ask about these technical specifications during a pre-sales chat or email query; however, there will be few salespeople who know about them.
+Inode usage appears on the same page when the host has enabled inode limits.
 
-Some web hosting providers include these factors in technical information that is mentioned in a small print in the ‘Terms and Conditions’, ‘Fair Usage Policy’ or in the ‘Terms of Use’ section.
+Start with the faults column. Faults on IO or IOPS that line up with a backup or a scheduled task point to that job. Faults on EP with no matching traffic peak suggest that requests are slow, not numerous, and the snapshot will usually show which URL or query is responsible.
 
-Let’s have a deeper look at these factors so that you can make a better decision about choosing the right web hosting solution.
+## What drives disk I/O in WordPress
 
-## What Is Web Hosting I/O Usage?
+In our experience the heavy disk users are rarely ordinary page views. They are background and maintenance jobs:
 
-The web hosting I/O usage refers to the disk input and output \(I/O\). The disk I/O speed specifies how fast the website or scripts are allowed to carry out the input and output operations per second on your hosting server. Therefore, when it comes to the I/O range, the more the better. When someone visits your website or when you send or receive an email, your hosting server is carrying out the I/O operations.
+- Backup plugins that archive the whole site into the same account.
+- Malware and integrity scanners that read every file.
+- Bulk imports, image regeneration and thumbnail generation.
+- Page cache or minification plugins that purge and rebuild their whole cache after each change.
+- Debug and access logging left switched on, including `WP_DEBUG_LOG`.
+- Bots and crawlers requesting large numbers of uncached URLs.
+- Scheduled tasks that all fire in the same minute.
 
-If your server is set on a low I/O speed, your website and scripts will always perform at a slow pace; irrespective of the storage space, bandwidth, CPU and RAM offered in your web hosting package. A slow hosting platform will make your website slow resulting in damaging the online reputation, it may lead to data loss and bad email communication.
+For inodes the usual causes are different: mail left on the server, old backups, file-based sessions, multiple image sizes for every upload, and cache directories that are never pruned.
 
-Offering a higher I/O is expensive for the web hosting providers which are why they do not allow more than 1 MB/s disk I/O speed on a shared server.
+## Where Docket Cache fits
 
-**Benefits of having a higher I/O limit:**
+We want to be straightforward about this. Docket Cache is a file-based object cache. Each cached object is written to disk as a small PHP file, so the plugin uses both write I/O and inodes. A Redis or Memcached cache does not, but those services are rarely offered on shared plans, which is the gap Docket Cache exists to fill.
 
-* More read/write data can be executed on the disk. 
-* Useful for hosting videos and downloading or streaming on the website. 
-* Enables large scripts to run faster. 
-* Helps in the execution of large database queries and operations. 
-* Prevents website freeze or slow loading of a website with heavy scripts
+The read side is where the design pays off. Cache files are plain PHP code, so OPcache compiles them once and keeps the compiled result in shared memory. Later requests use that copy and PHP does not have to read and parse the file again. Disk activity is therefore concentrated on writes: when a cache entry is first created, when it changes, and when the Garbage Collector cleans up. The Garbage Collector is a Cron Event that runs every five minutes.
 
-## What Does IOPS Mean?
+By default the cache lives in `wp-content/cache/docket-cache`. You can check how much of your quota it uses from a shell:
 
-Similar to the I/O speed, IOPS refers to Inputs Outputs Per Second. IOPS determines the speed at which a hard drive reads data from and writes data to a hard drive. IOPS is used for both traditional spinning hard drives and SSD drives. For instance a 7.2k SATA drive contains about 80 IOPS. When it comes to a hosting server, even though some web hosting providers provide SSD hosting, but in reality they limit the IOPS for every account to a certain value. The most important fact for you to know is that the higher the IOPS, the faster your website will be.
+```shell
+find wp-content/cache/docket-cache -type f | wc -l
+du -sh wp-content/cache/docket-cache
+```
 
-## What Is Entry Processes Limit?
+## Keeping the cache within your limits
 
-An 'Entry Process' denotes the number of PHP scripts running at a single time. An entry process usually takes approximately 1 second to complete, this is the reason why most of the people confuse the entry process with the number of visitors they can have on their website. If the entry process limit is 30, it does not mean that only 30 people can visit your website at once because the possibility of all the people accessing your website at the same second will not happen unless you have a very busy website.
+These constants bound what Docket Cache may use. They are defined in `wp-config.php`.
 
-The processes like cron jobs, shell scripts and other commands also utilize one entry process for the time duration when they are running.
+| Constant | Default | Effect |
+| --- | --- | --- |
+| [DOCKET_CACHE_MAXFILE](../constants.md#docket_cache_maxfile) | 50000 | Maximum number of cache files on disk |
+| [DOCKET_CACHE_MAXSIZE_DISK](../constants.md#docket_cache_maxsize_disk) | 524288000 (500MB) | Maximum size of the cache storage on disk |
+| [DOCKET_CACHE_MAXSIZE](../constants.md#docket_cache_maxsize) | 3145728 (3MB) | Maximum size of the object data stored in one cache file |
+| [DOCKET_CACHE_PRECACHE_MAXFILE](../constants.md#docket_cache_precache_maxfile) | 100 | Maximum number of precache files on disk |
 
-If you plan to host multiple websites on a single hosting server, a higher entry process limit will surely help a lot.
+On a plan with a tight inode limit, lower the file ceiling so that the cache cannot take more than the share you are willing to give it:
 
-**Benefits of higher entry processes limit:**
+```php
+define('DOCKET_CACHE_MAXFILE', 20000);
+define('DOCKET_CACHE_MAXSIZE_DISK', 104857600);
+```
 
-* Helps in catering to large website traffic. 
-* Has the ability to run more scripts at one time. 
-* Makes the website faster, especially in case of an ecommerce website where there are many PHP scripts running for database queries. 
-* Prevents your website from getting suspended with high traffic spikes. 
-* Important for WordPress multi-site build or for running multiple web applications in one hosting account.
+`DOCKET_CACHE_MAXFILE` accepts values between 200 and 1000000, and `DOCKET_CACHE_MAXSIZE_DISK` has a minimum of 104857600 bytes (100MB).
 
-## What Is Number Of Processes?
+Several other constants are useful when files, not bytes, are the problem:
 
-A standard shared server is limited to 25 simultaneous processes per cPanel. Most of the websites work perfectly with 25 concurrent processes limit. The website processes open and close so quickly that they can hardly overlap. These concurrent processes consist of IMAP, SSH connections and other processes running in the same account.
+- [DOCKET_CACHE_MAXFILE_LIVECHECK](../constants.md#docket_cache_maxfile_livecheck) monitors the file limit in real time.
+- [DOCKET_CACHE_FLUSH_DELETE](../constants.md#docket_cache_flush_delete) deletes an expired cache file. By default the file is only emptied, so it still occupies an inode.
+- [DOCKET_CACHE_EMPTYCACHE_IGNORE](../constants.md#docket_cache_emptycache_ignore) stops empty caches from being stored on disk.
+- [DOCKET_CACHE_STALECACHE_IGNORE](../constants.md#docket_cache_stalecache_ignore) stops stale cache left behind by WordPress, WooCommerce and others from being stored on disk.
+- [DOCKET_CACHE_FLUSH_STALECACHE](../constants.md#docket_cache_flush_stalecache) lets the Garbage Collector remove that stale cache immediately after cache invalidation.
+- [DOCKET_CACHE_IGNORED_GROUPS](../constants.md#docket_cache_ignored_groups) excludes whole cache groups, which helps when one plugin generates a very large number of entries.
 
-These processes are same as the entry processes; the only difference is that these processes include all the processes generated by the account or website apart from the specific page, SSH or cron jobs. If the number of processes has been crossed, error 500 or error 503 will be displayed when the website is accessed.
+All of these are off by default, apart from the ignored groups list which has its own defaults. We suggest enabling the two `_IGNORE` constants only if you actually have an inode problem.
 
-It is beneficial if you have many concurrent users connected to the same server at a given point of time for executing various processes like for examples for accessing emails through IMAP, FTP etc.
+Two more settings affect disk behaviour without reducing usage. [DOCKET_CACHE_CHUNKCACHEDIR](../constants.md#docket_cache_chunkcachedir) splits the cache into smaller directories, which helps when one very large directory has become slow to list or clear; the number of files stays the same. [DOCKET_CACHE_PATH](../constants.md#docket_cache_path) moves the cache directory. On a server you control, pointing it at a RAM disk removes cache writes from the disk entirely, but that needs root access and is not an option on shared hosting.
 
-**Conclusion**
+Finally, keep [DOCKET_CACHE_LOG](../constants.md#docket_cache_log) switched off unless you are debugging, since the cache log is one more file being written to disk.
 
-The information mentioned above will provide you better knowledge about the important aspects that you should look for in a web hosting package apart from the standard attributes. Don’t fall for unlimited storage and bandwidth unless you are aware of these important technical factors. If you are promised unlimited space but in reality if your website is getting limited, then there is no point in opting for such a web hosting plan.
+## A practical order of work
 
-
-
-
-
+1. Open the Resource Usage page and note which limit records faults and at what time.
+2. Match the time to a job: a backup, a scan, an import or a scheduled task. Move it to a quiet hour, or send backups to remote storage.
+3. Turn off debug logging and remove old backups, logs and unused cache directories.
+4. Count the files in your cache directories and set `DOCKET_CACHE_MAXFILE` to suit your inode allowance.
+5. If faults continue with nothing left to trim, the site has outgrown the plan. Ask your host for the actual figures of the next tier before upgrading.

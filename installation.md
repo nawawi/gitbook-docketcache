@@ -10,7 +10,12 @@ To use Docket Cache requires minimum:
 
 * PHP 7.2.5
 * WordPress 5.4
-* Zend OPCache
+
+We also recommend:
+
+* Zend OPcache
+
+Docket Cache saves the cache as PHP files, so it works with or without OPcache. With OPcache, PHP keeps those files ready in memory and does not have to read them from disk on every page load, which makes the cache much faster.
 
 ## WordPress Plugin
 
@@ -37,20 +42,4 @@ Please wait around 5 seconds for Docket Cache ready to cache the objects.
 
 ```
 wp plugin install docket-cache --activate
-```
-
-## Via Composer
-
-The plugin is available as [Composer package](https://packagist.org/packages/nawawi/docket-cache) and can be installed via Composer from the root of your WordPress installation.
-
-```
-composer create-project -s dev --prefer-dist nawawi/docket-cache wp-content/plugins/docket-cache
-```
-
-## Via Git
-
-Go to your WordPress plugins folder `cd wp-content/plugins`
-
-```
-git clone https://github.com/nawawi/docket-cache
 ```

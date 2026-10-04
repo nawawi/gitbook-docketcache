@@ -4,13 +4,13 @@ description: About Docket Cache and some relevant information.
 
 # About
 
-## Prologue
+## What Is Docket Cache
 
 The Docket cache is a persistent WordPress Object Cache that is stored as a plain PHP code. Intends to provide an alternative option for those who can't use Redis or Memcached server.
 
 Rather than using [serialize](https://www.php.net/manual/en/function.serialize.php) and [unserialize](https://www.php.net/manual/en/function.unserialize.php) a PHP object to store into flat files, this plugin stores data by converting the object into plain PHP code which results in faster data retrieval and better performance with Zend OPcache enabled.
 
-## Manifesto
+## Why We Built It
 
 When it comes to reliable persistent Object Cache in WordPress, [Redis](https://redis.io) or [Memcached](https://memcached.org) comes on top. However, those solutions require knowledge of server and rarely available at low cost or shared hosting servers
 
@@ -45,4 +45,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## Credits
 
 Some parts of the Docket Cache code are borrowed from different open-source projects.\
-The full list can be found here [https://github.com/nawawi/docket-cache/blob/master/credits.tx](https://github.com/nawawi/docket-cache/blob/master/credits.txt).
+The full list can be found here [https://github.com/nawawi/docket-cache/blob/master/credits.txt](https://github.com/nawawi/docket-cache/blob/master/credits.txt).
